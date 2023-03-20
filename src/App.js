@@ -12,15 +12,17 @@ function App() {
   return (
     <div className="mainapp" dir="rtl">
       <Container className="p-4">
-        <Row gap={3}>
-          <Col sm={4}>
+        <Row>
+          <Col lg={4}>
             <Sidebar />
           </Col>
-          <Col sm={8}>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/users" element={<Users />} />
-            </Routes>
+          <Col lg={8} className="routing-page">
+            <Container fluid>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/users" element={<Users />} />
+              </Routes>
+            </Container>
           </Col>
         </Row>
       </Container>

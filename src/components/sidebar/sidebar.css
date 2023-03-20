@@ -3,3 +3,9 @@
   flex-wrap: wrap;
   gap: 0.7rem;
 }
+.logo-img {
+  width: 100px;
+}
+.sidebar {
+  /* padding-inline: 1rem; */
+}
