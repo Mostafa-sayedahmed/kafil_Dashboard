@@ -9,12 +9,13 @@
   color: #ffffff;
 }
 .dashboard-btn i {
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 .dashboard-btn {
   transition: 0.4s;
   background-color: #ffffff;
   padding: 0.8rem;
+  padding-top: 1rem;
   padding-bottom: 0;
   font-size: 1.2rem;
   text-decoration: none;

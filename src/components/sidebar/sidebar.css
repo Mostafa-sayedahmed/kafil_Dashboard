@@ -3,3 +3,6 @@
   flex-wrap: wrap;
   gap: 0.7rem;
 }
+.logo-img {
+  width: 100px;
+}
