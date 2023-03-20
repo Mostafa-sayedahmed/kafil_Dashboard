@@ -11,16 +11,18 @@ import Users from "./pages/users/users";
 function App() {
   return (
     <div className="mainapp" dir="rtl">
-      <Container className="p-4">
+      <Container className="p-3">
         <Row gap={3}>
-          <Col sm={4}>
+          <Col lg={3}>
             <Sidebar />
           </Col>
-          <Col sm={8}>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/users" element={<Users />} />
-            </Routes>
+          <Col lg={9} className="routing-page">
+            <Container fluid>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/users" element={<Users />} />
+              </Routes>
+            </Container>
           </Col>
         </Row>
       </Container>
