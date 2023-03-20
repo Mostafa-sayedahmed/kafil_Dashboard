@@ -11,12 +11,12 @@ import Users from "./pages/users/users";
 function App() {
   return (
     <div className="mainapp" dir="rtl">
-      <Container className="p-4">
-        <Row>
-          <Col lg={4}>
+      <Container className="p-3">
+        <Row gap={3}>
+          <Col lg={3}>
             <Sidebar />
           </Col>
-          <Col lg={8} className="routing-page">
+          <Col lg={9} className="routing-page">
             <Container fluid>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
