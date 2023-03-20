@@ -1,0 +1,19 @@
+.B-smpilcard {
+    width: 200px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid #dee0e1;
+    text-align: center;
+    position: relative;
+
+}
+.B-smpilcard::before{
+    content: "";
+    position: absolute;
+    display: block;
+    top: 50%;
+    width: 4px;
+    height: 65%;
+    background-color:#1dbf73 ;
+    transform: translateY(-50%);
+}

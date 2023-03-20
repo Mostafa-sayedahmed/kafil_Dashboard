@@ -25,7 +25,7 @@ export default function Sidebar() {
         />
 
         <Dashboardtn route="#" btnName="الإعدادات" btnIcon="fa-solid fa-gear" />
-        <Dashboardtn route="#" btnName="الخدمات" btnIcon="fa-solid fa-shop" />
+        <Dashboardtn route="#"  btnName="الخدمات" btnIcon="fa-solid fa-shop" />
         <Dashboardtn
           route="/contests"
           btnName="المسابقات"
