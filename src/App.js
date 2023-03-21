@@ -16,9 +16,9 @@ import Projects from "./pages/projects/projects";
 function App() {
   return (
     <div className="mainapp" dir="rtl">
-      <Container className="p-3">
+      <Container className="">
         <Row gap={3}>
-          <Col lg={3}>
+          <Col className="sidebar-container" lg={3}>
             <Sidebar />
           </Col>
 
