@@ -9,15 +9,16 @@
   color: #ffffff;
 }
 .dashboard-btn i {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .dashboard-btn {
   transition: 0.4s;
   background-color: #ffffff;
   padding: 0.8rem;
+  padding-top: 1rem;
   padding-bottom: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-decoration: none;
   color: #2b2c2f;
-  width: 7rem;
+  width: 5rem;
 }

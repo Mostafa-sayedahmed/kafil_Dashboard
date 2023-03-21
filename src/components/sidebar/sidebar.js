@@ -2,10 +2,17 @@ import React from "react";
 import Dashboardtn from "../dashboardbtn/dashboardtn";
 import "./sidebar.css";
 import Container from "react-bootstrap/Container";
+import logo from "../../assets/Logo.png";
+import Userinfo from "./../userinfo/userinfo";
 
 export default function Sidebar() {
   return (
-    <div className="sidebar ">
+    <div className="sidebar mt-3 ">
+      <div className="logo-div d-flex justify-content-center">
+        <img src={logo} alt="logo" className="logo-img" />
+      </div>
+      <Userinfo />
+
       <div className=" d-flex flex-row justify-content-between align-items-center m-3 p-3">
         <h4> لوحة التحكم</h4>
         <button className="btn btn-light">
@@ -25,7 +32,11 @@ export default function Sidebar() {
         />
 
         <Dashboardtn route="#" btnName="الإعدادات" btnIcon="fa-solid fa-gear" />
-        <Dashboardtn route="#" btnName="الخدمات" btnIcon="fa-solid fa-shop" />
+        <Dashboardtn
+          route="/serves"
+          btnName="الخدمات"
+          btnIcon="fa-solid fa-shop"
+        />
         <Dashboardtn
           route="/contests"
           btnName="المسابقات"
