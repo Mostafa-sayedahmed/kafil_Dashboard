@@ -8,6 +8,7 @@ import Sidebar from "./components/sidebar/sidebar";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/dashboard/dashboard";
 import Users from "./pages/users/users";
+import Projects from './pages/projects/projects';
 function App() {
   return (
     <div className="mainapp" dir="rtl">
@@ -20,6 +21,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/Projects" element={<Projects />} />
             </Routes>
           </Col>
         </Row>
