@@ -3,7 +3,7 @@ import * as Icon from  'react-bootstrap-icons';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 function Card(props) {
-    console.log(props);
+    // console.log(props);
     const now=0;
     return (  
         <Accordion className='AccordionOne' defaultActiveKey={['0']} alwaysOpen >
