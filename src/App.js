@@ -8,17 +8,20 @@ import Sidebar from "./components/sidebar/sidebar";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/dashboard/dashboard";
 import Users from "./pages/users/users";
+import Serves from "./pages/serves/serves";
 function App() {
   return (
     <div className="mainapp" dir="rtl">
-      <Container className="p-4">
+      <Container className="p-3">
         <Row gap={3}>
-          <Col sm={4}>
+          <Col lg={3}>
             <Sidebar />
           </Col>
-          <Col sm={8}>
+
+          <Col lg={9} className="routing-page">
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/serves" element={<Serves />} />
               <Route path="/users" element={<Users />} />
             </Routes>
           </Col>
