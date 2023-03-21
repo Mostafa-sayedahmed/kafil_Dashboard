@@ -11,6 +11,7 @@ import Users from "./pages/users/users";
 import Serves from "./pages/serves/serves";
 
 import Home from "./pages/home/home";
+import Projects from "./pages/projects/projects";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/serves" element={<Serves />} />
               <Route path="/users" element={<Users />} />
+              <Route path="/projects" element={<Projects />} />
             </Routes>
           </Col>
         </Row>
