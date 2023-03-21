@@ -2,10 +2,39 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
+  padding: 1rem;
 }
 .logo-img {
   width: 100px;
 }
 .sidebar {
+  z-index: 2;
+  position: relative;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   /* padding-inline: 1rem; */
+}
+.bg-img {
+  opacity: 0.6;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  transform: rotate(-90deg);
+  left: 40%;
+
+  /* top: 60%; */
+  /* z-index: -1; */
+}
+.control-panel-head {
+  border-radius: 1rem;
+  background-color: #ffffff91;
+}
+@media (max-width: 992px) {
+  .bg-img {
+    top: 55%;
+    left: 0%;
+    height: 50vh;
+    object-fit: cover;
+    overflow: hidden;
+    transform: rotate(0deg);
+  }
 }

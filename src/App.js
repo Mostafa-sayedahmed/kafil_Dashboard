@@ -10,6 +10,7 @@ import Dashboard from "./pages/dashboard/dashboard";
 import Users from "./pages/users/users";
 import Serves from "./pages/serves/serves";
 import Home from "./pages/home/home";
+
 function App() {
   return (
     <div className="mainapp" dir="rtl">

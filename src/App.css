@@ -24,7 +24,15 @@
   padding: 0;
   margin: 0;
 }
-
+.bg-img img {
+  position: absolute;
+  overflow: hidden;
+  transform: rotate(90deg);
+  height: 100%;
+  width: 100%;
+  left: 40%;
+  z-index: 0;
+}
 /* :root {
   --shadow: #092e52;
   --scrollbarBG: #858585;
