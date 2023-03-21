@@ -13,9 +13,9 @@ const Home = () => {
   return ( <>
     <>
        <div className='home'>
-       <Alert className='p-3 my-3 mx-2' variant='success'>
+       {/* <Alert className='p-3 my-3 mx-2' variant='success'>
        فى 5 ثواني, إربط حسابك بـ تلجرام/تويتر لتستلم تنبيهات فورية عند شراء خدماتك إذا كنت بائع و أخري هامة إذا كنت مشتري
-       </Alert>
+       </Alert> */}
            <div className='fContainer' >
                <div className='d-flex justify-content-between borderBottom p-3'>
                    <div>
@@ -49,7 +49,7 @@ const Home = () => {
                </div>
            </div>
            <div className='d-flex flex-wrap'>
-           <Card header="خدماتي"  one="بإنتظار موافقة الإدارة" oneNum="10"
+           <Card header="الخدمات"  one="بإنتظار موافقة الإدارة" oneNum="10"
             two="يحتاج إلى تعديلات" twoNum="50"
              three="منشور" threeNum="90" four="مرفوض" fourNum="0" />
 
@@ -57,7 +57,7 @@ const Home = () => {
             two="مفتوح " twoNum="84"
              three="قيد التنفيذ" threeNum="35" four="مرفوض" fourNum="0" />
 
-<Card header="مشترياتي"  one="بإنتظار موافقة البائع  " oneNum="10"
+<Card header="المشتريات"  one="بإنتظار موافقة البائع  " oneNum="10"
             two="قيد التنفيذ" twoNum="40"
              three="مكتمل" threeNum="90" four="تم الإلغاء " fourNum="0" />
 
@@ -66,7 +66,7 @@ const Home = () => {
    
 <Accordion className='AccordionTwo' defaultActiveKey={['0']} alwaysOpen >
      <Accordion.Item eventKey="0">
-       <Accordion.Header ><Icon.Gift color="black" size={20} className="ms-2 mb-1" /><h6 style={{color:"black"}}>مشاريعي</h6></Accordion.Header>
+       <Accordion.Header ><Icon.Gift color="black" size={20} className="ms-2 mb-1" /><h6 style={{color:"black"}}>المشاريع</h6></Accordion.Header>
        <Accordion.Body>
        <div className='d-flex'>
                <div className='w-50 mx-3'>  <div >
@@ -142,7 +142,7 @@ const Home = () => {
   
    <Accordion className='AccordionTwo' defaultActiveKey={['0']} alwaysOpen >
      <Accordion.Item eventKey="0">
-       <Accordion.Header ><Icon.Gift color="black" size={20} className="ms-2 mb-1" /><h6 style={{color:"black"}}>مسابقاتي</h6></Accordion.Header>
+       <Accordion.Header ><Icon.Gift color="black" size={20} className="ms-2 mb-1" /><h6 style={{color:"black"}}>المسابقات</h6></Accordion.Header>
        <Accordion.Body>
        <div className='d-flex'>
                <div className='w-50 mx-3'>  <div >
@@ -209,7 +209,7 @@ const Home = () => {
      </Accordion.Item>
     
    </Accordion>
-   <Card header="خدماتي"  one="بإنتظار موافقة الإدارة" oneNum="10"
+   <Card header="الخدمات"  one="بإنتظار موافقة الإدارة" oneNum="10"
             two="يحتاج إلى تعديلات" twoNum="50"
              three="منشور" threeNum="90" four="مرفوض" fourNum="0" />
   
