@@ -3,7 +3,7 @@ import React from 'react'
 export default function Projects() {
   return (
     
-
+<>
     <table className="table table-hover bg-white">
   
     <thead>
@@ -22,6 +22,7 @@ export default function Projects() {
      <Card hash="3" NameProject=" مطلوب موقع الكتروني يكون ترتية جيد" NamePerson="Ahmed Hesham" Time="4" budget="$250 - $500"/>   
      </tbody>
      </table>
+
     </>
 
   )
