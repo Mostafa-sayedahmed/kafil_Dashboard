@@ -54,7 +54,7 @@ export default function Sidebar() {
             btnIcon="fa-solid fa-trophy"
           />
           <Dashboardtn
-            route="/projects"
+            route="/Projects"
             btnName="المشاريع"
             btnIcon="fa-solid fa-suitcase "
           />
