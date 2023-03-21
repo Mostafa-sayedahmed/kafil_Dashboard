@@ -10,6 +10,7 @@ import Dashboard from "./pages/dashboard/dashboard";
 import Users from "./pages/users/users";
 import Serves from "./pages/serves/serves";
 
+import Home from "./pages/home/home";
 
 function App() {
   return (
@@ -20,13 +21,13 @@ function App() {
             <Sidebar />
           </Col>
 
-          <Col sm={8}>
+          <Col lg={9} className="routing-page">
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/serves" element={<Serves />} />
               <Route path="/users" element={<Users />} />
             </Routes>
-
           </Col>
         </Row>
       </Container>

@@ -3,17 +3,25 @@ import Smpilcard from '../../components/smpilcard/smpilcard'
 import '../serves/serves.css'
  function Serves() {
   return (
-    <div className=''>
-      <div className='header'>
+    <div className=' '>
 
+      <div className='bg-white border border-secondary-subtle mt-5 rounded '>
+          <h1 className='m-2'>الخدمات</h1>
+        
       </div>
-        <div className='B-serves'>
-        <Smpilcard cardName='الاجمالى الخدمات' cardValue='0'/>
-        <Smpilcard/>
-        <Smpilcard/>
-        <Smpilcard/>
-        <Smpilcard/>
+        <div className='B-serves p-3 '>
+        <Smpilcard  cardName='الاجمالى الخدمات' cardValue='0'/>
+        <Smpilcard cardName='بانتظار موافقة الادارة' cardValue='0'/>
+        <Smpilcard cardName='يحتاج الى تعديلات' cardValue='0'/>
+        <Smpilcard cardName='نشط' cardValue='0'/>
+        <Smpilcard cardName=' متوقف مؤقتا' cardValue='0'/>
+        <Smpilcard cardName='مرفوض' cardValue='0'/>
         </div>
+        <div className='bg-white border border-secondary-subtle mt-3 rounded'>
+          <h1 className='m-2'>الخدمات</h1>
+        </div>
+      
+       
     </div>
   )
 }

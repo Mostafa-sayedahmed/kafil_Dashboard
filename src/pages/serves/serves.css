@@ -23,4 +23,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    background-color: #ffff ;
+    justify-content: center;
 }
