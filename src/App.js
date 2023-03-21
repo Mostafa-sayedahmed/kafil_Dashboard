@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/dashboard/dashboard";
 import Users from "./pages/users/users";
 import Serves from "./pages/serves/serves";
+import Home from "./pages/home/home";
 function App() {
   return (
     <div className="mainapp" dir="rtl">
@@ -21,6 +22,7 @@ function App() {
           <Col lg={9} className="routing-page">
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/serves" element={<Serves />} />
               <Route path="/users" element={<Users />} />
             </Routes>
