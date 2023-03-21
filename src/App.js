@@ -18,13 +18,12 @@ function App() {
             <Sidebar />
           </Col>
 
-          <Col sm={8}>
+          <Col lg={9} className="routing-page">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/serves" element={<Serves />} />
               <Route path="/users" element={<Users />} />
             </Routes>
-
           </Col>
         </Row>
       </Container>
