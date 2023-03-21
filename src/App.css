@@ -12,6 +12,7 @@
   background-color: #f1f2f2;
 }
 .routing-page {
+  /* flex-grow: 1; */
   top: 5rem;
   position: relative;
   padding-top: 5rem;
