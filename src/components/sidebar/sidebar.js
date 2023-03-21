@@ -21,7 +21,7 @@ export default function Sidebar() {
       </div>
       <div className="sidebar-btns">
         <Dashboardtn
-          route="/"
+          route="/home"
           btnName="الرئيسية"
           btnIcon="fa-solid fa-house "
         />
