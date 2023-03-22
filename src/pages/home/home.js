@@ -14,8 +14,10 @@ const Home = () => {
         <>
             <div className='home container-fluid'>
                 <div className='fContainer row' >
-                    <Alert className='p-3 my-3 col-12' variant='success'>
+                    <Alert className='p-2 my-3 col-12' variant='success'>               
                         فى 5 ثواني, إربط حسابك بـ تلجرام/تويتر لتستلم تنبيهات فورية عند شراء خدماتك إذا كنت بائع و أخري هامة إذا كنت مشتري
+                        <Button className="me-2"  variant="success" href="https://twitter.com/?lang=en" target="_blank"><Icon.Twitter  /></Button>
+                        <Button className="me-1" variant="success" href="https://web.telegram.org/z/" target="_blank"><Icon.Telegram  /></Button>
                     </Alert>
                     <div className='d-flex justify-content-between borderBottom p-3 col-12'>
                         <div>
