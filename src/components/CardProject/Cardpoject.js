@@ -1,11 +1,9 @@
-
-
-
-import React from 'react'
+import React from "react";
 
 export default function Cardpoject(props) {
   return (
     <>
+
         <tr>
         <th scope="row " className='ms-2'>{props.hash}</th>
         <td className='text-nowrap p-2'> <i class="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {props.NameProject} </td>
@@ -14,7 +12,10 @@ export default function Cardpoject(props) {
         <td className='text-nowrap p-2'><i class="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{props.budget}</td>
         <td><button className='btn btn-outline-danger p-2 rounded'>Delete</button></td>
     </tr>
+
+
     </>
-   
-  )
+  
+  );
+
 }
