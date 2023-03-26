@@ -1,6 +1,5 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,6 +11,7 @@ import Serves from "./pages/serves/serves";
 
 import Home from "./pages/home/home";
 import Projects from "./pages/projects/projects";
+import Context from "./pages/Context/Context";
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
               <Route path="/serves" element={<Serves />} />
               <Route path="/users" element={<Users />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/Context" element={<Context />} />
             </Routes>
           </Col>
         </Row>
