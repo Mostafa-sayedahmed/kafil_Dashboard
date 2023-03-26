@@ -14,15 +14,15 @@ export default function Projects() {
       {/* end heading */}
 
       {/* start cards */}
-      <div className="B-serves p-5 ">
+
+      <div className="B-serves p-3 ">
         <Smpilcard cardName=" بانظار موافقه الاداره  " cardValue="0" />
         <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" />
         <Smpilcard cardName="منشور" cardValue="0" />
         <Smpilcard cardName="مرفوض" cardValue="0" />
         <Smpilcard cardName="مرحله تلقي العروض " cardValue="0" />
         <Smpilcard cardName=" مكتمل " cardValue="0" />
-        <Smpilcard cardName=" قيد التنفيذ " cardValue="0" />
-        <Smpilcard cardName=" تم الالغاء " cardValue="0" />
+       
       </div>
       {/* end cards */}
 

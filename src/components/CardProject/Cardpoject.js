@@ -6,7 +6,7 @@ import React from 'react'
 export default function Cardpoject(props) {
   return (
     <>
-    <tr>
+        <tr>
         <th scope="row " className='ms-2'>{props.hash}</th>
         <td className='text-nowrap p-2'> <i class="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {props.NameProject} </td>
         <td className='text-nowrap p-2'> <i class="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {props.NamePerson}</td>
