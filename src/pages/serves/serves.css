@@ -27,3 +27,18 @@
   justify-content: center;
   font-size: 1.2rem;
 }
+
+.services-container::-webkit-scrollbar {
+  /* display: none; */
+  /* overflow-x: hidden; */
+}
+.services-container table {
+}
+.services-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}

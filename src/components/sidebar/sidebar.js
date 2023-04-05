@@ -50,6 +50,7 @@ export default function Sidebar() {
           />
           <Dashboardtn
             route="/contest"
+            route="/Context"
             btnName="المسابقات"
             btnIcon="fa-solid fa-trophy"
           />

@@ -1,6 +1,5 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,6 +11,7 @@ import Serves from "./pages/serves/serves";
 
 import Home from "./pages/home/home";
 import Projects from "./pages/projects/projects";
+import Context from "./pages/Context/Context";
 
 import Navbar from './components/FixedNavbar/FixedNavbar';
 import Footer from './components/Footer/Footer';
@@ -39,13 +39,13 @@ function App() {
               <Route path="/serves" element={<Serves />} />
               <Route path="/users" element={<Users />} />
               <Route path="/projects" element={<Projects />} />
-
               <Route exact path="/createContest" element={<CreateContest/>} />
               <Route exact path="/contest/:id" element={<EditContest/>} />
               <Route exact path="/contest" element={<Contest/>} />
               <Route exact path="/createProject" element={<CreateProject/>} />
               <Route exact path="/project/:id" element={<EditProject/>} />
               <Route exact path="/project" element={<Project/>} />
+              <Route path="/Context" element={<Context />} />
             </Routes>
           </Col>
         </Row>
