@@ -2,7 +2,87 @@ import React from 'react'
 import Smpilcard from '../../components/smpilcard/smpilcard';
 import CardofContext from '../../components/CardofContext/CardofContext';
 
+import { useState , useEffect } from 'react';
+import axios from 'axios';
+import Swal from "sweetalert2";
+import { db , auth } from '../../Firebase/Firebase';
+
 export default function Context() {
+
+  
+    // contest
+    const [contest, setContest] = useState([]);
+    const [contestId, setContestId] = useState();
+      
+
+      function afterDelete(message , icon){
+        Swal.fire({
+            title: message,
+            icon: icon,
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } 
+  
+           
+        function DeleteAlert(id){
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                // deleteData(id);
+            }
+        })
+    } 
+      
+        async function deleteData(id) {
+            let message;
+            let icon;
+            try {
+                const response = await axios.post("");
+         
+                let index = contest.findIndex( ele => ele.id === id);
+                setContest(contest.splice(index,1));
+          
+                // fetchData();
+                console.log(response)
+                    
+            } catch (error) {
+                console.log(error)
+                message = error.message;
+                icon = "error" ;
+                afterDelete(message , icon);
+            }
+      
+        }     
+
+
+    const handleSubmit = async () => {
+        try {
+            await auth.signInWithEmailAndPassword("EsraaMokhtar2310@gmail.com", "Esraa#2310");
+        } catch (error) {
+            console.error(error);
+        }
+        fetchContests();
+      };
+
+    const fetchContests = async () => {
+      const data = await db.collection('contests').get();
+      setContest(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+    };
+
+    console.log(contest)
+
+    useEffect(() => {
+      fetchContests();
+    },[]);
+        
+   
   return (
         <>
         {/* start heading */}
@@ -33,20 +113,21 @@ export default function Context() {
     <thead>
     <tr>
       <th >#</th>
-      <th >NamePerson</th>
-      <th >NameContext</th>
-      <th >NameCategory</th>
-      <th >budget</th>
-      <th >Complete</th>
+      <th >الاسم</th>
+      <th >المسابقة</th>
+      <th >القسم</th>
+      <th >الجائزة</th>
+      <th >مكتملة</th>
     </tr>
   </thead>
     <tbody>
-     <CardofContext hash="1" NamePerson="Arab Accredited" NameProject="تصميم هويه بصريه ولوجو لمتجر بيع مستحضرات تجميل"  NameCategory="تصميم" budget="45 "/>
-     <CardofContext hash="2" NamePerson="Fahd Salm " NameProject="تصميم كرتون منتج كما هوا في الامثلة"  NameCategory="تصميم" budget="250 "/>
-     <CardofContext hash="3" NamePerson= "Sunset Boulevard " NameProject="إقتراح اسم تجاري لبراند لمتجر بيع ملابس"  NameCategory="إختيار أسماء "budget="45 "/>
-     <CardofContext hash="4" NamePerson="يوسف علي" NameProject="تصميم صورة لرجل و امرأة لمقدمة تطبيق جوال"  NameCategory="تصميم" budget="120 "/>
-     <CardofContext hash="5" NamePerson= " Stylorita Official " NameProject="كتابة اعلان عن تطبيق لتحميل الفيديوهات "  NameCategory="كتابة و ترجمة" budget="45 "/>
-     </tbody>
+    {contest.map((cont,index)=>{
+      return(
+        <CardofContext key={index} index={index} name={cont.userName} contest={cont.title}  section={cont.sectionId} award={cont.firstWinner}/>
+      )
+  
+   })}
+   </tbody>
      </table>
       {/* end Table */}
 
