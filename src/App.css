@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo&display=swap");
 
 .mainapp {
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   box-sizing: border-box;
   font-family: "Cairo", sans-serif;
   display: flex;
@@ -14,12 +14,12 @@
 }
 .routing-page {
   /* flex-grow: 1; */
-  top: 5rem;
+  top: 4rem;
   position: relative;
   /* padding-top: 5rem; */
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
   margin-inline: 0;
-  height: 100vh;
+  height: 115vh;
   overflow: scroll;
   padding: 0;
   margin: 0;
@@ -33,6 +33,19 @@
   left: 40%;
   z-index: 0;
 }
+.sidebar-container {
+  /* height: 100vh; */
+  /* overflow: scroll; */
+}
+
+@media (max-width: 992px) {
+  .routing-page {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/*  */
 /* :root {
   --shadow: #092e52;
   --scrollbarBG: #858585;
