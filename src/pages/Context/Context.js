@@ -6,14 +6,20 @@ import { useState , useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { db , auth } from '../../Firebase/Firebase';
+import ReactLoading from "react-loading";
+
 
 export default function Context() {
 
   
     // contest
     const [contest, setContest] = useState([]);
-    const [contestId, setContestId] = useState();
-      
+    const [sections, setSections] = useState([]);
+    const [isBusy, setIsBusy] = useState(false);
+    const [completedNum, setCompletedNum] = useState(0);
+    const [notCompletedNum, setNotCompletedNum] = useState(0);
+
+
 
       function afterDelete(message , icon){
         Swal.fire({
@@ -48,8 +54,7 @@ export default function Context() {
          
                 let index = contest.findIndex( ele => ele.id === id);
                 setContest(contest.splice(index,1));
-          
-                // fetchData();
+
                 console.log(response)
                     
             } catch (error) {
@@ -61,25 +66,49 @@ export default function Context() {
       
         }     
 
-
-    const handleSubmit = async () => {
-        try {
-            await auth.signInWithEmailAndPassword("EsraaMokhtar2310@gmail.com", "Esraa#2310");
-        } catch (error) {
-            console.error(error);
-        }
-        fetchContests();
-      };
-
     const fetchContests = async () => {
       const data = await db.collection('contests').get();
-      setContest(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      setContest(data.docs.map( (doc) => ({ id: doc.id, ...doc.data() , sectionName : sections.find((ele)=> ele.id === doc.data().sectionId).name }) ));
+      setIsBusy(true);
+      
+      
     };
 
-    console.log(contest)
+    const fetchSections = async () => {
+      const data = await db.collection('contestSections').get();
+      setSections(data.docs.map( (doc) => ({ id: doc.id, ...doc.data()})));
+    };
+
+    const getCompleted = (data) => {
+     let arr = data.filter((ele)=>{
+        return ele.completed == true;
+      });
+      setCompletedNum(arr.length);
+      console.log(arr);
+    }
+
+
+    const getNotCompleted = (data) => {
+      let arr = data.filter((ele)=>{
+         return ele.completed == false;
+       })
+       setNotCompletedNum(arr.length);
+       console.log(arr);
+     }
+
 
     useEffect(() => {
+
+
+      fetchSections().then(() => {
       fetchContests();
+      });
+
+  
+      getCompleted(contest);
+      getNotCompleted(contest);
+    
+      
     },[]);
         
    
@@ -94,12 +123,9 @@ export default function Context() {
 
         {/* start cards */}
         <div className="B-serves p-3 ">
-        <Smpilcard cardName=" بانتظار موافقه الاداره  " cardValue="0" />
-        <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" />
-        <Smpilcard cardName="منشور" cardValue="0" />
-        <Smpilcard cardName="مرفوض" cardValue="0" />
-        <Smpilcard cardName="مرحله تلقي العروض " cardValue="0" />
-        <Smpilcard cardName=" مكتمل " cardValue="0" />
+            <Smpilcard cardName=" مكتمل " cardValue={completedNum} />
+            <Smpilcard cardName="غير مكتمل" cardValue={notCompletedNum} />
+            <Smpilcard cardName="مرفوض" cardValue="0" />
          </div>
       {/* end cards */}
       {/* start heading  two*/}
@@ -118,19 +144,27 @@ export default function Context() {
       <th >القسم</th>
       <th >الجائزة</th>
       <th >مكتملة</th>
+      <th >حذف</th>
     </tr>
   </thead>
     <tbody>
-    {contest.map((cont,index)=>{
-      return(
-        <CardofContext key={index} index={index} name={cont.userName} contest={cont.title}  section={cont.sectionId} award={cont.firstWinner}/>
-      )
-  
-   })}
+          {isBusy ? (
+                contest.map((cont,index)=>{
+                  return(
+                    <CardofContext key={index} index={index+1} name={cont.userName} contest={cont.title}  section={cont.sectionName} award={cont.firstWinner} DeleteAlert={DeleteAlert(cont.id)}/>
+                  )
+               })
+              ) : (<div className='d-flex justify-content-center align-items-center w-100' style={{ height: "100%" , width:"100%" }}>
+              <div>
+                <ReactLoading type="spin" color="#1dbf73"
+                  height={100} width={50} />
+              </div>
+
+            </div>)
+
+            }
    </tbody>
      </table>
-      {/* end Table */}
-
-        </>    
+  </>    
   )
 }
