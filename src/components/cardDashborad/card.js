@@ -1,14 +1,17 @@
 import Accordion from 'react-bootstrap/Accordion';
 import * as Icon from  'react-bootstrap-icons';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import './card.css'
 
 function Card(props) {
-    console.log(props);
+   
     const now=0;
     return (  
         <Accordion className='col-12	col-sm-12	col-md-4	col-lg-4	col-xl-4	col-xxl-4 my-2' defaultActiveKey={['0']} alwaysOpen >
         <Accordion.Item eventKey="0">
-          <Accordion.Header><Icon.Bag color="black" size={20} className="ms-2 mb-1"/><h6 style={{color:"black"}}>{props.header}</h6></Accordion.Header>
+          <Accordion.Header>
+            <Icon.Bag color="black" size={20} className="ms-2 mb-1"/><h6 style={{color:"black"}}>{props.header}</h6>
+            </Accordion.Header>
           <Accordion.Body >
               <div >
                   <div className='d-flex justify-content-between text-center '>

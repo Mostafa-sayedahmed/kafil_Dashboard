@@ -7,24 +7,52 @@ import Accordion from 'react-bootstrap/Accordion';
 import * as Icon from 'react-bootstrap-icons';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Card from "../../components/cardDashborad/card";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
-const Home = () => {
+
+const Home =  () => {
+
+
+    //insializing firestore 
+    // FireBase config
+    const firebaseConfig = {
+        apiKey: "AIzaSyByEnviX-FDw6MAqAt3DdFm5GTvXuKiwKE",
+        authDomain: "kafiil-12b6c.firebaseapp.com",
+        databaseURL: "https://kafiil-12b6c-default-rtdb.firebaseio.com",
+        projectId: "kafiil-12b6c",
+        storageBucket: "kafiil-12b6c.appspot.com",
+        messagingSenderId: "894615157997",
+        appId: "1:894615157997:web:9e5b2fc5d3f0c7ceb5a0e4",
+        measurementId: "G-TXXLDM8EZ1"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    // Get a list of cities from your database
+    async function getData() {
+        const querySnapshot = await getDocs(collection(db, "Freelancers"));
+    querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+    });
+  
+    }
+    getData()
+    
+
+
+
+
     const now = 0;
     return (<>
         <>
             <div className='home container-fluid'>
                 <div className='fContainer row' >
-                    <Alert className='p-2 my-3 col-12' variant='success'>               
-                        فى 5 ثواني, إربط حسابك بـ تلجرام/تويتر لتستلم تنبيهات فورية عند شراء خدماتك إذا كنت بائع و أخري هامة إذا كنت مشتري
-                        <Button className="me-2"  variant="success" href="https://twitter.com/?lang=en" target="_blank"><Icon.Twitter  /></Button>
-                        <Button className="me-1" variant="success" href="https://web.telegram.org/z/" target="_blank"><Icon.Telegram  /></Button>
-                    </Alert>
                     <div className='d-flex justify-content-between borderBottom p-3 col-12'>
                         <div>
                             <h3>الرصيد</h3>
                         </div>
                         <div>
-                            <Button variant="success">شحن الرصيد</Button>
+                            <Button variant="success" >شحن الرصيد</Button>
                         </div>
                     </div>
                     <div className=' col-12'>
@@ -54,7 +82,7 @@ const Home = () => {
                 <div className='d-flex flex-wrap row'>
                     <Card header="الخدمات" one="بإنتظار موافقة الإدارة" oneNum="10 "
                         two="يحتاج إلى تعديلات" twoNum="50"
-                        three="منشور" threeNum="90" four="مرفوض" fourNum="0"  />
+                        three="منشور" threeNum="90" four="مرفوض" fourNum="0" />
 
                     <Card header="المبيعات " one="طلبات جديدة" oneNum="18"
                         two="مفتوح " twoNum="84"

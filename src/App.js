@@ -14,6 +14,7 @@ import Home from "./pages/home/home";
 import Projects from "./pages/projects/projects";
 
 function App() {
+ 
   return (
     <div className="mainapp" dir="rtl">
       <Container className="">
