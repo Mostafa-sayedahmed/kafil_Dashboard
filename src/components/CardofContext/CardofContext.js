@@ -10,7 +10,8 @@ export default function CardofContext(props) {
         <td className='text-nowrap p-2'> <i class="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {props.contest} </td>
         <td className='text-nowrap p-2'> <i class="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {props.section} </td>
         <td className='text-nowrap p-2'><i class="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{props.award}</td>
-        <td><input class="form-check-input" type="checkbox" value=""/></td>
+        <td><input class="form-check-input" type="checkbox"
+        checked={props.checked}/></td>
         <td className='text-nowrap p-2'> <Link type='button' onClick={ () =>{
             props.DeleteAlert()  
            }}>

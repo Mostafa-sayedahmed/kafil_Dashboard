@@ -34,13 +34,13 @@ const Login = () => {
             });
     };
 
-  let token = localStorage.getItem('token');
+  // let token = localStorage.getItem('token');
 
-  useEffect(() => {
-    if(token){
-      navigate("/dashboard")
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if(token){
+  //     navigate("/dashboard")
+  //   }
+  // }, [token]);
 
 return(
 <>
