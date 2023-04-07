@@ -30,36 +30,51 @@ const Users = () => {
   let arr = [];
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getDocs(collection(db, "Freelancers"));
+      const data = await getDocs(collection(db, "Freelancers"))
       data.forEach((doc) => {
-        const x = doc.data()
-
-        arr.push(x);
-
-
+        freelancer.push( doc.data());
       })
     }
     fetchData()
-    setFreelancer([arr])
+   
   }, [])
-
-  let test = freelancer[0];
-  console.log(test);
-
+ console.log(freelancer);
+ 
 
 
-
-
-
-
-
-  return (<>
-    <h1>Every thing will be OK !</h1>
-    <ul>
-     
-    </ul>
-  </>
-  );
+  return (  <>
+    {<ul>
+    {freelancer.map((movie)=>{
+       return<>
+       <Card   style={{ width: '18rem' }} className="d-inline-block m-2">
+       <Card.Img variant="top" src={movie.img} />
+       <Card.Body>
+         <Card.Title>الاسم : {movie.name}</Card.Title>
+         <Card.Text>
+           الوظيفة :{movie.title}
+         </Card.Text>
+         <Card.Text>
+           الاعجاب :{movie.likes}
+         </Card.Text>
+         <Card.Text>
+           الاعمال :{movie.portfolio}
+         </Card.Text>
+         <Card.Text>
+           التقييم :{movie.rating}
+         </Card.Text>
+         <Card.Text>
+           المشاهدات :{movie.views}
+         </Card.Text>
+       </Card.Body>
+     </Card>
+     </>
+    })}
+    
+   </ul>}
+ 
+   
+   
+    </>);
 };
 
 export default Users;
