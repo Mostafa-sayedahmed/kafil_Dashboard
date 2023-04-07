@@ -1,0 +1,90 @@
+
+@media only screen and (max-width: 600px) {
+
+    .header__navbar ul li a:hover {
+        color: #ffffff;
+    }
+    .header__navbar a{
+        text-decoration: none !important;
+    }
+    .header__navbar ul li:last-child a {
+        border-right: none !important;
+    }
+    .header__navbar ul li a{
+        font-size: 18px !important;
+    }
+
+    .side_bar__btn_toggler{
+        background-color: #263238 !important;
+        color: #ffffff!important;
+        position: fixed !important;
+        top: 100px !important;
+        left: -10px !important;
+        border-top-right-radius: 15px !important;
+        border-bottom-right-radius: 15px !important;  
+    }
+
+    .side-bar.opened {
+        height: 100vh;
+        margin-top: 65px;
+        top: 0;
+        left: 0;
+    }
+
+    .side-bar.opened .side-bar__btn-toggler .open {
+        display: none;
+    }
+    
+    .side-bar.opened .side-bar__btn-toggler .close {
+        display: block;
+        margin-right: 2px;
+        margin-top: -2px;
+    }
+}
+
+
+@media only screen and (min-width: 600px) {
+
+    
+    .header__navbar ul li a:hover {
+        color: #ffffff;
+    }
+    .header__navbar a{
+        text-decoration: none !important;
+    }
+    .header__navbar ul li:last-child a {
+        border-right: none !important;
+    }
+    .header__navbar ul li a{
+        font-size: 18px !important;
+    }
+    .side_bar__btn_toggler{
+        background-color: #263238 !important;
+        color: #ffffff!important;
+        position: fixed !important;
+        top: 100px !important;
+        left: -10px !important;
+        border-top-right-radius: 15px !important;
+        border-bottom-right-radius: 15px !important;      
+    }
+    
+}
+
+
+@media only screen and (min-width: 992px) {
+
+    
+    .header__navbar ul li a:hover {
+        color: #ffffff;
+    }
+    .header__navbar a{
+        text-decoration: none !important;
+    }
+    .header__navbar ul li:last-child a {
+        border-right: none !important;
+    }
+    .header__navbar ul li a{
+        font-size: 18px !important;
+    }
+    
+}
