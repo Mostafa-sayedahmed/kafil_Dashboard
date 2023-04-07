@@ -1,0 +1,19 @@
+.or{
+    position: absolute;
+    top: 324px;
+    right: calc(50% - 17px);
+    font-size: 14px;
+    font-weight: 700;
+    background-color: rgb(255, 255, 255);
+    color: rgb(173, 173, 173);
+    border: 2px solid rgb(191, 191, 191);
+    border-radius: 50%;
+    padding: 5px 9px;
+  }
+  
+  
+  #sin{
+    width: 350px;
+    margin: 30px auto;
+  }
+  
