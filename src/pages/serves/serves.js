@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import Cardpoject from "../../components/CardProject/Cardpoject";
 import Smpilcard from "../../components/smpilcard/smpilcard";
 import "../serves/serves.css";
+import { db } from "../../Firebase/Firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function Serves() {
+  const [services, setserices] = useState("");
+
+  async function getservices() {
+    const querySnapshot = await getDocs(collection(db, "services"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      // setserices(...services, (doc.id, " => ", doc.data()));
+      console.log(doc.id, " => ", doc.data());
+    });
+  }
+  // const [services, setserices] = useState("");
+  // const querySnapshot = await getDocs(collection(db, "services"));
+  // querySnapshot.forEach((doc) => {
+  //   // doc.data() is never undefined for query doc snapshots
+  //   // setserices(...services, (doc.id, " => ", doc.data()));
+  //   console.log(doc.id, " => ", doc.data());
+  // });
   return (
     <div className=" ">
       <div className="bg-white border border-secondary-subtle  rounded ">
@@ -39,8 +58,10 @@ function Serves() {
               NamePerson="Sami Samir"
               Time="3"
               budget="$25 - $50"
+              onClick={getservices}
             />
-            <Cardpoject
+
+            {/*<Cardpoject
               hash="1"
               NameProject="مصمم ويب"
               NamePerson="Sami Samir"
@@ -116,7 +137,7 @@ function Serves() {
               NamePerson="Ahmed Hesham"
               Time="4"
               budget="$250 - $500"
-            />
+            /> */}
           </tbody>
         </table>
         {/* </Container> */}
