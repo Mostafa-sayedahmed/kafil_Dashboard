@@ -14,30 +14,9 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 const Home =  () => {
 
 
-    //insializing firestore 
-    // FireBase config
-    const firebaseConfig = {
-        apiKey: "AIzaSyByEnviX-FDw6MAqAt3DdFm5GTvXuKiwKE",
-        authDomain: "kafiil-12b6c.firebaseapp.com",
-        databaseURL: "https://kafiil-12b6c-default-rtdb.firebaseio.com",
-        projectId: "kafiil-12b6c",
-        storageBucket: "kafiil-12b6c.appspot.com",
-        messagingSenderId: "894615157997",
-        appId: "1:894615157997:web:9e5b2fc5d3f0c7ceb5a0e4",
-        measurementId: "G-TXXLDM8EZ1"
-    };
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    // Get a list of cities from your database
-    async function getData() {
-        const querySnapshot = await getDocs(collection(db, "Freelancers"));
-    querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-    });
-  
-    }
-    getData()
     
+  
+   
 
 
 
