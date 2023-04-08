@@ -23,7 +23,7 @@ const Userinfo = () => {
   const logOut =()=>{
     signOut(auth);
     localStorage.removeItem('user');
-    localStorage.setItem('token', false);
+    localStorage.setItem('isLogged', false);
     navigate('/Login');
   }
 
