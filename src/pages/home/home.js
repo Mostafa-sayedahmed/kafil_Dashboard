@@ -9,9 +9,48 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Card from "../../components/cardDashborad/card";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { useState, useEffect } from "react";
+import { db } from "../../Firebase/Firebase";
+
+
 
 
 const Home =  () => {
+    const [services, setServices] = useState([]);
+    const [projects, setProjects] = useState([]);
+    const [contest, setContest] = useState([]);
+
+    useEffect(() => {
+      const getDataServices=[];
+      const getDataProjects=[];
+      const getDataContests=[];
+      const subscriber=db.collection("services").onSnapshot((querySnapshot)=>{
+        querySnapshot.forEach((doc)=>{
+            getDataServices.push({...doc.data()})
+        })
+        setServices(getDataServices)
+      })
+      const subscriberProject=db.collection("projects").onSnapshot((querySnapshot)=>{
+        querySnapshot.forEach((doc)=>{
+            getDataProjects.push({...doc.data()})
+        })
+        setProjects(getDataProjects)
+  })
+  const subscriberContests=db.collection("contests").onSnapshot((querySnapshot)=>{
+    querySnapshot.forEach((doc)=>{
+        getDataContests.push({...doc.data()})
+    })
+    setContest(getDataContests)
+})
+      return()=>subscriber()
+      subscriberProject()
+      subscriberContests()
+    }, [])
+    // services.map((service)=>{
+    //     console.log(service.price);
+    // })
+    console.log(projects);
+   
 
 
     
