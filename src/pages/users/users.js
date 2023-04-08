@@ -42,16 +42,14 @@ const Users = () => {
           <td>@fat</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
-
         </tr>
         <tr>
           <td>3</td>
-          <td >  علياء</td>
-          <td >  سيف النصر</td>
+          <td>علياء</td>
+          <td>سيف النصر</td>
           <td>@twitter</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
-
         </tr>
         <tr>
           <td>4</td>
@@ -63,8 +61,8 @@ const Users = () => {
         </tr>
         <tr>
           <td>5</td>
-          <td >  محمد</td>
-          <td >  سيف </td>
+          <td>محمد</td>
+          <td>سيف </td>
           <td>@saifp</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
@@ -72,16 +70,16 @@ const Users = () => {
         </tr>
         <tr>
           <td>6</td>
-          <td >  دنيا</td>
-          <td >  احمد </td>
+          <td>دنيا</td>
+          <td>احمد </td>
           <td>@doniapp</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
         </tr>
         <tr>
           <td>7</td>
-          <td >  ليلى</td>
-          <td >  سيف النصر</td>
+          <td>ليلى</td>
+          <td>سيف النصر</td>
           <td>@Laila</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
@@ -89,8 +87,8 @@ const Users = () => {
         </tr>
         <tr>
           <td>8</td>
-          <td >  جميلة</td>
-          <td >  الزقازيقي </td>
+          <td>جميلة</td>
+          <td>الزقازيقي </td>
           <td>@gamiladd</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
@@ -98,8 +96,8 @@ const Users = () => {
         </tr>
         <tr>
           <td>9</td>
-          <td >  طارق</td>
-          <td >  سيف</td>
+          <td>طارق</td>
+          <td>سيف</td>
           <td>@tarekoo</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
@@ -107,8 +105,8 @@ const Users = () => {
         </tr>
         <tr>
           <td>10</td>
-          <td >  محمود</td>
-          <td >  علي</td>
+          <td>محمود</td>
+          <td>علي</td>
           <td>@mahmoudff</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
@@ -116,8 +114,8 @@ const Users = () => {
         </tr>
         <tr>
           <td>11</td>
-          <td >  جميل</td>
-          <td >  منتصر</td>
+          <td>جميل</td>
+          <td>منتصر</td>
           <td>@gamilll</td>
           <td><Button variant="success"><Icon.Pen /></Button>{' '}</td>
           <td><Button variant="danger"><Icon.Trash /></Button>{' '}</td>
@@ -167,3 +165,5 @@ const Users = () => {
 };
 
 export default Users;
+
+

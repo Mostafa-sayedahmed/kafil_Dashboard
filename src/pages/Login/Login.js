@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 
 import { db, auth } from '../../Firebase/Firebase';
+import Swal from "sweetalert2";
 
 import '../../index.css';
 import { useNavigate } from 'react-router-dom';
@@ -16,17 +17,35 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    function Alert(){
+      Swal.fire({
+          title: 'هذا الايميل ليس له صالحية الدخول',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+      });
+    } 
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
         auth.signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                // Signed in
+            .then( async (userCredential) => {
+
                 const user = userCredential.user;
-                localStorage.setItem('token', true);
-                localStorage.setItem('user',JSON.stringify(user))
-                console.log(JSON.stringify(user));
-                navigate('/dashboard');
+
+                   await db.collection('users').doc(user.uid).get().then((res)=>{
+                    console.log(res.data());
+                    const userDoc = res.data();
+                    console.log(userDoc.isAdmin);
+                    if(userDoc.isAdmin){
+                      localStorage.setItem('isLogged', true);
+                      localStorage.setItem('user',JSON.stringify(userDoc))
+                      navigate('/dashboard');
+                    }else{
+                      Alert();
+                    }
+                  });
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -34,13 +53,14 @@ const Login = () => {
             });
     };
 
-  let token = localStorage.getItem('token');
 
-  useEffect(() => {
-    if(token){
-      navigate("/dashboard")
-    }
-  }, [token]);
+  // let isLogged = localStorage.getItem('isLogged');
+
+  // useEffect(() => {
+  //   if(isLogged){
+  //     navigate("/dashboard")
+  //   }
+  // }, [isLogged]);
 
 return(
 <>
@@ -106,3 +126,19 @@ return(
 }
 
 export default Login;
+
+
+// {"uid":"IbLCLW7rMAVbOwchyMFRkc84tT33",
+// "email":"omima@gmail.com",
+// "emailVerified":false,
+// "displayName":"اميمة مختار",
+// "isAnonymous":false,
+// "photoURL":"https://kafiil.com/modules/user/images/user.svg",
+
+// "providerData":[{"providerId":"password",
+// "uid":"omima@gmail.com",
+// "displayName":"اميمة مختار",
+// "email":"omima@gmail.com",
+// "phoneNumber":null,
+// "photoURL":"https://kafiil.com/modules/user/images/user.svg"}]
+// }

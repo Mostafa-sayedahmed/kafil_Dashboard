@@ -2,18 +2,30 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import "./userinfo.css";
 import { json } from "react-router-dom";
-// import userimg from "../../assets/user.jpg";
+import { signOut } from "firebase/auth";
+import { auth } from '../../Firebase/Firebase';
+import { useNavigate } from 'react-router-dom';
+
 const Userinfo = () => {
+
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const [ userName , setUserName] = useState(user.displayName);
-  const [ userImg , setUserImg] = useState(user.photoUR);
+  const [ userName , setUserName] = useState(user.fullname);
+  const [ userImg , setUserImg] = useState(user.imgUrl);
 
   useEffect(() => {
-    setUserName(user.displayName);
-    setUserImg(JSON.parse(localStorage.getItem('user')).photoURL);
+    setUserName(user.fullname);
+    setUserImg(JSON.parse(localStorage.getItem('user')).imgUrl);
   }, [user]);
+
+  const logOut =()=>{
+    signOut(auth);
+    localStorage.removeItem('user');
+    localStorage.setItem('isLogged', false);
+    navigate('/Login');
+  }
 
   return (
     <div className="user-info rounded">
@@ -25,6 +37,7 @@ const Userinfo = () => {
         <button className="btn btn-light">
           <i class="fa-solid fa-gear"></i>
         </button>
+       
       </div>
       <div className="userinfo-details">
         <div className="user-avatar">
@@ -36,6 +49,12 @@ const Userinfo = () => {
         <span className="user-role">
           Admin <i class="fa-solid fa-user-tie p-2"></i>
         </span>
+
+        <button className="btn btn-danger" onClick={()=>{
+            logOut();
+        }}>
+          تسجيل خروج
+        </button>
       </div>
     </div>
   );
