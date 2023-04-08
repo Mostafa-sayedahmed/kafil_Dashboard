@@ -27,6 +27,7 @@ import Login from "./pages/Login/Login";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
+import Viewservice from "./pages/viewservice/viewservice";
 
 function App() {
   let token = localStorage.getItem("token");
@@ -154,6 +155,25 @@ function App() {
                   </Col>
                   <Col lg={9} className="routing-page">
                     <Projects />
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/viewservice"
+          element={
+            // <ProtectedRoute isLoggedIn={token}>
+            <div className="mainapp" dir="rtl">
+              <Container className="">
+                <Row gap={3}>
+                  <Col className="sidebar-container" lg={3}>
+                    <Sidebar />
+                  </Col>
+                  <Col lg={9} className="routing-page">
+                    <Viewservice />
                   </Col>
                 </Row>
               </Container>
