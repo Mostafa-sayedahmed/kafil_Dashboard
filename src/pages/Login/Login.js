@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 
 import { db, auth } from '../../Firebase/Firebase';
+import Swal from "sweetalert2";
 
 import '../../index.css';
 import { useNavigate } from 'react-router-dom';
@@ -16,36 +17,35 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    function Alert(){
+      Swal.fire({
+          title: 'هذا الايميل ليس له صالحية الدخول',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+      });
+    } 
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
         auth.signInWithEmailAndPassword(email, password)
             .then( async (userCredential) => {
-                // Signed in
+
                 const user = userCredential.user;
 
-                console.log(user);
-               
-                console.log(user.uid);
-
-
-                  // const userDoc = await auth.getUser(user.uid);
-              
-
-
                    await db.collection('users').doc(user.uid).get().then((res)=>{
-                    console.log(res.data())
+                    console.log(res.data());
+                    const userDoc = res.data();
+                    console.log(userDoc.isAdmin);
+                    if(userDoc.isAdmin){
+                      localStorage.setItem('isLogged', true);
+                      localStorage.setItem('user',JSON.stringify(userDoc))
+                      navigate('/dashboard');
+                    }else{
+                      Alert();
+                    }
                   });
-
-                  // console.log(userDoc);
-                  // const user = userDoc.toJSON();
-
-                 
-                // localStorage.setItem('isLogged', true);
-                // localStorage.setItem('user',JSON.stringify(user))
-                // console.log(JSON.stringify(user));
-
-                // navigate('/dashboard');
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -53,12 +53,6 @@ const Login = () => {
             });
     };
 
-
-    // const getUserById = async (userId) => {
-    //   const userDoc = await auth.getUser(userId);
-    //   const user = userDoc.toJSON();
-    //   return user;
-    // };
 
   // let isLogged = localStorage.getItem('isLogged');
 
