@@ -20,13 +20,32 @@ const Login = () => {
         event.preventDefault();
 
         auth.signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
+            .then( async (userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                localStorage.setItem('token', true);
-                localStorage.setItem('user',JSON.stringify(user))
-                console.log(JSON.stringify(user));
-                navigate('/dashboard');
+
+                console.log(user);
+               
+                console.log(user.uid);
+
+
+                  // const userDoc = await auth.getUser(user.uid);
+              
+
+
+                   await db.collection('users').doc(user.uid).get().then((res)=>{
+                    console.log(res.data())
+                  });
+
+                  // console.log(userDoc);
+                  // const user = userDoc.toJSON();
+
+                 
+                // localStorage.setItem('isLogged', true);
+                // localStorage.setItem('user',JSON.stringify(user))
+                // console.log(JSON.stringify(user));
+
+                // navigate('/dashboard');
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -34,13 +53,20 @@ const Login = () => {
             });
     };
 
-  // let token = localStorage.getItem('token');
+
+    // const getUserById = async (userId) => {
+    //   const userDoc = await auth.getUser(userId);
+    //   const user = userDoc.toJSON();
+    //   return user;
+    // };
+
+  // let isLogged = localStorage.getItem('isLogged');
 
   // useEffect(() => {
-  //   if(token){
+  //   if(isLogged){
   //     navigate("/dashboard")
   //   }
-  // }, [token]);
+  // }, [isLogged]);
 
 return(
 <>
@@ -106,3 +132,19 @@ return(
 }
 
 export default Login;
+
+
+// {"uid":"IbLCLW7rMAVbOwchyMFRkc84tT33",
+// "email":"omima@gmail.com",
+// "emailVerified":false,
+// "displayName":"اميمة مختار",
+// "isAnonymous":false,
+// "photoURL":"https://kafiil.com/modules/user/images/user.svg",
+
+// "providerData":[{"providerId":"password",
+// "uid":"omima@gmail.com",
+// "displayName":"اميمة مختار",
+// "email":"omima@gmail.com",
+// "phoneNumber":null,
+// "photoURL":"https://kafiil.com/modules/user/images/user.svg"}]
+// }

@@ -30,9 +30,9 @@ import ProtectedRoute from './components/protectedRoute/protectedRoute';
 
 function App() {
 
-  let token = localStorage.getItem('token');
+  let isLogged = localStorage.getItem('isLogged');
 
-  console.log(token);
+  console.log(isLogged);
 
 
   return (
