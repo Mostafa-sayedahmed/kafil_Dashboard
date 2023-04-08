@@ -2,116 +2,7 @@ import React from 'react'
 import Smpilcard from '../../components/smpilcard/smpilcard';
 import CardofContext from '../../components/CardofContext/CardofContext';
 
-import { useState , useEffect } from 'react';
-import axios from 'axios';
-import Swal from "sweetalert2";
-import { db , auth } from '../../Firebase/Firebase';
-import ReactLoading from "react-loading";
-
-
 export default function Context() {
-
-  
-    // contest
-    const [contest, setContest] = useState([]);
-    const [sections, setSections] = useState([]);
-    const [isBusy, setIsBusy] = useState(false);
-    const [completedNum, setCompletedNum] = useState(0);
-    const [notCompletedNum, setNotCompletedNum] = useState(0);
-
-
-
-      function afterDelete(message , icon){
-        Swal.fire({
-            title: message,
-            icon: icon,
-            showConfirmButton: false,
-            timer: 1500
-        });
-    } 
-  
-           
-        function DeleteAlert(id){
-            Swal.fire({
-                title: 'Are you sure?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-            }).then((result) => {
-            if (result.isConfirmed) {
-                // deleteData(id);
-            }
-        })
-    } 
-      
-        async function deleteData(id) {
-            let message;
-            let icon;
-            try {
-                const response = await axios.post("");
-         
-                let index = contest.findIndex( ele => ele.id === id);
-                setContest(contest.splice(index,1));
-
-                console.log(response)
-                    
-            } catch (error) {
-                console.log(error)
-                message = error.message;
-                icon = "error" ;
-                afterDelete(message , icon);
-            }
-      
-        }     
-
-    const fetchContests = async () => {
-      const data = await db.collection('contests').get();
-      setContest(data.docs.map( (doc) => ({ id: doc.id, ...doc.data() , sectionName : sections.find((ele)=> ele.id === doc.data().sectionId).name }) ));
-      setIsBusy(true);
-      
-      
-    };
-
-    const fetchSections = async () => {
-      const data = await db.collection('contestSections').get();
-      setSections(data.docs.map( (doc) => ({ id: doc.id, ...doc.data()})));
-    };
-
-    const getCompleted = (data) => {
-     let arr = data.filter((ele)=>{
-        return ele.completed == true;
-      });
-      setCompletedNum(arr.length);
-      console.log(arr);
-    }
-
-
-    const getNotCompleted = (data) => {
-      let arr = data.filter((ele)=>{
-         return ele.completed == false;
-       })
-       setNotCompletedNum(arr.length);
-       console.log(arr);
-     }
-
-
-    useEffect(() => {
-
-
-      fetchSections().then(() => {
-      fetchContests();
-      });
-
-  
-      getCompleted(contest);
-      getNotCompleted(contest);
-    
-      
-    },[]);
-        
-   
   return (
         <>
         {/* start heading */}
@@ -123,9 +14,12 @@ export default function Context() {
 
         {/* start cards */}
         <div className="B-serves p-3 ">
-            <Smpilcard cardName=" مكتمل " cardValue={completedNum} />
-            <Smpilcard cardName="غير مكتمل" cardValue={notCompletedNum} />
-            <Smpilcard cardName="مرفوض" cardValue="0" />
+        <Smpilcard cardName=" بانتظار موافقه الاداره  " cardValue="0" />
+        <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" />
+        <Smpilcard cardName="منشور" cardValue="0" />
+        <Smpilcard cardName="مرفوض" cardValue="0" />
+        <Smpilcard cardName="مرحله تلقي العروض " cardValue="0" />
+        <Smpilcard cardName=" مكتمل " cardValue="0" />
          </div>
       {/* end cards */}
       {/* start heading  two*/}
@@ -139,32 +33,23 @@ export default function Context() {
     <thead>
     <tr>
       <th >#</th>
-      <th >الاسم</th>
-      <th >المسابقة</th>
-      <th >القسم</th>
-      <th >الجائزة</th>
-      <th >مكتملة</th>
-      <th >حذف</th>
+      <th >NamePerson</th>
+      <th >NameContext</th>
+      <th >NameCategory</th>
+      <th >budget</th>
+      <th >Complete</th>
     </tr>
   </thead>
     <tbody>
-          {isBusy ? (
-                contest.map((cont,index)=>{
-                  return(
-                    <CardofContext key={index} index={index+1} name={cont.userName} contest={cont.title}  section={cont.sectionName} award={cont.firstWinner} DeleteAlert={DeleteAlert(cont.id)}/>
-                  )
-               })
-              ) : (<div className='d-flex justify-content-center align-items-center w-100' style={{ height: "100%" , width:"100%" }}>
-              <div>
-                <ReactLoading type="spin" color="#1dbf73"
-                  height={100} width={50} />
-              </div>
-
-            </div>)
-
-            }
-   </tbody>
+     <CardofContext hash="1" NamePerson="Arab Accredited" NameProject="تصميم هويه بصريه ولوجو لمتجر بيع مستحضرات تجميل"  NameCategory="تصميم" budget="45 "/>
+     <CardofContext hash="2" NamePerson="Fahd Salm " NameProject="تصميم كرتون منتج كما هوا في الامثلة"  NameCategory="تصميم" budget="250 "/>
+     <CardofContext hash="3" NamePerson= "Sunset Boulevard " NameProject="إقتراح اسم تجاري لبراند لمتجر بيع ملابس"  NameCategory="إختيار أسماء "budget="45 "/>
+     <CardofContext hash="4" NamePerson="يوسف علي" NameProject="تصميم صورة لرجل و امرأة لمقدمة تطبيق جوال"  NameCategory="تصميم" budget="120 "/>
+     <CardofContext hash="5" NamePerson= " Stylorita Official " NameProject="كتابة اعلان عن تطبيق لتحميل الفيديوهات "  NameCategory="كتابة و ترجمة" budget="45 "/>
+     </tbody>
      </table>
-  </>    
+      {/* end Table */}
+
+        </>    
   )
 }
