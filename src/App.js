@@ -12,17 +12,7 @@ import Serves from "./pages/serves/serves";
 
 import Home from "./pages/home/home";
 import Projects from "./pages/projects/projects";
-import Context from "./pages/Context/Context";
-
-import Navbar from './components/FixedNavbar/FixedNavbar';
-import Footer from './components/Footer/Footer';
-import CreateContest from './pages/Contests/CreateContest/CreateContest';
-import EditContest from './pages/Contests/EditContest/EditContest';
 import Contest from './pages/Contests/Contest/Contest';
-import Project from './pages/projects/Project/Project';
-import CreateProject from './pages/projects/CreateProject/CreateProject';
-import EditProject from './pages/projects/EditProject/EditProject';
-
 import Login from "./pages/Login/Login";
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
 
@@ -31,9 +21,6 @@ import ProtectedRoute from './components/protectedRoute/protectedRoute';
 function App() {
 
   let isLogged = localStorage.getItem('isLogged');
-
-  console.log(isLogged);
-
 
   return (
     <>
@@ -44,8 +31,8 @@ function App() {
 
           <Route path="/forgetpassword" element={<ForgetPassword />} />
 
-          <Route path="/Context" element={
-            // <ProtectedRoute isLoggedIn={token}>
+          <Route path="/Contest" element={
+            <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
                       <Row gap={3}>
@@ -53,16 +40,16 @@ function App() {
                         <Sidebar />
                         </Col>
                         <Col lg={9} className="routing-page">          
-                          <Context />
+                          <Contest />
                         </Col>
                       </Row>
                   </Container>
                 </div>
-            // </ProtectedRoute> 
+            </ProtectedRoute> 
           } />
 
         <Route path="/dashboard" element={
-            // <ProtectedRoute isLoggedIn={token}>
+              <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
                       <Row gap={3}>
@@ -75,11 +62,11 @@ function App() {
                       </Row>
                   </Container>
                 </div>
-            // </ProtectedRoute>
+             </ProtectedRoute>
           } />
 
         <Route path="/home" element={
-            // <ProtectedRoute isLoggedIn={token}>
+              <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
                       <Row gap={3}>
@@ -92,11 +79,11 @@ function App() {
                       </Row>
                   </Container>
                 </div>
-            // </ProtectedRoute>
+             </ProtectedRoute>
           } />
 
         <Route path="/users" element={
-            // <ProtectedRoute isLoggedIn={token}>
+              <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
                       <Row gap={3}>
@@ -109,12 +96,12 @@ function App() {
                       </Row>
                   </Container>
                 </div>
-            // </ProtectedRoute>
+             </ProtectedRoute>
           } />
 
 
           <Route path="/serves" element={
-            // <ProtectedRoute isLoggedIn={token}>
+              <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
                       <Row gap={3}>
@@ -127,11 +114,11 @@ function App() {
                       </Row>
                   </Container>
                 </div>
-            // </ProtectedRoute>
+             </ProtectedRoute>
           } />
 
           <Route path="/projects" element={
-            // <ProtectedRoute isLoggedIn={token}>
+             <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
                       <Row gap={3}>
@@ -144,7 +131,7 @@ function App() {
                       </Row>
                   </Container>
                 </div>
-            // </ProtectedRoute>
+             </ProtectedRoute>
           } />
 
       </Routes>
