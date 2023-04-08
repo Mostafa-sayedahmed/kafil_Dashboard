@@ -14,7 +14,6 @@ function Contest(){
     const [contest, setContest] = useState([]);
     const [contestId, setContestId] = useState();
       
-
       function afterDelete(message , icon){
         Swal.fire({
             title: message,

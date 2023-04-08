@@ -50,7 +50,7 @@ export default function Sidebar() {
           />
           <Dashboardtn
             route="/contest"
-            route="/Context"
+            // route="/Context"
             btnName="المسابقات"
             btnIcon="fa-solid fa-trophy"
           />
@@ -60,7 +60,7 @@ export default function Sidebar() {
             btnIcon="fa-solid fa-suitcase "
           />
           <Dashboardtn
-            route="/portfolio"
+            route="/Portfolios"
             btnName="الأعمال"
             btnIcon="fa-regular fa-images"
           />

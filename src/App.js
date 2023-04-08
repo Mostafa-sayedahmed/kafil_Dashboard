@@ -21,6 +21,7 @@ import Contest from './pages/Contests/Contest/Contest';
 import Project from './pages/projects/Project/Project';
 import CreateProject from './pages/projects/CreateProject/CreateProject';
 import EditProject from './pages/projects/EditProject/EditProject';
+import Portfolios from "./pages/portfolois/portfolois/portfolios";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               <Route exact path="/project/:id" element={<EditProject/>} />
               <Route exact path="/project" element={<Project/>} />
               <Route path="/Context" element={<Context />} />
+              <Route path="/Portfolios" element={<Portfolios />} />
             </Routes>
           </Col>
         </Row>
