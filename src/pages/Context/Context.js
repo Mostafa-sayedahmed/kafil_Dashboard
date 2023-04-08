@@ -109,7 +109,6 @@ export default function Context() {
       fetchContests();
     };
 
-
     const deleteContest = (id) => {
       let contestId = id;
       db.collection('contests').doc(contestId).delete();
@@ -147,7 +146,6 @@ export default function Context() {
         setNotAcceptedNum(arr.length);
 
       }
- 
 
 
     useEffect(() => {

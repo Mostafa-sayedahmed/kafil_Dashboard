@@ -20,19 +20,45 @@ const Login = () => {
         event.preventDefault();
 
         auth.signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
+            .then( async (userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                localStorage.setItem('isLogged', true);
-                localStorage.setItem('user',JSON.stringify(user))
-                console.log(JSON.stringify(user));
-                navigate('/dashboard');
+
+                console.log(user);
+               
+                console.log(user.uid);
+
+
+                  // const userDoc = await auth.getUser(user.uid);
+              
+
+
+                   await db.collection('users').doc(user.uid).get().then((res)=>{
+                    console.log(res.data())
+                  });
+
+                  // console.log(userDoc);
+                  // const user = userDoc.toJSON();
+
+                 
+                // localStorage.setItem('isLogged', true);
+                // localStorage.setItem('user',JSON.stringify(user))
+                // console.log(JSON.stringify(user));
+
+                // navigate('/dashboard');
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
             });
     };
+
+
+    // const getUserById = async (userId) => {
+    //   const userDoc = await auth.getUser(userId);
+    //   const user = userDoc.toJSON();
+    //   return user;
+    // };
 
   // let isLogged = localStorage.getItem('isLogged');
 
