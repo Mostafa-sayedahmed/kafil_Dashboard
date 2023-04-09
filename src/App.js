@@ -21,7 +21,7 @@ import EditContest from './pages/Contests/EditContest/EditContest';
 import Contest from './pages/Contests/Contest/Contest';
 import Project from './pages/projects/Project/Project';
 import CreateProject from './pages/projects/CreateProject/CreateProject';
-import EditProject from './pages/projects/EditProject/EditProject';
+
 
 import Login from "./pages/Login/Login";
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
