@@ -11,13 +11,22 @@ import Users from "./pages/users/users";
 import Serves from "./pages/serves/serves";
 
 import Home from "./pages/home/home";
-import Projects from "./pages/projects/projects";
+
+import Context from "./pages/Context/Context";
+import Navbar from './components/FixedNavbar/FixedNavbar';
+import Footer from './components/Footer/Footer';
+import CreateContest from './pages/Contests/CreateContest/CreateContest';
+import EditContest from './pages/Contests/EditContest/EditContest';
 import Contest from './pages/Contests/Contest/Contest';
-import ContestDetails from './pages/Contests/ContestDetails/ContestDetails'
+import CreateProject from './pages/projects/CreateProject/CreateProject';
+import EditProject from './pages/projects/EditProject/EditProject';
+import Projects from './pages/projects/Project/projects';
+
+
+
 
 import Login from "./pages/Login/Login";
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
-
 import ProtectedRoute from './components/protectedRoute/protectedRoute';
 
 function App() {
@@ -123,6 +132,7 @@ function App() {
 
           <Route path="/projects" element={
              <ProtectedRoute isLoggedIn={isLogged}>
+
                 <div className="mainapp" dir="rtl">
                   <Container className="">
                       <Row gap={3}>

@@ -49,12 +49,14 @@ export default function Sidebar() {
             btnIcon="fa-solid fa-shop"
           />
           <Dashboardtn
+
             route="/Contest"
+
             btnName="المسابقات"
             btnIcon="fa-solid fa-trophy"
           />
           <Dashboardtn
-            route="/project"
+            route="/projects"
             btnName="المشاريع"
             btnIcon="fa-solid fa-suitcase "
           />
