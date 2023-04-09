@@ -49,8 +49,9 @@ export default function Sidebar() {
             btnIcon="fa-solid fa-shop"
           />
           <Dashboardtn
-            // route="/contest"
-            route="/Context"
+
+            route="/Contest"
+
             btnName="المسابقات"
             btnIcon="fa-solid fa-trophy"
           />

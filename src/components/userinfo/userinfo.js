@@ -12,18 +12,18 @@ const Userinfo = () => {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const [ userName , setUserName] = useState(user.displayName);
-  const [ userImg , setUserImg] = useState(user.photoUR);
+  const [ userName , setUserName] = useState(user.fullname);
+  const [ userImg , setUserImg] = useState(user.imgUrl);
 
   useEffect(() => {
-    setUserName(user.displayName);
-    setUserImg(JSON.parse(localStorage.getItem('user')).photoURL);
+    setUserName(user.fullname);
+    setUserImg(JSON.parse(localStorage.getItem('user')).imgUrl);
   }, [user]);
 
   const logOut =()=>{
     signOut(auth);
     localStorage.removeItem('user');
-    localStorage.setItem('token', false);
+    localStorage.setItem('isLogged', false);
     navigate('/Login');
   }
 
