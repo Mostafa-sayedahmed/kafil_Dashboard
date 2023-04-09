@@ -14,7 +14,6 @@ export default function Contest() {
   
     // contest
     const [contest, setContest] = useState([]);
-    const [sections, setSections] = useState([]);
     const [isBusy, setIsBusy] = useState(false);
 
     const [completedNum, setCompletedNum] = useState(0);
@@ -50,26 +49,6 @@ export default function Contest() {
         })
     } 
       
-        async function deleteData(id) {
-            let message;
-            let icon;
-            try {
-                const response = await axios.post("");
-         
-                let index = contest.findIndex( ele => ele.id === id);
-                setContest(contest.splice(index,1));
-
-                console.log(response)
-                    
-            } catch (error) {
-                console.log(error)
-                message = error.message;
-                icon = "error" ;
-                afterDelete(message , icon);
-            }
-      
-        }     
-
     const fetchContests = async () => {
 
       const secdata = await db.collection('contestSections').get();
@@ -199,7 +178,10 @@ export default function Contest() {
                     <tr key={index}>
                     <th scope="row " className='ms-2'>{index+1}</th>
                     <td className='text-nowrap p-2'><i className="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {cont.userName}</td>
-                    <td className='text-nowrap p-2'><i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {cont.title} </td>
+                    <td className='text-nowrap p-2'>
+                      <i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i>
+                      <Link to={`/Contest/${cont.id}`}>{cont.title}</Link>
+                    </td>
                     <td className='text-nowrap p-2'><i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {cont.sectionName} </td>
                     <td className='text-nowrap p-2'><i className="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{cont.firstWinner}</td>
                     <td><input className="form-check-input" type="checkbox"

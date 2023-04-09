@@ -13,6 +13,7 @@ import Serves from "./pages/serves/serves";
 import Home from "./pages/home/home";
 import Projects from "./pages/projects/projects";
 import Contest from './pages/Contests/Contest/Contest';
+import ContestDetails from './pages/Contests/ContestDetails/ContestDetails'
 
 import Login from "./pages/Login/Login";
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
@@ -42,6 +43,24 @@ function App() {
                         </Col>
                         <Col lg={9} className="routing-page">          
                           <Contest />
+                        </Col>
+                      </Row>
+                  </Container>
+                </div>
+            </ProtectedRoute> 
+          } />
+
+
+        <Route path="/Contest/:id" element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+                <div className="mainapp" dir="rtl">
+                  <Container className="">
+                      <Row gap={3}>
+                        <Col className="sidebar-container" lg={3}>
+                        <Sidebar />
+                        </Col>
+                        <Col lg={9} className="routing-page">          
+                          <ContestDetails />
                         </Col>
                       </Row>
                   </Container>
