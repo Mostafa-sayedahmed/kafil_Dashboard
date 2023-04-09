@@ -11,6 +11,7 @@ import {
   Firestore,
   doc,
 } from "firebase/firestore";
+import preloader from "../../assets/preloader2.gif";
 
 function Serves() {
   const [services, setservices] = useState([]);
@@ -96,25 +97,31 @@ function Serves() {
               <th>تحكم في الخدمة</th>
             </tr>
           </thead>
-          <tbody>
-            {services.map((item, index) => {
-              return (
-                <Servicerow
-                  tooltip="view"
-                  title="مراجعه "
-                  key={index}
-                  hash={index + 1}
-                  NameProject={item.title}
-                  NamePerson={item.username}
-                  State={item.state}
-                  serviceid={item.id}
-                  email={item.useremail}
-                  userimg={item.userphoto}
-                  budget={item.price + "$"}
-                />
-              );
-            })}
-          </tbody>
+          {services.length == 0 ? (
+            <tbody>
+              <img src={preloader} alt="" />
+            </tbody>
+          ) : (
+            <tbody>
+              {services.map((item, index) => {
+                return (
+                  <Servicerow
+                    tooltip="view"
+                    title="مراجعه "
+                    key={index}
+                    hash={index + 1}
+                    NameProject={item.title}
+                    NamePerson={item.username}
+                    State={item.state}
+                    serviceid={item.id}
+                    email={item.useremail}
+                    userimg={item.userphoto}
+                    budget={item.price + "$"}
+                  />
+                );
+              })}
+            </tbody>
+          )}
         </table>
         {/* </Container> */}
       </div>
