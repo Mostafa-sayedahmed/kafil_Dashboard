@@ -8,7 +8,7 @@ const Dashboardtn = (props) => {
         href={props.route}
         className="dashboard-btn d-flex justify-content-center align-items-center flex-column rounded-4"
       >
-        <i class={props.btnIcon}></i>
+        <i className={props.btnIcon}></i>
         <p>{props.btnName}</p>
       </a>
     </>
