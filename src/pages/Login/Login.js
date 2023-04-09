@@ -33,7 +33,6 @@ const Login = () => {
             .then( async (userCredential) => {
 
                 const user = userCredential.user;
-
                    await db.collection('users').doc(user.uid).get().then((res)=>{
                     console.log(res.data());
                     const userDoc = res.data();
@@ -41,11 +40,12 @@ const Login = () => {
                     if(userDoc.isAdmin){
                       localStorage.setItem('isLogged', true);
                       localStorage.setItem('user',JSON.stringify(userDoc))
-                      navigate('/dashboard');
+                       navigate('/home');
                     }else{
                       Alert();
                     }
                   });
+
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -126,19 +126,3 @@ return(
 }
 
 export default Login;
-
-
-// {"uid":"IbLCLW7rMAVbOwchyMFRkc84tT33",
-// "email":"omima@gmail.com",
-// "emailVerified":false,
-// "displayName":"اميمة مختار",
-// "isAnonymous":false,
-// "photoURL":"https://kafiil.com/modules/user/images/user.svg",
-
-// "providerData":[{"providerId":"password",
-// "uid":"omima@gmail.com",
-// "displayName":"اميمة مختار",
-// "email":"omima@gmail.com",
-// "phoneNumber":null,
-// "photoURL":"https://kafiil.com/modules/user/images/user.svg"}]
-// }
