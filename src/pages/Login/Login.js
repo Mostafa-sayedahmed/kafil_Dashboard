@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 
 import { db, auth } from '../../Firebase/Firebase';
+import Swal from "sweetalert2";
 
 import '../../index.css';
 import { useNavigate } from 'react-router-dom';
@@ -16,23 +17,42 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    function Alert(){
+      Swal.fire({
+          title: 'هذا الايميل ليس له صالحية الدخول',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+      });
+    } 
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
         auth.signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                // Signed in
+            .then( async (userCredential) => {
+
                 const user = userCredential.user;
-                localStorage.setItem('isLogged', true);
-                localStorage.setItem('user',JSON.stringify(user))
-                console.log(JSON.stringify(user));
-                navigate('/home');
+                   await db.collection('users').doc(user.uid).get().then((res)=>{
+                    console.log(res.data());
+                    const userDoc = res.data();
+                    console.log(userDoc.isAdmin);
+                    if(userDoc.isAdmin){
+                      localStorage.setItem('isLogged', true);
+                      localStorage.setItem('user',JSON.stringify(userDoc))
+                       navigate('/home');
+                    }else{
+                      Alert();
+                    }
+                  });
+
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
             });
     };
+
 
   // let isLogged = localStorage.getItem('isLogged');
 
