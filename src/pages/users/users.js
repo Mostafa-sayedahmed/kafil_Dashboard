@@ -9,9 +9,8 @@ import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from "react";
 import { db } from "../../Firebase/Firebase";
 import './users.css'
-
-
 import "./users.css";
+
 const Users = () => {
   
   const [freelancer, setFreelancer] = useState([]);
@@ -36,55 +35,70 @@ usersData.push({...doc.data()})
    
   }, [])
  
-console.log(user);
 
   return (  <>
-    {<ul>
-    {freelancer.map((movie)=>{
-       return<>
-       <Card   style={{ width: '18rem' }} className="d-inline-block m-2">
-       <Card.Img variant="top" src={movie.img}  />
-       <Card.Body>
-       <Card.Title>اسم المستقل  : {movie.name}</Card.Title>
-         <Card.Text>
-           الوظيفة :{movie.title}
-         </Card.Text>
-         <Card.Text>
-           الاعجاب :{movie.likes}
-         </Card.Text>
-         <Card.Text>
-           الاعمال :{movie.portfolio}
-         </Card.Text>
-         <Card.Text>
-           التقييم :{movie.rating}
-         </Card.Text>
-         <Card.Text>
-           المشاهدات :{movie.views}
-         </Card.Text>
-       </Card.Body>
-     </Card>
-     </>
-    })}
-    
-   </ul>}
-   {<ul>
-    {user.map((movie)=>{
-       return<>
-       <Card   style={{ width: '18rem' }} className="d-inline-block m-2">
-       <Card.Img variant="top" src={movie.imgUrl}   />
-       <Card.Body>
-       <Card.Title>اسم المستخدم  : {movie.fullname}</Card.Title>
-         <Card.Text>
-           الايميل :{movie.email}
-         </Card.Text>
-       </Card.Body>
-     </Card>
-     </>
-    })}
-    
-   </ul>}
- 
+  
+   <h3 className="my-5">أولاً : المستقلون :</h3>
+   <Table striped>
+      <thead>
+        <tr>
+          <th>الصورة</th>
+          <th> الاسم</th>
+          <th> الوظيفة</th>
+          <th>المشاهدات</th>
+          <th>الاعجابات</th>
+          <th>الاعمال</th>
+          <th>التقييم</th>
+        </tr>
+      </thead>
+      <tbody>
+      {freelancer.map((freelancer)=>{ 
+        return<>
+           <tr>
+           <td>
+            <img src={freelancer.img} width={"100px"} height={"100px"} style={{borderRadius:"30%"}}></img>
+            </td>
+           <td>{freelancer.name}</td>
+           <td>{freelancer.title}</td>
+           <td>{freelancer.views}</td>
+           <td>{freelancer.likes}</td>
+           <td>{freelancer.portfolio}</td>
+           <td>{freelancer.rating}</td>
+         </tr>
+         </>
+        })}
+       
+      </tbody>
+    </Table>
+
+
+    <h3 className="my-5">ثانياً : المستخدمون :</h3>
+    <Table striped>
+      <thead>
+        <tr>
+          <th>الصورة</th>
+          <th> الاسم</th>
+          <th> الايميل</th>
+        </tr>
+      </thead>
+      <tbody>
+      {user.map((user)=>{
+        if(!user.imgUrl){
+          user.imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
+        }
+        return<>
+           <tr>
+           <td><img src={user.imgUrl} width={"100px"} height={"100px"} style={{borderRadius:"30%"}}></img></td>
+           <td>{user.fullname}</td>
+           <td>{user.email}</td>
+         </tr>
+         </>
+        })}
+       
+      </tbody>
+    </Table>
    
+
    
     </>);
 };
