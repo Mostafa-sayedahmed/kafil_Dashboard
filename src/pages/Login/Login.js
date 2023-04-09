@@ -26,6 +26,15 @@ const Login = () => {
       });
     } 
 
+    function AlertError(){
+      Swal.fire({
+          title: 'البريد الاليكتروني او كلمة السر غير صحيحة',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2000
+      });
+    } 
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -50,6 +59,7 @@ const Login = () => {
             .catch((error) => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
+                AlertError();
             });
     };
 
