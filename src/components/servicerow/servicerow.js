@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Servicerow(props) {
   const [show, setShow] = useState(false);
   const [modalmsg, setmodalmsg] = useState(
     "هل انت متأكد من حذف الخدمة تماماً.؟,  اذا كنت تريد عدم عرض هذه الخدمة للمستخدمين يمكن تغيير الحالة الي مرفوض "
   );
+  const navigate = useNavigate();
+
   function togglemodal() {
     setShow(!show);
   }
   function deleteservice() {}
-
+  function navtoservice() {
+    navigate("/services/" + props.serviceid);
+  }
   function checkstate() {
     switch (props.State) {
       case "approved":
@@ -51,7 +56,11 @@ export default function Servicerow(props) {
   }
   return (
     <>
-      <tr title="اضغط للمعاينة" style={{ cursor: "pointer" }}>
+      <tr
+        title="اضغط للمعاينة"
+        style={{ cursor: "pointer" }}
+        onClick={navtoservice}
+      >
         <th scope="row " className="ms-2">
           {props.hash}
         </th>

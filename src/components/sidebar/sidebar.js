@@ -44,7 +44,7 @@ export default function Sidebar() {
             btnIcon="fa-solid fa-gear"
           />
           <Dashboardtn
-            route="/serves"
+            route="/services"
             btnName="الخدمات"
             btnIcon="fa-solid fa-shop"
           />

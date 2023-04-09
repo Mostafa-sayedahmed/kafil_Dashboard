@@ -72,12 +72,6 @@ function Serves() {
     <div className=" ">
       <div className="bg-white border border-secondary-subtle  rounded ">
         <h1 className="m-2">الخدمات</h1>
-        <button className="btn btn-primary" onClick={getservices}>
-          test
-        </button>
-        <button className="btn btn-primary" onClick={showsevices}>
-          test2
-        </button>
       </div>
       <div className="B-serves p-3 ">
         <Smpilcard cardName="إجمالى الخدمات" cardValue={services.length} />

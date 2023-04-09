@@ -199,9 +199,13 @@ function App() {
                 <Col lg={9} className="routing-page">
                   <Routes>
                     <Route path="/home" element={<Home />} />
-                    <Route path="/serves" element={<Serves />} />
+                    <Route path="/services" element={<Serves />} />
                     <Route path="/users" element={<Users />} />
                     <Route path="/projects" element={<Projects />} />
+                    <Route
+                      path="/services/:serviceid"
+                      element={<Viewservice />}
+                    />
                     <Route
                       exact
                       path="/createContest"
