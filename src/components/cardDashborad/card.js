@@ -16,36 +16,36 @@ function Card(props) {
               <div >
                   <div className='d-flex justify-content-between text-center '>
                       <div><p>  {props.one} ({props.oneNum})</p></div>
-                      <div>{props.oneNum}%</div>
+                      <div>{Math.floor(props.progressValue1)}%</div>
                   </div>
-                  <ProgressBar className='mb-1'  variant="success" now={now+props.oneNum} style={{height:'10px'}} />
+                  <ProgressBar className='mb-1'  variant="success" now={props.progressValue1} style={{height:'10px'}} />
               </div>
 
 
               <div >
                   <div className='d-flex justify-content-between text-center '>
                       <div><p>  {props.two} ({props.twoNum})</p></div>
-                      <div>{props.twoNum}%</div>
+                      <div>{Math.floor(props.progressValue2)}%</div>
                   </div>
-                  <ProgressBar  variant="success" className='mb-1'  now={now+props.twoNum} style={{height:'10px'}} />
+                  <ProgressBar  variant="success" className='mb-1' now={props.progressValue2} style={{height:'10px'}} />
               </div>
 
 
               <div >
                   <div className='d-flex justify-content-between text-center '>
                       <div><p>  {props.three} ({props.threeNum})</p></div>
-                      <div>{props.threeNum}%</div>
+                      <div>{Math.floor(props.progressValue3)}%</div>
                   </div>
-                  <ProgressBar   variant="success" className='mb-1'  now={now+props.threeNum} style={{height:'10px'}} />
+                  <ProgressBar   variant="success" className='mb-1'  now={props.progressValue3} style={{height:'10px'}} />
               </div>
 
 
               <div >
                   <div className='d-flex justify-content-between text-center '>
                       <div><p>  {props.four} ({props.fourNum})</p></div>
-                      <div>{props.fourNum}%</div>
+                      <div>{Math.floor(props.progressValue4)}%</div>
                   </div>
-                  <ProgressBar  variant="success" className='mb-1'  now={now+props.fourNum} style={{height:'10px'}} />
+                  <ProgressBar  variant="success" className='mb-1'  now={props.progressValue4} style={{height:'10px'}} />
               </div>
             
           </Accordion.Body>
