@@ -8,12 +8,18 @@ import Swal from "sweetalert2";
 import '../../index.css';
 import { useNavigate } from 'react-router-dom';
 
+import Language from '../../components/Language/Language';
+
+import { useTranslation } from 'react-i18next'
+
+
 const Login = () => {
 
 
+  const { t } = useTranslation();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
 
     const navigate = useNavigate();
 
@@ -48,8 +54,8 @@ const Login = () => {
                     console.log(userDoc.isAdmin);
                     if(userDoc.isAdmin){
                       localStorage.setItem('isLogged', true);
-                      localStorage.setItem('user',JSON.stringify(userDoc))
-                       navigate('/home');
+                      localStorage.setItem('user',JSON.stringify(userDoc));
+                      navigate('/dashboard');
                     }else{
                       Alert();
                     }
@@ -76,12 +82,13 @@ return(
 <>
 
     <div className="container" dir="rtl">
+    <Language />
       <div className="row m-4 bg-light">
 
         <div className='aside-right col-md-6 p-3 bg-white pt-5'>
-          <h2 className="title text-center text-black fw-bold mt-5">تسجيل الدخول</h2>
+          <h2 className="title text-center text-black fw-bold mt-5">{t("Login_name")}</h2>
             <form onSubmit={handleSubmit}>
-              <label for="floatingEmail" className="p-2">البريد الألكتروني</label>
+              <label for="floatingEmail" className="p-2">{t("Email")}</label>
               <br />
               <div className="form-floating">
                 <input
@@ -89,25 +96,25 @@ return(
                   type="email"
                   className="form-control"
                   id="floatingEmail"
-                  placeholder="البريد الألكتروني"
+                  placeholder={t("Email")}
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
-              <label for="floatingPassword " className="p-2">كلمة السر </label>
+              <label for="floatingPassword " className="p-2">{t("Password")}</label>
               <div className="form-floating">
                 <input  
                   required
                   type="password"
                   className="form-control"
                   id="floatingPassword"
-                  placeholder="Password"
+                  placeholder={t("Password")}
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
               <div className="d-flex p-2 m-2 justify-content-between">
                 <div>
                   <input className="form-check-input" type="checkbox" id="checkbox" />
-                  تذكرني
+                  {t("RememberMe")}
                 </div>
               
                 <Link to='/forgetpassword' type="button"
@@ -116,7 +123,7 @@ return(
 
               <button type="submit" 
               className="btn bg-success text-white w-100 mt-2">
-              دخول
+              {t("Login")}
               </button>
 
             </form>

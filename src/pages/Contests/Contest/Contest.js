@@ -180,7 +180,7 @@ export default function Contest() {
                     <td className='text-nowrap p-2'><i className="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {cont.userName}</td>
                     <td className='text-nowrap p-2'>
                       <i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i>
-                      <Link to={`/Contest/${cont.id}`}>{cont.title}</Link>
+                      <Link className='text-success text-decoration-none' to={`/Contest/${cont.id}`}>{cont.title}</Link>
                     </td>
                     <td className='text-nowrap p-2'><i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {cont.sectionName} </td>
                     <td className='text-nowrap p-2'><i className="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{cont.firstWinner}</td>
