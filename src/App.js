@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Sidebar from "./components/sidebar/sidebar";
 import { Routes, Route } from "react-router-dom";
 import { useState } from 'react';
-import Dashboard from "./pages/dashboard/dashboard";
+
 import Users from "./pages/users/users";
 import Serves from "./pages/serves/serves";
 
@@ -68,22 +68,6 @@ function App() {
             </ProtectedRoute> 
           } />
 
-        <Route path="/dashboard" element={
-              <ProtectedRoute isLoggedIn={isLogged}>
-                <div className="mainapp" dir="rtl">
-                  <Container className="">
-                      <Row gap={3}>
-                        <Col className="sidebar-container" lg={3}>
-                        <Sidebar />
-                        </Col>
-                        <Col lg={9} className="routing-page">          
-                        <Dashboard />
-                        </Col>
-                      </Row>
-                  </Container>
-                </div>
-             </ProtectedRoute>
-          } />
 
         <Route path="/home" element={
               <ProtectedRoute isLoggedIn={isLogged}>

@@ -11,7 +11,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 const Language = () => {
 
-
     const languages = [
         {
           code: 'en',
@@ -22,7 +21,7 @@ const Language = () => {
           code: 'ar',
           name: 'العربية',
           dir: 'rtl',
-        },
+        }
       ]
     
       const currentLanguageCode = cookies.get('i18next') || 'ar'
