@@ -78,7 +78,7 @@ usersData.push({...doc.data()})
         <tr>
           <th>الصورة</th>
           <th> الاسم</th>
-          <th> الايميل</th>
+          <th> البريد الالكتروني</th>
         </tr>
       </thead>
       <tbody>

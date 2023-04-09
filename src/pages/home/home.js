@@ -81,7 +81,6 @@ const Home = () => {
        }
         
     }
-    console.log(contest);
 
 
 
