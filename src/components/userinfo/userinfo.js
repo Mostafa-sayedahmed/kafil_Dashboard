@@ -21,10 +21,11 @@ const Userinfo = () => {
 
   const logOut = () => {
     signOut(auth);
-    localStorage.removeItem("user");
-    localStorage.setItem("isLogged", false);
-    navigate("/Login");
-  };
+    localStorage.removeItem('user');
+    localStorage.setItem('isLogged', false);
+    navigate('/');
+  }
+
 
   return (
     <div className="user-info rounded">
