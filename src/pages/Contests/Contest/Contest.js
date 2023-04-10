@@ -160,7 +160,7 @@ export default function Contest() {
     <thead>
     <tr>
       <th >#</th>
-      <th >الاسم</th>
+      {/* <th >الاسم</th> */}
       <th >المسابقة</th>
       <th >القسم</th>
       <th >الجائزة</th>
@@ -177,13 +177,13 @@ export default function Contest() {
                   
                     <tr key={index}>
                     <th scope="row " className='ms-2'>{index+1}</th>
-                    <td className='text-nowrap p-2'><i className="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {cont.userName}</td>
+                    {/* <td className='text-nowrap p-2'><i className="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {cont.userName}</td> */}
                     <td className='text-nowrap p-2'>
                       <i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i>
                       <Link className='text-success text-decoration-none' to={`/Contest/${cont.id}`}>{cont.title}</Link>
                     </td>
                     <td className='text-nowrap p-2'><i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {cont.sectionName} </td>
-                    <td className='text-nowrap p-2'><i className="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{cont.firstWinner}</td>
+                    <td className='text-nowrap p-2'><i className="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{cont.firstWinner} $</td>
                     <td><input className="form-check-input" type="checkbox"
                     onChange={(e)=>{
                       updateCompleted(cont.id , e.target.checked);
