@@ -24,7 +24,7 @@ const Card = (props) => {
               class="fa-regular fa-clock ms-2"
               style={{ color: "#9ca1ab" }}
             ></i>
-            منذو {props.Time} ساعات
+            منذ {props.Time} ساعات
           </td>
           <td className="text-nowrap p-2">
             <i
