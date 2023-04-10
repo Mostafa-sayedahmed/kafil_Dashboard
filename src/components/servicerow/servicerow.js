@@ -87,14 +87,14 @@ export default function Servicerow(props) {
           {props.NamePerson}
         </td>
         <td className="text-nowrap p-2">{checkstate()}</td>
-        <td className="text-nowrap p-2">
+        {/* <td className="text-nowrap p-2">
           {" "}
           <i
             className="fa-regular fa-envelope ms-2"
             style={{ color: "#9ca1ab" }}
           ></i>{" "}
           {props.email}
-        </td>
+        </td> */}
         <td className="text-nowrap p-2">
           <i
             className="fa-solid fa-money-bill-1-wave ms-2"
@@ -102,14 +102,14 @@ export default function Servicerow(props) {
           ></i>
           {props.budget}
         </td>
-        <td>
+        {/* <td>
           <button
             className="btn btn-outline-danger p-2 rounded"
             onClick={togglemodal}
           >
             Delete
           </button>
-        </td>
+        </td> */}
       </tr>
       <Modal show={show}>
         <Modal.Header>
