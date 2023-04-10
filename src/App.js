@@ -5,22 +5,22 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Sidebar from "./components/sidebar/sidebar";
 import { Routes, Route } from "react-router-dom";
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import Users from "./pages/users/users";
 import Serves from "./pages/serves/serves";
 
 import Home from "./pages/home/home";
 
-import Context from "./pages/Context/Context";
-import Navbar from './components/FixedNavbar/FixedNavbar';
-import Footer from './components/Footer/Footer';
-import CreateContest from './pages/Contests/CreateContest/CreateContest';
-import EditContest from './pages/Contests/EditContest/EditContest';
+// import Context from "./pages/Context/Context";
+// import Navbar from './components/FixedNavbar/FixedNavbar';
+// import Footer from './components/Footer/Footer';
+// import CreateContest from './pages/Contests/CreateContest/CreateContest';
+// import EditContest from './pages/Contests/EditContest/EditContest';
 import Contest from './pages/Contests/Contest/Contest';
-import CreateProject from './pages/projects/CreateProject/CreateProject';
-import EditProject from './pages/projects/EditProject/EditProject';
-import Projects from './pages/projects/Project/projects';
+// import CreateProject from './pages/projects/CreateProject/CreateProject';
+// import EditProject from './pages/projects/EditProject/EditProject';
+
 
 
 
@@ -28,6 +28,8 @@ import Projects from './pages/projects/Project/projects';
 import Login from "./pages/Login/Login";
 import ForgetPassword from './pages/ForgetPassword/ForgetPassword';
 import ProtectedRoute from './components/protectedRoute/protectedRoute';
+import ContestDetails from './pages/Contests/ContestDetails/ContestDetails';
+import Projects from './pages/projects/Project/projects';
 
 function App() {
 
