@@ -1,41 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import Cardpoject from "../../components/CardProject/Cardpoject";
+import Servicerow from "../../components/servicerow/servicerow";
 import Smpilcard from "../../components/smpilcard/smpilcard";
 import "../serves/serves.css";
 import { db } from "../../Firebase/Firebase";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  Firestore,
+  doc,
+} from "firebase/firestore";
+import preloader from "../../assets/preloader2.gif";
 
 function Serves() {
-  const [services, setserices] = useState("");
-
+  const [services, setservices] = useState([]);
+  const [sApproved, setsApproved] = useState(0);
+  const [sDeleted, setsDeleted] = useState(0);
+  const [sPending, setsPending] = useState(0);
+  useEffect(() => {
+    getservices();
+  }, []);
   async function getservices() {
-    const querySnapshot = await getDocs(collection(db, "services"));
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      // setserices(...services, (doc.id, " => ", doc.data()));
-      console.log(doc.id, " => ", doc.data());
+    await getDocs(collection(db, "services")).then(async (querySnapshot) => {
+      let app = 0;
+      let del = 0;
+      let pen = 0;
+      var newData = [];
+
+      querySnapshot.forEach(async (res) => {
+        switch (res.data().state) {
+          case "approved":
+            app++;
+            break;
+          case "pending":
+            pen++;
+            break;
+          case "deleted":
+            del++;
+            break;
+          default:
+            console.log("nostate");
+            break;
+        }
+        let userid = res.data().userid;
+        const docRef = doc(db, "users", userid);
+        await getDoc(docRef).then((result) => {
+          newData = [
+            ...newData,
+            {
+              ...res.data(),
+              id: res.id,
+              username: result.data().fullname,
+              userphoto: result.data().imgUrl,
+              useremail: result.data().email,
+            },
+          ];
+        });
+        setservices(newData);
+      });
+      setsApproved(app);
+      setsDeleted(del);
+      setsPending(pen);
     });
   }
-  // const [services, setserices] = useState("");
-  // const querySnapshot = await getDocs(collection(db, "services"));
-  // querySnapshot.forEach((doc) => {
-  //   // doc.data() is never undefined for query doc snapshots
-  //   // setserices(...services, (doc.id, " => ", doc.data()));
-  //   console.log(doc.id, " => ", doc.data());
-  // });
+  function showsevices() {
+    console.log("services");
+    console.log(services);
+  }
+
   return (
     <div className=" ">
       <div className="bg-white border border-secondary-subtle  rounded ">
         <h1 className="m-2">الخدمات</h1>
       </div>
       <div className="B-serves p-3 ">
-        <Smpilcard cardName="الاجمالى الخدمات" cardValue="0" />
-        <Smpilcard cardName="بانتظار موافقة الادارة" cardValue="0" />
-        <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" />
-        <Smpilcard cardName="نشط" cardValue="0" />
-        <Smpilcard cardName=" متوقف مؤقتا" cardValue="0" />
-        <Smpilcard cardName="مرفوض" cardValue="0" />
+        <Smpilcard cardName="إجمالى الخدمات" cardValue={services.length} />
+        <Smpilcard cardName="بانتظار موافقة الادارة" cardValue={sPending} />
+        {/* <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" /> */}
+        <Smpilcard cardName="نشط" cardValue={sApproved} />
+        {/* <Smpilcard cardName=" متوقف مؤقتا" cardValue="0" /> */}
+        <Smpilcard cardName="مرفوض" cardValue={sDeleted} />
       </div>
       <div className="services-container bg-white border border-secondary-subtle mt-3 rounded">
         <h1 className="m-2">الخدمات</h1>
@@ -44,101 +89,39 @@ function Serves() {
           <thead>
             <tr>
               <th>#</th>
-              <th>اسم الخدمة</th>
-              <th>صاحب الخدمة</th>
-              <th>الوقت</th>
-              <th>الميزانية</th>
+              <th style={{ Width: "100px", overflow: "hidden" }}>اسم الخدمة</th>
+              <th>المستخدم</th>
+              <th>الحالة</th>
+              <th>الإيميل</th>
+              <th>السعر</th>
               <th>تحكم في الخدمة</th>
             </tr>
           </thead>
-          <tbody>
-            <Cardpoject
-              hash="1"
-              NameProject="مصمم ويب"
-              NamePerson="Sami Samir"
-              Time="3"
-              budget="$25 - $50"
-              onClick={getservices}
-            />
-
-            {/*<Cardpoject
-              hash="1"
-              NameProject="مصمم ويب"
-              NamePerson="Sami Samir"
-              Time="3"
-              budget="$25 - $50"
-            />
-            <Cardpoject
-              hash="2"
-              NameProject="نحتاج الي مطور ومكود بلوجر "
-              NamePerson="Imen Amri"
-              Time="5"
-              budget="$25 - $50"
-            />
-            <Cardpoject
-              hash="3"
-              NameProject=" مطلوب موقع الكتروني يكون ترتية جيد"
-              NamePerson="Ahmed Hesham"
-              Time="4"
-              budget="$250 - $500"
-            />
-            <Cardpoject
-              hash="1"
-              NameProject="مصمم ويب"
-              NamePerson="Sami Samir"
-              Time="3"
-              budget="$25 - $50"
-            />
-            <Cardpoject
-              hash="1"
-              NameProject="مصمم ويب"
-              NamePerson="Sami Samir"
-              Time="3"
-              budget="$25 - $50"
-            />
-            <Cardpoject
-              hash="1"
-              NameProject="مصمم ويب"
-              NamePerson="Sami Samir"
-              Time="3"
-              budget="$25 - $50"
-            />
-            <Cardpoject
-              hash="2"
-              NameProject="نحتاج الي مطور ومكود بلوجر "
-              NamePerson="Imen Amri"
-              Time="5"
-              budget="$25 - $50"
-            />
-            <Cardpoject
-              hash="3"
-              NameProject=" مطلوب موقع الكتروني يكون ترتية جيد"
-              NamePerson="Ahmed Hesham"
-              Time="4"
-              budget="$250 - $500"
-            />
-            <Cardpoject
-              hash="1"
-              NameProject="مصمم ويب"
-              NamePerson="Sami Samir"
-              Time="3"
-              budget="$25 - $50"
-            />
-            <Cardpoject
-              hash="2"
-              NameProject="نحتاج الي مطور ومكود بلوجر "
-              NamePerson="Imen Amri"
-              Time="5"
-              budget="$25 - $50"
-            />
-            <Cardpoject
-              hash="3"
-              NameProject=" مطلوب موقع الكتروني يكون ترتية جيد"
-              NamePerson="Ahmed Hesham"
-              Time="4"
-              budget="$250 - $500"
-            /> */}
-          </tbody>
+          {services.length == 0 ? (
+            <tbody>
+              <img src={preloader} alt="" />
+            </tbody>
+          ) : (
+            <tbody>
+              {services.map((item, index) => {
+                return (
+                  <Servicerow
+                    tooltip="view"
+                    title="مراجعه "
+                    key={index}
+                    hash={index + 1}
+                    NameProject={item.title}
+                    NamePerson={item.username}
+                    State={item.state}
+                    serviceid={item.id}
+                    email={item.useremail}
+                    userimg={item.userphoto}
+                    budget={item.price + "$"}
+                  />
+                );
+              })}
+            </tbody>
+          )}
         </table>
         {/* </Container> */}
       </div>

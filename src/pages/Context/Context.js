@@ -67,17 +67,27 @@ export default function Context() {
         }     
 
     const fetchContests = async () => {
+
+      const secdata = await db.collection('contestSections').get();
+      const sectionsArr = secdata.docs.map( (doc) => ({ id: doc.id, ...doc.data()}))
+
       const data = await db.collection('contests').get();
-      setContest(data.docs.map( (doc) => ({ id: doc.id, ...doc.data() , sectionName : sections.find((ele)=> ele.id === doc.data().sectionId).name }) ));
+      let arr = [];
+      data.docs.map( (doc) =>{
+        let element = "";
+        element = sectionsArr.find((ele)=> ele.id === doc.data().sectionId) ;
+        arr.push({ id: doc.id, ...doc.data() , sectionName : element.name });
+        
+      } );
+      console.log(arr)
+      setContest([...arr]) ;
+      getCompleted(arr);
+      getNotCompleted(arr)
+
       setIsBusy(true);
-      
       
     };
 
-    const fetchSections = async () => {
-      const data = await db.collection('contestSections').get();
-      setSections(data.docs.map( (doc) => ({ id: doc.id, ...doc.data()})));
-    };
 
     const getCompleted = (data) => {
      let arr = data.filter((ele)=>{
@@ -86,6 +96,7 @@ export default function Context() {
       setCompletedNum(arr.length);
       console.log(arr);
     }
+
 
 
     const getNotCompleted = (data) => {
@@ -99,15 +110,7 @@ export default function Context() {
 
     useEffect(() => {
 
-
-      fetchSections().then(() => {
       fetchContests();
-      });
-
-  
-      getCompleted(contest);
-      getNotCompleted(contest);
-    
       
     },[]);
         
@@ -151,7 +154,7 @@ export default function Context() {
           {isBusy ? (
                 contest.map((cont,index)=>{
                   return(
-                    <CardofContext key={index} index={index+1} name={cont.userName} contest={cont.title}  section={cont.sectionName} award={cont.firstWinner} DeleteAlert={DeleteAlert(cont.id)}/>
+                    <CardofContext key={index} index={index+1} name={cont.userName} contest={cont.title}  section={cont.sectionName} award={cont.firstWinner} checked={cont.completed} />
                   )
                })
               ) : (<div className='d-flex justify-content-center align-items-center w-100' style={{ height: "100%" , width:"100%" }}>

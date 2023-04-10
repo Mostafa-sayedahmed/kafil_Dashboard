@@ -23,7 +23,7 @@ export default function Sidebar() {
         <div className="control-panel-head d-flex flex-row justify-content-between align-items-center m-3 p-3">
           <h4> لوحة التحكم</h4>
           <button className="btn btn-light">
-            <i class="fa-solid fa-bars"></i>
+            <i className="fa-solid fa-bars"></i>
           </button>
         </div>
         <div className="sidebar-btns">
@@ -44,18 +44,18 @@ export default function Sidebar() {
             btnIcon="fa-solid fa-gear"
           />
           <Dashboardtn
-            route="/serves"
+            route="/services"
             btnName="الخدمات"
             btnIcon="fa-solid fa-shop"
           />
           <Dashboardtn
             route="/contest"
-            route="/Context"
+            // route="/Context"
             btnName="المسابقات"
             btnIcon="fa-solid fa-trophy"
           />
           <Dashboardtn
-            route="/project"
+            route="/projects"
             btnName="المشاريع"
             btnIcon="fa-solid fa-suitcase "
           />
