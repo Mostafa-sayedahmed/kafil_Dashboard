@@ -27,7 +27,7 @@ function App() {
 
   return (
   
-    <div className="mainapp" dir="rtl">
+    <>
       <Routes>
 
           <Route exact path="/" element={<Login />} />
