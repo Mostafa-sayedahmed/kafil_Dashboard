@@ -10,7 +10,7 @@ export default function Cardpoject(props) {
         <td className="text-nowrap p-2">
           {" "}
           <i
-            className="fa-solid fa-list-check ms-2"
+            class="fa-solid fa-list-check ms-2"
             style={{ color: "#9ca1ab" }}
           ></i>{" "}
           {props.NameProject}{" "}
@@ -18,7 +18,7 @@ export default function Cardpoject(props) {
         <td className="text-nowrap p-2">
           {" "}
           <i
-            className="fa-solid fa-user ms-2"
+            class="fa-solid fa-user ms-2"
             style={{ color: "#9ca1ab" }}
           ></i>{" "}
           {props.NamePerson}
@@ -26,14 +26,14 @@ export default function Cardpoject(props) {
         <td className="text-nowrap p-2">
           {" "}
           <i
-            className="fa-regular fa-clock ms-2"
+            class="fa-regular fa-clock ms-2"
             style={{ color: "#9ca1ab" }}
           ></i>{" "}
-          منذ {props.Time} ساعات{" "}
+          منذو {props.Time} ساعات{" "}
         </td>
         <td className="text-nowrap p-2">
           <i
-            className="fa-solid fa-money-bill-1-wave ms-2"
+            class="fa-solid fa-money-bill-1-wave ms-2"
             style={{ color: " #9ca1ab" }}
           ></i>
           {props.budget}
