@@ -27,13 +27,13 @@ function App() {
   return (
     <>
       <Routes>
-          <Route path="/" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
 
-          <Route path="/Login" element={<Login />} />
+          <Route exact path="/Login" element={<Login />} />
 
-          <Route path="/forgetpassword" element={<ForgetPassword />} />
+          <Route exact path="/forgetpassword" element={<ForgetPassword />} />
 
-          <Route path="/Contest" element={
+          <Route exact path="/Contest" element={
             <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
@@ -51,7 +51,7 @@ function App() {
           } />
 
 
-        <Route path="/Contest/:id" element={
+        <Route exact path="/Contest/:id" element={
             <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
@@ -69,7 +69,7 @@ function App() {
           } />
 
 
-        <Route path="/home" element={
+        <Route exact path="/home" element={
               <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
@@ -86,7 +86,7 @@ function App() {
              </ProtectedRoute>
           } />
 
-        <Route path="/users" element={
+        <Route exact path="/users" element={
               <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
@@ -104,7 +104,7 @@ function App() {
           } />
 
 
-          <Route path="/serves" element={
+          <Route exact path="/serves" element={
               <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
@@ -121,7 +121,7 @@ function App() {
              </ProtectedRoute>
           } />
 
-          <Route path="/projects" element={
+          <Route exact path="/projects" element={
              <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp" dir="rtl">
                   <Container className="">
@@ -140,38 +140,6 @@ function App() {
 
       </Routes>
     </>
-
-
-    // <div className="mainapp" dir="rtl">
-    //   <Container className="">
-
-    //     <Row gap={3}>
-    //       <Col className="sidebar-container" lg={3}>
-    //         <Sidebar />
-    //       </Col>
-
-    //       <Col lg={9} className="routing-page">
-    //         <Routes>
-    //           <Route path="/" element={<Login />} />
-    //           {/* <Route path="/" element={<Dashboard />} /> */}
-    //           <Route path="/home" element={<Home />} />
-    //           <Route path="/serves" element={<Serves />} />
-    //           <Route path="/users" element={<Users />} />
-    //           <Route path="/projects" element={<Projects />} />
-    //           <Route exact path="/createContest" element={<CreateContest/>} />
-    //           <Route exact path="/contest/:id" element={<EditContest/>} />
-    //           <Route exact path="/contest" element={<Contest/>} />
-    //           <Route exact path="/createProject" element={<CreateProject/>} />
-    //           <Route exact path="/project/:id" element={<EditProject/>} />
-    //           <Route exact path="/project" element={<Project/>} />
-    //           <Route path="/Context" element={<Context />} />
-    //           <Route path="/Login" element={<Login />} />
-    //         </Routes>
-    //       </Col>
-    //     </Row>
-
-    //   </Container>
-    // </div>
   );
 }
 

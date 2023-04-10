@@ -24,7 +24,7 @@ const Userinfo = () => {
     signOut(auth);
     localStorage.removeItem('user');
     localStorage.setItem('isLogged', false);
-    navigate('/Login');
+    navigate('/');
   }
 
   return (
