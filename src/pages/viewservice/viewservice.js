@@ -21,6 +21,7 @@ const Viewservice = () => {
   const [categories, setcategories] = useState([]);
   const [newcategory, setnewcategory] = useState("");
   const [newstate, setnewstate] = useState("");
+  const [featured, setfeatured] = useState();
   const [addons, setaddons] = useState([]);
   const [user, setuser] = useState({});
   const [imgs, setimgs] = useState([]);
@@ -56,6 +57,13 @@ const Viewservice = () => {
       const washingtonRef = doc(db, "services", params.serviceid);
       await updateDoc(washingtonRef, {
         state: newstate,
+      });
+      console.log("new state updated");
+    }
+    if (featured != null) {
+      const washingtonRef = doc(db, "services", params.serviceid);
+      await updateDoc(washingtonRef, {
+        isfeatured: featured,
       });
       console.log("new state updated");
     }
@@ -117,6 +125,20 @@ const Viewservice = () => {
                 </span>
                 <span className="fw-bold ">
                   القسم: <span className="fw-normal ">{details.category}</span>
+                </span>
+                <span className="fw-bold ">
+                  موصي به:{" "}
+                  <span className="fw-normal ">
+                    {details.isfeatured ? (
+                      <span>
+                        نعم <i className="fa-regular fa-circle-check"></i>
+                      </span>
+                    ) : (
+                      <span>
+                        لا <i className="fa-regular fa-circle-xmark"></i>
+                      </span>
+                    )}
+                  </span>
                 </span>
                 <span className="fw-bold ">
                   التقييم:{" "}
@@ -237,7 +259,7 @@ const Viewservice = () => {
                       }}
                       id=""
                     >
-                      <option selected disabled value="">
+                      <option defaultValue disabled value="">
                         الحالة
                       </option>
                       <option value="approved">approved</option>
@@ -257,7 +279,7 @@ const Viewservice = () => {
                       }}
                       id=""
                     >
-                      <option selected disabled value="">
+                      <option defaultValue disabled value="">
                         القسم
                       </option>
                       {categories.map((item, index) => {
@@ -269,12 +291,34 @@ const Viewservice = () => {
                       })}
                     </select>
                   </div>
+                  <div className="d-flex justify-content-between align-items-center mb-3">
+                    <div className="form-check form-switch">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                        onChange={(e) => {
+                          setfeatured(e.target.checked);
+                          console.log(featured);
+                        }}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexSwitchCheckDefault"
+                      >
+                        موصي به :
+                      </label>
+                    </div>
+                  </div>
                   <hr />
                   <button
                     className="btn btn-success mb-3"
                     onClick={updateservice}
                     disabled={
-                      newcategory !== "" || newstate !== "" ? false : true
+                      newcategory !== "" || newstate !== "" || featured != null
+                        ? false
+                        : true
                     }
                   >
                     تعديل

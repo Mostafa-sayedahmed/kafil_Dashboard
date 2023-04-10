@@ -32,17 +32,17 @@ export default function Sidebar() {
             btnName="الرئيسية"
             btnIcon="fa-solid fa-house "
           />
-          <Dashboardtn
+          {/* <Dashboardtn
             route="/balance"
             btnName="الرصيد"
             btnIcon="fa-solid fa-money-bill-1"
-          />
+          /> */}
 
-          <Dashboardtn
+          {/* <Dashboardtn
             route="#"
             btnName="الإعدادات"
             btnIcon="fa-solid fa-gear"
-          />
+          /> */}
           <Dashboardtn
             route="/services"
             btnName="الخدمات"
@@ -63,7 +63,7 @@ export default function Sidebar() {
             btnName="الأعمال"
             btnIcon="fa-regular fa-images"
           />
-          <Dashboardtn
+          {/* <Dashboardtn
             route="/chat"
             btnName="محادثات"
             btnIcon="fa-solid fa-comment-dots"
@@ -72,7 +72,7 @@ export default function Sidebar() {
             route="/questions"
             btnName="الملتقي"
             btnIcon="fa-solid fa-comments"
-          />
+          /> */}
           <Dashboardtn
             route="/users"
             btnName="الأعضاء"

@@ -12,6 +12,8 @@ import {
   doc,
 } from "firebase/firestore";
 import preloader from "../../assets/preloader2.gif";
+import { Doughnutchart } from "../../components/doughnutchart/doughnutchart";
+import { Areachart } from "../../components/areachart/areachart";
 
 function Serves() {
   const [services, setservices] = useState([]);
@@ -74,34 +76,65 @@ function Serves() {
       <div className="bg-white border border-secondary-subtle  rounded ">
         <h1 className="m-2">الخدمات</h1>
       </div>
+
       <div className="B-serves p-3 ">
-        <Smpilcard cardName="إجمالى الخدمات" cardValue={services.length} />
-        <Smpilcard cardName="بانتظار موافقة الادارة" cardValue={sPending} />
-        {/* <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" /> */}
-        <Smpilcard cardName="نشط" cardValue={sApproved} />
-        {/* <Smpilcard cardName=" متوقف مؤقتا" cardValue="0" /> */}
-        <Smpilcard cardName="مرفوض" cardValue={sDeleted} />
+        <div
+          className="d-flex justify-content-evenly flex-nowrap"
+          style={{ height: "270px", width: "100%" }}
+        >
+          <div className="d-none d-lg-block d-flex flex-grow-1">
+            <Areachart
+              title="تفاصيل الخدمات"
+              labels={["مرفوض", "بإنتظار المراجعه", "نشط"]}
+              Values={[sDeleted, sPending, sApproved]}
+            />
+          </div>
+          <div className=" d-flex flex-grow-1 align-items-center justify-content-center">
+            <Doughnutchart
+              colors={[
+                "rgba(255, 20, 20, 0.3)",
+
+                "rgba(255, 206, 86, 0.3)",
+
+                "rgba(100, 226, 86, 0.3)",
+              ]}
+              labels={["مرفوض", "بإنتظار المراجعه", "نشط"]}
+              Values={[sDeleted, sPending, sApproved]}
+            />
+          </div>
+        </div>
+        <div
+          className="d-flex justify-content-evenly gap-3 flex-wrap"
+          style={{ width: "100%" }}
+        >
+          <Smpilcard cardName="إجمالى الخدمات" cardValue={services.length} />
+          <Smpilcard cardName="بانتظار موافقة الادارة" cardValue={sPending} />
+          {/* <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" /> */}
+          <Smpilcard cardName="نشط" cardValue={sApproved} />
+          {/* <Smpilcard cardName=" متوقف مؤقتا" cardValue="0" /> */}
+          <Smpilcard cardName="مرفوض" cardValue={sDeleted} />
+        </div>
       </div>
       <div className="services-container bg-white border border-secondary-subtle mt-3 rounded">
         <h1 className="m-2">الخدمات</h1>
         {/* <Container > */}
-        <table className="table table-hover bg-white services-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th style={{ Width: "100px", overflow: "hidden" }}>اسم الخدمة</th>
-              <th>المستخدم</th>
-              <th>الحالة</th>
-              <th>الإيميل</th>
-              <th>السعر</th>
-              <th>تحكم في الخدمة</th>
-            </tr>
-          </thead>
-          {services.length == 0 ? (
-            <tbody>
-              <img src={preloader} alt="" />
-            </tbody>
-          ) : (
+        {services.length == 0 ? (
+          <img src={preloader} alt="" />
+        ) : (
+          <table className="table table-hover bg-white services-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th style={{ Width: "100px", overflow: "hidden" }}>
+                  اسم الخدمة
+                </th>
+                <th>المستخدم</th>
+                <th>الحالة</th>
+                {/* <th>الإيميل</th> */}
+                <th>السعر</th>
+                {/* <th>تحكم في الخدمة</th> */}
+              </tr>
+            </thead>
             <tbody>
               {services.map((item, index) => {
                 return (
@@ -121,8 +154,8 @@ function Serves() {
                 );
               })}
             </tbody>
-          )}
-        </table>
+          </table>
+        )}
         {/* </Container> */}
       </div>
     </div>
