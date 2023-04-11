@@ -79,6 +79,7 @@ usersData.push({...doc.data()})
           <th>الصورة</th>
           <th> الاسم</th>
           <th> البريد الالكتروني</th>
+          <th> نوع المستخدم </th>
         </tr>
       </thead>
       <tbody>
@@ -86,11 +87,15 @@ usersData.push({...doc.data()})
         if(!user.imgUrl){
           user.imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
         }
+        if(user.isAdmin){
+          user.isAdmin="Admin"
+        }
         return<>
            <tr>
            <td><img src={user.imgUrl} width={"100px"} height={"100px"} style={{borderRadius:"30%"}}></img></td>
            <td>{user.fullname}</td>
            <td>{user.email}</td>
+           <td>{user.isAdmin}</td>
          </tr>
          </>
         })}
