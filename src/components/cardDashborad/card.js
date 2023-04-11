@@ -10,7 +10,7 @@ function Card(props) {
         <Accordion className='col-12	col-sm-12	col-md-4	col-lg-4	col-xl-4	col-xxl-4 my-2' defaultActiveKey={['0']} alwaysOpen >
         <Accordion.Item eventKey="0">
           <Accordion.Header>
-            <Icon.Bag color="black" size={20} className="ms-2 mb-1"/><h6 style={{color:"black"}}>{props.header}</h6>
+            <Icon.Star color="black" size={20} className="ms-2 mb-1"/><h6 style={{color:"black"}}>{props.header}</h6>
             </Accordion.Header>
           <Accordion.Body >
               <div >
