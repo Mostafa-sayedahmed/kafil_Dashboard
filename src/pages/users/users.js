@@ -10,12 +10,14 @@ import { useState, useEffect } from "react";
 import { db } from "../../Firebase/Firebase";
 import './users.css'
 import "./users.css";
-
 const Users = () => {
+
+  const [isLoading, setIsLoading] = useState(false);
   
   const [freelancer, setFreelancer] = useState([]);
   const[user,setUser]=useState([]);
   useEffect(() => {
+    setIsLoading(true);
     const getDataFreelancers=[];
     const usersData=[];
     const subscriber=db.collection("Freelancers").onSnapshot((querySnapshot)=>{
@@ -30,9 +32,10 @@ usersData.push({...doc.data()})
       })
       setUser(usersData)
     })
+    setIsLoading(false);
     return()=>subscriber()
     subscriberUser()
-   
+    
   }, [])
  
 
