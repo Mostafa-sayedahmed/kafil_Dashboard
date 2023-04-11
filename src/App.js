@@ -23,6 +23,7 @@ import ContestDetails from "./pages/Contests/ContestDetails/ContestDetails";
 import Viewservice from "./pages/viewservice/viewservice";
 
 function App() {
+ 
   let isLogged = localStorage.getItem("isLogged");
 
   return (
