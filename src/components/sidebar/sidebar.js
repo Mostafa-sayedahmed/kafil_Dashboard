@@ -59,7 +59,7 @@ export default function Sidebar() {
             btnIcon="fa-solid fa-suitcase "
           />
           <Dashboardtn
-            route="/portfolio"
+            route="/portfolois"
             btnName="الأعمال"
             btnIcon="fa-regular fa-images"
           />
