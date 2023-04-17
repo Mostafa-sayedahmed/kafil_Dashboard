@@ -27,5 +27,13 @@
     "description":"الوصف",
     "comments":"التعليقات",
     "reset_password":"اعادة تعيين كلمة المرور",
-    "is_login":"دخول؟"
+    "is_login":"دخول؟",
+    "dashboard":"لوحة التحكم",
+    "services":"الخدمات",
+    "contests":"المسابقات",
+    "projects":"المشاريع",
+    "works":"الأعمال",
+    "users":"الأعضاء",
+    "employees":"الموظفون",
+    "home":"الرئيسية"
 }
