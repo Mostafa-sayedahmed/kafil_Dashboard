@@ -27,6 +27,13 @@
     "description":"Description",
     "comments":"Comments",
     "reset_password":"Reset Password",
-    "is_login":"Login?"
-
+    "is_login":"Login?",
+    "dashboard":"Dashboard",
+    "services":"Services",
+    "contests":"Contests",
+    "projects":"Projects",
+    "works":"Works",
+    "users":"Users",
+    "employees":"Employees",
+    "home":"Home"
 }

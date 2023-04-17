@@ -22,10 +22,15 @@
   height: auto;
   transform: rotate(-90deg);
   left: 40%;
-
-  /* top: 60%; */
-  /* z-index: -1; */
 }
+
+body[dir='ltr'] .bg-img {
+  transform: rotate(-270deg);
+  left: unset;
+  right: 40%;
+  
+}
+
 .control-panel-head {
   border-radius: 1rem;
   background-color: #ffffff91;
