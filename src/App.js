@@ -39,7 +39,7 @@ function App() {
 
           <Route exact path="/Contest" element={
             <ProtectedRoute isLoggedIn={isLogged}>
-                <div className="mainapp" dir="rtl">
+                <div className="mainapp" >
                   <Container className="">
                       <Row gap={3}>
                         <Col className="sidebar-container" lg={3}>
@@ -57,7 +57,7 @@ function App() {
 
         <Route exact path="/Contest/:id" element={
             <ProtectedRoute isLoggedIn={isLogged}>
-                <div className="mainapp" dir="rtl">
+                <div className="mainapp">
                   <Container className="">
                       <Row gap={3}>
                         <Col className="sidebar-container" lg={3}>
