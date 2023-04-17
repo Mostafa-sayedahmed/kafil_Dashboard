@@ -6,5 +6,27 @@
     "Password":"Password",
     "RememberMe":"Remember Me",
     "ForgottenPassword":"Forgotten Password?",
-    "Login":"Login"
+    "Login":"Login",
+    "my_contest":"My Contests",
+    "completed":"Completed",
+    "not_completed":"Not Completed",
+    "accepted":"Accepted",
+    "not_accepted":"Accepted",
+    "contest":"Contest",
+    "section":"Section",
+    "price":"Price",
+    "delete":"Delete",
+    "my_account":"My Account",
+    "admin":"Admin",
+    "log_out":"Logout",
+    "contest_details":"Contest Details",
+    "contest_owner":"Contest Owner",
+    "title":"Title",
+    "completion_status":"Completion Status",
+    "acceptance_status":"Acceptance Status",
+    "description":"Description",
+    "comments":"Comments",
+    "reset_password":"Reset Password",
+    "is_login":"Login?"
+
 }
