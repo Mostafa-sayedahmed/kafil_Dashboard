@@ -4,9 +4,14 @@ import Cardpoject from '../../../components/CardProject/Cardpoject'
 import {auth, db }from '../../../Firebase/Firebase';
 import { collection ,deleteDoc,doc,getDocs} from 'firebase/firestore';
 
+import Language from "../../../components/Language/Language";
 
+import { useTranslation } from "react-i18next";
 
 export default function Projects() {
+
+
+  const { t } = useTranslation();
 
    const [project,setprojects] = useState([])
 
@@ -40,25 +45,28 @@ export default function Projects() {
   return (
    
     <>  
+  <Language />
    
   <div className="bg-white border rounded my-2 ">
-      <h3 className="m-2 "> <i class="fa-solid fa-table-list ms-3" style={{color: "#9ca1ab"}}></i>مشاريعي </h3>
+      <h3 className="m-2 "> <i class="fa-solid fa-table-list ms-3" style={{color: "#9ca1ab"}}></i>{t("my_projects")}</h3>
       <p  style={{border:'2px solid green',width:'7%' ,margin: "0% 7% ",borderRadius:"5px"  }}></p>  
   </div>
 
 
     <div className="B-serves p-3 ">
-      <Smpilcard cardName=" بانظار موافقه الاداره  " cardValue="0" />
-      <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" />
-      <Smpilcard cardName="منشور" cardValue="0" />
-      <Smpilcard cardName="مرفوض" cardValue="0" />
+      <Smpilcard cardName={t("pending_approval")} cardValue="0" />
+      <Smpilcard cardName={t("needs_modifications")} cardValue="0" />
+      <Smpilcard cardName={t("accepted")} cardValue="0" />
+      <Smpilcard cardName={t("completed")} cardValue="0" />
+
+
       <Smpilcard cardName="مرحله تلقي العروض " cardValue="0" />
-      <Smpilcard cardName=" مكتمل " cardValue="0" />
+      <Smpilcard cardName="منشور" cardValue="0" />
      
     </div>
    
     <div className="bg-white border border-secondary-subtle my-3 rounded">
-      <h3 className="m-2" > <i class="fa-solid fa-table-list ms-3" style={{color: "#9ca1ab"}}></i> المشاريع </h3>
+      <h3 className="m-2" > <i class="fa-solid fa-table-list ms-3" style={{color: "#9ca1ab"}}></i>{t("projects")}</h3>
       <p  style={{border:'2px solid green',width:'7%' ,margin: "0% 7% ",borderRadius:"5px"  }}></p>  
     </div>
     
@@ -66,11 +74,11 @@ export default function Projects() {
   <thead>
   <tr>
     <th >#</th>
-    <th >NameProject</th>
-    <th >NamePerson</th>
-    <th >Time</th>
-    <th >budget</th>
-    <th >Delete</th>
+    <th >{t("project")}</th>
+    <th >{t("project_owner")}</th>
+    <th >{t("time")}</th>
+    <th >{t("budget")}</th>
+    <th >{t("delete")}</th>
   </tr>
 </thead>
   <tbody>
@@ -82,7 +90,7 @@ export default function Projects() {
         <td className='text-nowrap p-2'><i class="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {proj.personName}</td>
         <td className='text-nowrap p-2'><i class="fa-regular fa-clock ms-2" style={{color: "#9ca1ab"}}></i> منذو   {proj.Time} ساعات </td>
         <td className='text-nowrap p-2'><i class="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{proj.budget}</td>
-        <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{DaleteProject(proj.id)}}>Delete</button></td>
+        <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{DaleteProject(proj.id)}}>{t("delete")}</button></td>
        </tr>
       )   
   })}
