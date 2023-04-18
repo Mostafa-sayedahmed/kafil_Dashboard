@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Sidebar from "./components/sidebar/sidebar";
+
 import { Routes, Route, Router } from "react-router-dom";
 import { useState } from "react";
 
@@ -17,6 +18,7 @@ import Contest from "./pages/Contests/Contest/Contest";
 import Projects from "./pages/projects/Project/projects";
 
 import Login from "./pages/Login/Login";
+
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import ContestDetails from "./pages/Contests/ContestDetails/ContestDetails";
