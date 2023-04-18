@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 
 import { db, auth } from "../../Firebase/Firebase";
+import Swal from "sweetalert2";
 
 import "../../index.css";
 import { useNavigate } from "react-router-dom";
+
+import Language from "../../components/Language/Language";
+
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,44 +18,69 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const { t } = useTranslation();
+
+  function Alert() {
+    Swal.fire({
+      title: "هذا الايميل ليس له صالحية الدخول",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
+  function AlertError() {
+    Swal.fire({
+      title: "البريد الاليكتروني او كلمة السر غير صحيحة",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
+      .then(async (userCredential) => {
         const user = userCredential.user;
-        localStorage.setItem("token", true);
-        localStorage.setItem("user", JSON.stringify(user));
-        console.log(JSON.stringify(user));
-        navigate("/home");
+        await db
+          .collection("users")
+          .doc(user.uid)
+          .get()
+          .then((res) => {
+            console.log(res.data());
+            const userDoc = res.data();
+            console.log(userDoc.isAdmin);
+            if (userDoc.isAdmin) {
+              localStorage.setItem("isLogged", true);
+              localStorage.setItem("user", JSON.stringify(userDoc));
+              navigate("/home");
+            } else {
+              Alert();
+            }
+          });
       })
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
+        AlertError();
       });
   };
 
-  // let token = localStorage.getItem('token');
-
-  // useEffect(() => {
-  //   if(token){
-  //     navigate("/dashboard")
-  //   }
-  // }, [token]);
-
   return (
     <>
-      <div className="container" dir="rtl">
+      <div className="container">
+        <Language />
         <div className="row m-4 bg-light">
-          <div className="aside-right col-md-6 p-3 bg-white pt-5">
+          <div className="col-md-6 p-3 bg-white pt-5">
             <h2 className="title text-center text-black fw-bold mt-5">
-              تسجيل الدخول
+              {t("Login_name")}
             </h2>
             <form onSubmit={handleSubmit}>
               <label for="floatingEmail" className="p-2">
-                البريد الألكتروني
+                {t("Email")}
               </label>
               <br />
               <div className="form-floating">
@@ -59,12 +89,12 @@ const Login = () => {
                   type="email"
                   className="form-control"
                   id="floatingEmail"
-                  placeholder="البريد الألكتروني"
+                  placeholder={t("Email")}
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
               <label for="floatingPassword " className="p-2">
-                كلمة السر{" "}
+                {t("Password")}
               </label>
               <div className="form-floating">
                 <input
@@ -72,7 +102,7 @@ const Login = () => {
                   type="password"
                   className="form-control"
                   id="floatingPassword"
-                  placeholder="Password"
+                  placeholder={t("Password")}
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
@@ -83,7 +113,7 @@ const Login = () => {
                     type="checkbox"
                     id="checkbox"
                   />
-                  تذكرني
+                  {t("RememberMe")}
                 </div>
 
                 <Link
@@ -91,7 +121,7 @@ const Login = () => {
                   type="button"
                   className="text-decoration-none text-success"
                 >
-                  هل نسيت كلمة السر ؟
+                   {t("ForgottenPassword")}
                 </Link>
               </div>
 
@@ -99,12 +129,12 @@ const Login = () => {
                 type="submit"
                 className="btn bg-success text-white w-100 mt-2"
               >
-                دخول
+                {t("Login")}
               </button>
             </form>
           </div>
 
-          <div className="aside-left col-md-6">
+          <div className="col-md-6">
             <img
               src="https://kafiil.com/modules/base/img/static/login.svg"
               alt="imagelogin"

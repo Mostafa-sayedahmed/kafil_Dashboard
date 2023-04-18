@@ -1,3 +1,4 @@
-*{
-    direction: rtl;
+.Card.Img{
+    max-width: 80%;
+    max-height: 1% !important;
 }

@@ -6,238 +6,222 @@ import Col from "react-bootstrap/Col";
 import Sidebar from "./components/sidebar/sidebar";
 import { Routes, Route, Router } from "react-router-dom";
 import { useState } from "react";
-import Dashboard from "./pages/dashboard/dashboard";
+
 import Users from "./pages/users/users";
 import Serves from "./pages/serves/serves";
 
 import Home from "./pages/home/home";
-import Projects from "./pages/projects/projects";
-import Context from "./pages/Context/Context";
 
-import Navbar from "./components/FixedNavbar/FixedNavbar";
-import Footer from "./components/Footer/Footer";
-import CreateContest from "./pages/Contests/CreateContest/CreateContest";
-import EditContest from "./pages/Contests/EditContest/EditContest";
 import Contest from "./pages/Contests/Contest/Contest";
-import Project from "./pages/projects/Project/Project";
-import CreateProject from "./pages/projects/CreateProject/CreateProject";
-import EditProject from "./pages/projects/EditProject/EditProject";
+
+import Projects from "./pages/projects/Project/projects";
 
 import Login from "./pages/Login/Login";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
-
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
+import ContestDetails from "./pages/Contests/ContestDetails/ContestDetails";
 import Viewservice from "./pages/viewservice/viewservice";
 
 function App() {
-  let token = localStorage.getItem("token");
-
-  console.log(token);
+ 
+  let isLogged = localStorage.getItem("isLogged");
 
   return (
-    // <>
-    //   <Routes>
-    //     <Route path="/" element={<Login />} />
-
-    //     <Route path="/Login" element={<Login />} />
-
-    //     <Route path="/forgetpassword" element={<ForgetPassword />} />
-
-    //     <Route
-    //       path="/Context"
-    //       element={
-    //         // <ProtectedRoute isLoggedIn={token}>
-    //         <div className="mainapp" dir="rtl">
-    //           <Container className="">
-    //             <Row gap={3}>
-    //               <Col className="sidebar-container" lg={3}>
-    //                 <Sidebar />
-    //               </Col>
-    //               <Col lg={9} className="routing-page">
-    //                 <Context />
-    //               </Col>
-    //             </Row>
-    //           </Container>
-    //         </div>
-    //         // </ProtectedRoute>
-    //       }
-    //     />
-
-    //     <Route
-    //       path="/dashboard"
-    //       element={
-    //         // <ProtectedRoute isLoggedIn={token}>
-    //         <div className="mainapp" dir="rtl">
-    //           <Container className="">
-    //             <Row gap={3}>
-    //               <Col className="sidebar-container" lg={3}>
-    //                 <Sidebar />
-    //               </Col>
-    //               <Col lg={9} className="routing-page">
-    //                 <Dashboard />
-    //               </Col>
-    //             </Row>
-    //           </Container>
-    //         </div>
-    //         // </ProtectedRoute>
-    //       }
-    //     />
-
-    //     <Route
-    //       path="/home"
-    //       element={
-    //         // <ProtectedRoute isLoggedIn={token}>
-    //         <div className="mainapp" dir="rtl">
-    //           <Container className="">
-    //             <Row gap={3}>
-    //               <Col className="sidebar-container" lg={3}>
-    //                 <Sidebar />
-    //               </Col>
-    //               <Col lg={9} className="routing-page">
-    //                 <Home />
-    //               </Col>
-    //             </Row>
-    //           </Container>
-    //         </div>
-    //         // </ProtectedRoute>
-    //       }
-    //     />
-
-    //     <Route
-    //       path="/users"
-    //       element={
-    //         // <ProtectedRoute isLoggedIn={token}>
-    //         <div className="mainapp" dir="rtl">
-    //           <Container className="">
-    //             <Row gap={3}>
-    //               <Col className="sidebar-container" lg={3}>
-    //                 <Sidebar />
-    //               </Col>
-    //               <Col lg={9} className="routing-page">
-    //                 <Users />
-    //               </Col>
-    //             </Row>
-    //           </Container>
-    //         </div>
-    //         // </ProtectedRoute>
-    //       }
-    //     />
-
-    //     <Route
-    //       path="/serves"
-    //       element={
-    //         // <ProtectedRoute isLoggedIn={token}>
-    //         <div className="mainapp" dir="rtl">
-    //           <Container className="">
-    //             <Row gap={3}>
-    //               <Col className="sidebar-container" lg={3}>
-    //                 <Sidebar />
-    //               </Col>
-    //               <Col lg={9} className="routing-page">
-    //                 <Serves />
-    //               </Col>
-    //             </Row>
-    //           </Container>
-    //         </div>
-    //         // </ProtectedRoute>
-    //       }
-    //     />
-
-    //     <Route
-    //       path="/projects"
-    //       element={
-    //         // <ProtectedRoute isLoggedIn={token}>
-    //         <div className="mainapp" dir="rtl">
-    //           <Container className="">
-    //             <Row gap={3}>
-    //               <Col className="sidebar-container" lg={3}>
-    //                 <Sidebar />
-    //               </Col>
-    //               <Col lg={9} className="routing-page">
-    //                 <Projects />
-    //               </Col>
-    //             </Row>
-    //           </Container>
-    //         </div>
-    //         // </ProtectedRoute>
-    //       }
-    //     />
-    //     <Route
-    //       path="/viewservice"
-    //       element={
-    //         // <ProtectedRoute isLoggedIn={token}>
-    //         <div className="mainapp" dir="rtl">
-    //           <Container className="">
-    //             <Row gap={3}>
-    //               <Col className="sidebar-container" lg={3}>
-    //                 <Sidebar />
-    //               </Col>
-    //               <Col lg={9} className="routing-page">
-    //                 <Viewservice />
-    //               </Col>
-    //             </Row>
-    //           </Container>
-    //         </div>
-    //         // </ProtectedRoute>
-    //       }
-    //     />
-    //   </Routes>
-    // </>
-
-    <div className="mainapp" dir="rtl">
+  
+    <>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="*"
-          element={
-            <Container className="">
-              <Row gap={3}>
-                <Col className="sidebar-container" lg={3}>
-                  <Sidebar />
-                </Col>
 
-                <Col lg={9} className="routing-page">
-                  <Routes>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/services" element={<Serves />} />
-                    <Route path="/users" element={<Users />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route
-                      path="/services/:serviceid"
-                      element={<Viewservice />}
-                    />
-                    <Route
-                      exact
-                      path="/createContest"
-                      element={<CreateContest />}
-                    />
-                    <Route
-                      exact
-                      path="/contest/:id"
-                      element={<EditContest />}
-                    />
-                    <Route exact path="/contest" element={<Contest />} />
-                    <Route
-                      exact
-                      path="/createProject"
-                      element={<CreateProject />}
-                    />
-                    <Route
-                      exact
-                      path="/project/:id"
-                      element={<EditProject />}
-                    />
-                    <Route exact path="/project" element={<Project />} />
-                    <Route path="/Context" element={<Context />} />
-                    <Route path="/Login" element={<Login />} />
-                  </Routes>
-                </Col>
-              </Row>
-            </Container>
+          <Route exact path="/" element={<Login />} />
+
+          <Route exact path="/Login" element={<Login />} />
+
+          <Route exact path="/forgetpassword" element={<ForgetPassword />} />
+
+          <Route exact path="/Contest" element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+                <div className="mainapp" >
+                  <Container className="">
+                      <Row gap={3}>
+                        <Col className="sidebar-container" lg={3}>
+                        <Sidebar />
+                        </Col>
+                        <Col lg={9} className="routing-page">          
+                          <Contest />
+                        </Col>
+                      </Row>
+                  </Container>
+                </div>
+            </ProtectedRoute> 
+          } />
+
+
+        <Route exact path="/Contest/:id" element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+                <div className="mainapp">
+                  <Container className="">
+                      <Row gap={3}>
+                        <Col className="sidebar-container" lg={3}>
+                        <Sidebar />
+                        </Col>
+                        <Col lg={9} className="routing-page">          
+                          <ContestDetails />
+                        </Col>
+                      </Row>
+                  </Container>
+                </div>
+            </ProtectedRoute> 
+          } />
+
+
+        <Route exact path="/home" element={
+              <ProtectedRoute isLoggedIn={isLogged}>
+                <div className="mainapp" dir="rtl">
+                  <Container className="">
+                      <Row gap={3}>
+                        <Col className="sidebar-container" lg={3}>
+                        <Sidebar />
+                        </Col>
+                        <Col lg={9} className="routing-page">          
+                        <Home />
+                        </Col>
+                      </Row>
+                  </Container>
+                </div>
+             </ProtectedRoute>
+          } />
+
+        <Route exact path="/users" element={
+              <ProtectedRoute isLoggedIn={isLogged}>
+                <div className="mainapp" dir="rtl">
+                  <Container className="">
+                      <Row gap={3}>
+                        <Col className="sidebar-container" lg={3}>
+                        <Sidebar />
+                        </Col>
+                        <Col lg={9} className="routing-page">          
+                        <Users />
+                        </Col>
+                      </Row>
+                  </Container>
+                </div>
+             </ProtectedRoute>
+          } />
+
+
+          <Route exact path="/serves" element={
+              <ProtectedRoute isLoggedIn={isLogged}>
+                <div className="mainapp" dir="rtl">
+                  <Container className="">
+                      <Row gap={3}>
+                        <Col className="sidebar-container" lg={3}>
+                        <Sidebar />
+                        </Col>
+                        <Col lg={9} className="routing-page">          
+                        <Serves />
+                        </Col>
+                      </Row>
+                  </Container>
+                </div>
+             </ProtectedRoute>
+          } />
+
+          <Route exact path="/projects" element={
+             <ProtectedRoute isLoggedIn={isLogged}>
+                <div className="mainapp" dir="rtl">
+                  <Container className="">
+                      <Row gap={3}>
+                        <Col className="sidebar-container" lg={3}>
+                        <Sidebar />
+                        </Col>
+                        <Col lg={9} className="routing-page">          
+                        <Projects />
+                        </Col>
+                      </Row>
+                  </Container>
+                </div>
+             </ProtectedRoute>
+          } />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+              <div className="mainapp" dir="rtl">
+                <Container className="">
+                  <Row gap={3}>
+                    <Col className="sidebar-container" lg={3}>
+                      <Sidebar />
+                    </Col>
+                    <Col lg={9} className="routing-page">
+                      <Users />
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/services"
+          element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+              <div className="mainapp" dir="rtl">
+                <Container className="">
+                  <Row gap={3}>
+                    <Col className="sidebar-container" lg={3}>
+                      <Sidebar />
+                    </Col>
+                    <Col lg={9} className="routing-page">
+                      <Serves />
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/services/:serviceid"
+          element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+              <div className="mainapp" dir="rtl">
+                <Container className="">
+                  <Row gap={3}>
+                    <Col className="sidebar-container" lg={3}>
+                      <Sidebar />
+                    </Col>
+                    <Col lg={9} className="routing-page">
+                      <Viewservice />
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/projects"
+          element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+              <div className="mainapp" dir="rtl">
+                <Container className="">
+                  <Row gap={3}>
+                    <Col className="sidebar-container" lg={3}>
+                      <Sidebar />
+                    </Col>
+                    <Col lg={9} className="routing-page">
+                      <Projects />
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
+            </ProtectedRoute>
           }
         />
       </Routes>
-    </div>
+    </>
+
   );
 }
 
