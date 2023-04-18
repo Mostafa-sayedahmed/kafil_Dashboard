@@ -35,5 +35,13 @@
     "works":"الأعمال",
     "users":"الأعضاء",
     "employees":"الموظفون",
-    "home":"الرئيسية"
+    "home":"الرئيسية",
+    "my_projects":"مشاريعي",
+    "pending_approval": "بانظار موافقه الاداره ",
+    "needs_modifications":"يحتاج الى تعديلات",
+    "budget":"ميزانية",
+    "time":"وقت",
+    "project":"المشروع",
+    "project_owner":"صاحب المشروع"
+    
 }
