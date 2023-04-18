@@ -12,21 +12,62 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { useState, useEffect } from "react";
 import { db } from "../../Firebase/Firebase";
 import { logDOM } from "@testing-library/react";
-
+import CanvasJSReact from './../../assets/canvasjs.react'
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 
 const Home = () => {
+
+    //Data of First Chart  
+    const options = {
+        animationEnabled: true,
+        exportEnabled: false,
+        theme: "light1", //"light1", "dark1", "dark2"
+        title: {
+
+        },
+        axisY: {
+            includeZero: true
+        },
+        data: [{
+            type: "pie", //change type to bar, line, area, pie, etc
+            //indexLabel: "{y}", //Shows y value on all Data Points
+            indexLabelFontColor: "#5A5757",
+            indexLabelPlacement: "outside",
+            dataPoints: [
+                { x: 10, y: 71 },
+                { x: 20, y: 55 },
+                { x: 30, y: 50 },
+                { x: 40, y: 65 },
+                { x: 50, y: 71 },
+                { x: 60, y: 68 },
+                { x: 70, y: 38 },
+                { x: 80, y: 92, indexLabel: "Highest" },
+                { x: 90, y: 54, indexLabel: "ali" },
+                { x: 100, y: 60 },
+                { x: 110, y: 21 },
+                { x: 120, y: 49 },
+                { x: 130, y: 36 }
+            ]
+        }]
+    }
+
+
+
+
+
     const [services, setServices] = useState([]);
     const [projects, setProjects] = useState([]);
     const [contest, setContest] = useState([]);
-    const[portfolios,setPortfolios]=useState([])
+    const [portfolios, setPortfolios] = useState([])
 
     useEffect(() => {
         const getDataServices = [];
         const getDataProjects = [];
         const getDataContests = [];
-        const getDataPortfolios=[];
+        const getDataPortfolios = [];
         const subscriber = db.collection("services").onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 getDataServices.push({ ...doc.data() })
@@ -123,28 +164,28 @@ const Home = () => {
         }
     }
 
-        // Handleing portfolios
-        let portfolisNum=portfolios.length;
-        let completedPort=0;
-        let unCompletedPort=0;
-        let isApprovedPort=0;
-        let isNotApprovedPort=0;
-        let rejectedPort=0;
-        for (let index = 0; index < portfolios.length; index++) {
-            if(portfolios[index].completed){
-                completedPort++
-            }else{
-                unCompletedPort++
-            }
-            if(portfolios[index].isApproved){
-                isApprovedPort++
-            }else{
-                isNotApprovedPort++
-            }
-            if(portfolios[index].rejected){
-                rejectedPort++
-            }
+    // Handleing portfolios
+    let portfolisNum = portfolios.length;
+    let completedPort = 0;
+    let unCompletedPort = 0;
+    let isApprovedPort = 0;
+    let isNotApprovedPort = 0;
+    let rejectedPort = 0;
+    for (let index = 0; index < portfolios.length; index++) {
+        if (portfolios[index].completed) {
+            completedPort++
+        } else {
+            unCompletedPort++
         }
+        if (portfolios[index].isApproved) {
+            isApprovedPort++
+        } else {
+            isNotApprovedPort++
+        }
+        if (portfolios[index].rejected) {
+            rejectedPort++
+        }
+    }
 
 
 
@@ -156,6 +197,9 @@ const Home = () => {
     return (<>
         <>
             <div className='home container-fluid'>
+
+
+
                 <div className='fContainer row' >
                     <div className='d-flex justify-content-between borderBottom p-3 col-12'>
                         <div>
@@ -192,7 +236,10 @@ const Home = () => {
                 <div className='d-flex flex-wrap row'>
                     <Card header="الخدمات" progressValue1="100" one="عدد الخدمات المقدمة" oneNum={coutAllServices}
                         two="يحتاج إلى تعديلات" twoNum={countIsFeaturedServices} progressValue2={countIsFeaturedServices / coutAllServices * 100}
-                        three="تمت الموافقة عليه" threeNum={countIsApprovedServices} progressValue3={countIsApprovedServices / coutAllServices * 100} four="مرفوض" fourNum={countIsRejectedServices} progressValue4={countIsRejectedServices / coutAllServices * 100} />
+                        three="تمت الموافقة عليه" threeNum={countIsApprovedServices} progressValue3={countIsApprovedServices / coutAllServices * 100} 
+                        four="مرفوض" fourNum={countIsRejectedServices} progressValue4={countIsRejectedServices / coutAllServices * 100}
+                         />
+
 
 
 
@@ -240,13 +287,13 @@ const Home = () => {
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(isNotApprovedProjects / numProjects * 100)} style={{ height: '10px' }} />
                                         </div>
-                                       
+
                                         <div >
                                             <div className='d-flex justify-content-between text-center '>
                                                 <div><p>  قيد المراجعة  :  ({isFeaturedProjects})</p></div>
-                                                <div>{Math.round(isFeaturedProjects/numProjects*100)}%</div>
+                                                <div>{Math.round(isFeaturedProjects / numProjects * 100)}%</div>
                                             </div>
-                                            <ProgressBar variant="success" className='mb-1' now={Math.round(isFeaturedProjects/numProjects*100)} style={{ height: '10px' }} />
+                                            <ProgressBar variant="success" className='mb-1' now={Math.round(isFeaturedProjects / numProjects * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
@@ -256,8 +303,10 @@ const Home = () => {
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(rejectedProjects / numProjects * 100)} style={{ height: '10px' }} />
                                         </div>
                                     </div>
-                                    
+
                                 </div>
+                                <CanvasJSChart options={options}
+                                />
 
                             </Accordion.Body>
                         </Accordion.Item>
@@ -289,41 +338,42 @@ const Home = () => {
                                         <div>
                                             <div className='d-flex justify-content-between text-center '>
                                                 <div><p>  عدد الأعمال المكتملة : ({completedPort})</p></div>
-                                                <div>{Math.round(completedPort/portfolisNum*100)}%</div>
+                                                <div>{Math.round(completedPort / portfolisNum * 100)}%</div>
                                             </div>
-                                            <ProgressBar variant="success" className='mb-1' now={Math.round(completedPort/portfolisNum*100)} style={{ height: '10px' }} />
+                                            <ProgressBar variant="success" className='mb-1' now={Math.round(completedPort / portfolisNum * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
                                                 <div><p>  قيد المراجعة : ({unCompletedPort})</p></div>
-                                                <div>{Math.round(unCompletedPort/portfolisNum*100)}%</div>
+                                                <div>{Math.round(unCompletedPort / portfolisNum * 100)}%</div>
                                             </div>
-                                            <ProgressBar variant="success" className='mb-1' now={Math.round(unCompletedPort/portfolisNum*100)} style={{ height: '10px' }} />
+                                            <ProgressBar variant="success" className='mb-1' now={Math.round(unCompletedPort / portfolisNum * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
                                                 <div><p>  تمت الموافقة عليه من قبل الادارة : ({isApprovedPort})</p></div>
-                                                <div>{Math.round(isApprovedPort/portfolisNum*100)}%</div>
+                                                <div>{Math.round(isApprovedPort / portfolisNum * 100)}%</div>
                                             </div>
-                                            <ProgressBar variant="success" className='mb-1' now={Math.round(isApprovedPort/portfolisNum*100)} style={{ height: '10px' }} />
+                                            <ProgressBar variant="success" className='mb-1' now={Math.round(isApprovedPort / portfolisNum * 100)} style={{ height: '10px' }} />
                                         </div></div>
                                     <div className='w-50 mx-3'>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
                                                 <div><p> مرفوض  ({isNotApprovedPort})</p></div>
-                                                <div>{Math.round(isNotApprovedPort/portfolisNum*100)}%</div>
+                                                <div>{Math.round(isNotApprovedPort / portfolisNum * 100)}%</div>
                                             </div>
-                                            <ProgressBar variant="success" className='mb-1' now={Math.round(isNotApprovedPort/portfolisNum*100)} style={{ height: '10px' }} />
+                                            <ProgressBar variant="success" className='mb-1' now={Math.round(isNotApprovedPort / portfolisNum * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
                                                 <div><p>تم الإلغاء   ({rejectedPort})</p></div>
-                                                <div>{Math.round(rejectedPort/portfolisNum*100)}%</div>
+                                                <div>{Math.round(rejectedPort / portfolisNum * 100)}%</div>
                                             </div>
-                                            <ProgressBar variant="success" className='mb-1' now={Math.round(rejectedPort/portfolisNum*100)} style={{ height: '10px' }} />
+                                            <ProgressBar variant="success" className='mb-1' now={Math.round(rejectedPort / portfolisNum * 100)} style={{ height: '10px' }} />
                                         </div>
                                     </div>
                                 </div>
+                                <CanvasJSChart  options={options} />
 
                             </Accordion.Body>
                         </Accordion.Item>
@@ -334,7 +384,7 @@ const Home = () => {
                 </div>
             </div>
 
-          
+
 
         </>
     </>);
