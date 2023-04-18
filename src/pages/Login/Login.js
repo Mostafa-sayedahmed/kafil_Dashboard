@@ -69,20 +69,12 @@ const Login = () => {
       });
   };
 
-  // let isLogged = localStorage.getItem('isLogged');
-
-  // useEffect(() => {
-  //   if(isLogged){
-  //     navigate("/dashboard")
-  //   }
-  // }, [isLogged]);
-
   return (
     <>
-      <div className="container" dir="rtl">
+      <div className="container">
         <Language />
         <div className="row m-4 bg-light">
-          <div className="aside-right col-md-6 p-3 bg-white pt-5">
+          <div className="col-md-6 p-3 bg-white pt-5">
             <h2 className="title text-center text-black fw-bold mt-5">
               {t("Login_name")}
             </h2>
@@ -129,7 +121,7 @@ const Login = () => {
                   type="button"
                   className="text-decoration-none text-success"
                 >
-                  هل نسيت كلمة السر ؟
+                   {t("ForgottenPassword")}
                 </Link>
               </div>
 
@@ -142,7 +134,7 @@ const Login = () => {
             </form>
           </div>
 
-          <div className="aside-left col-md-6">
+          <div className="col-md-6">
             <img
               src="https://kafiil.com/modules/base/img/static/login.svg"
               alt="imagelogin"

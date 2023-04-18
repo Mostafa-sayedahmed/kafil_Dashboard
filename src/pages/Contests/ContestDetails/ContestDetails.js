@@ -3,10 +3,14 @@ import { useState , useEffect } from 'react';
 import { db , auth } from '../../../Firebase/Firebase';
 
 import {useParams } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
+import Language from "../../../components/Language/Language";
 
 export default function ContestDetails() {
 
-  
+    const { t } = useTranslation();
+
     let { id } = useParams();
     const [contest, setContest] = useState({});
     const [comments, setComments] = useState([]);
@@ -22,7 +26,7 @@ export default function ContestDetails() {
       await db.collection('contests').doc(id).get().then((res) =>{
        let element = sectionsArr.find((ele)=> ele.id === res.data().sectionId) ;
 
-       let CommentElements = commentArr.filter((ele)=> ele.contestId === res.id) ;
+      //  let CommentElements = commentArr.filter((ele)=> ele.contestId === res.id) ;
 
        setComments([...commentArr.filter((ele)=> ele.contestId === res.id)])
 
@@ -30,9 +34,6 @@ export default function ContestDetails() {
       })
 
     };
-
-
-    console.log(contest)
 
     useEffect(() => {
       fetchContest();
@@ -43,21 +44,22 @@ export default function ContestDetails() {
     <>
     
      <div>
+       <Language />
        <div className="bg-white border border-secondary-subtle  rounded p-3">
-         <div className="header d-flex justify-content-between">
-           <h3 className="m-2">تفاصيل المسابقة</h3>
+         <div className="header ">
+           <h3 className="m-2">{t("contest_details")}</h3>
          </div>
          <hr />
          <div className="body d-flex flex-column">
            <div className="title mb-3">
              <h5 className="fw-bold mb-3  ">
-               العنوان: <span className="fw-normal"> 
+             {t("title")}: <span className="fw-normal"> 
                {contest.title}
                 </span>
              </h5>
 
              <h6 className="fw-bold mb-3">
-                صاحب المسابقة:
+             {t("contest_owner")}:
                 <span className="fw-normal p-2 lh-lg">
                   {contest.userName}
                 </span>
@@ -72,18 +74,18 @@ export default function ContestDetails() {
                 style={{ backgroundColor: "#59cca8", color: "#fff" }}
               >
                 <span className="fw-bold ">
-                  القسم: <span className="fw-normal ">
+                {t("section")}: <span className="fw-normal ">
                   {contest.sectionName}
                     </span>
                 </span>
                 <span className="fw-bold ">
-                 حالة القبول: <span className="fw-normal ">
+                {t("acceptance_status")}: <span className="fw-normal ">
                   {contest.accepted?("مقبولة"):("غير مقبولة")}
                     </span>
                 </span>
                 
                 <span className="fw-bold ">
-                   حالة الاكتمال:{" "}
+                {t("completion_status")}:
                   <span className="fw-normal ">
                     {contest.completed?("مكتملة"):("غير مكتملة")}
                   </span>
@@ -91,7 +93,7 @@ export default function ContestDetails() {
               </div>
               <hr className="my-2" />
               <h6 className="fw-bold mb-3">
-                الوصف:
+              {t("description")}:
                 <span className="fw-normal p-2 lh-lg">
 
                   {contest.description}
@@ -100,20 +102,18 @@ export default function ContestDetails() {
               <hr />
 
               <h6 className="fw-bold my-3 ">
-                 التعليقات:{" "}
+              {t("comments")}:
               </h6>
 
                 { comments.map((comment , index)=>{
                     return(
                       <div ket={index}>
-                        <div className='row'>
-                            <div className='col-2'>
-                                <img className='rounded-circle' src={comment.userImg} alt='' />
+                        <div className='row d-flex'>
+                            <div className='col-1'>
+                                <img style={{height:50, width:50}}  className='rounded-circle' src={comment.userImg} alt='' />
                             </div>
-                            <div className='col-4 mt-4'>
-                              <h4>
-                              {comment.userName}
-                              </h4>
+                            <div className='col-6 mt-2'>
+                              <h4>{comment.userName}</h4>
                             </div>
                         </div>
                         <div className='m-3'>
