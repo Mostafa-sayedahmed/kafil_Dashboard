@@ -35,5 +35,13 @@
     "works":"Works",
     "users":"Users",
     "employees":"Employees",
-    "home":"Home"
+    "home":"Home",
+    "my_projects":"My Projects",
+    "pending_approval": "Pending Management Approval",
+    "needs_modifications":"Needs Modifications",
+    "budget":"Budget",
+    "time":"Time",
+    "project":"Project",
+    "project_owner":"Project Owner"
+
 }
