@@ -78,6 +78,17 @@
     "service_name":"Service Name",
     "user":"User",
     "status":"Status",
-    "service_details":"Service Details"
+    "service_details":"Service Details",
+    "title":"Title",
+    "add":"Add",
+    "delivery_time":"Delivery time",
+    "update":"update",
+    "back":"Back",
+    "Are_you_sure":"Are you sure about deleting the service",
+    "yes_delete":"Yes,Delete!",
+    "pending":"pending",
+    "approved":"approved",
+    "Buyer_Instructions":"Buyer's Instructions",
+    "delete_the_service":"Are you sure to delete the service completely.?, If you want not to offer this service to users, the status can be changed to Rejected"
 
 }

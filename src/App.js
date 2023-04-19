@@ -14,19 +14,14 @@ import Serves from "./pages/serves/serves";
 import Home from "./pages/home/home";
 
 import Contest from "./pages/Contests/Contest/Contest";
-
 import Projects from "./pages/projects/Project/projects";
-
 import Portfolios from "./pages/portfolois/portfolois";
-
-
 import Login from "./pages/Login/Login";
-
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import ContestDetails from "./pages/Contests/ContestDetails/ContestDetails";
 import Viewservice from "./pages/viewservice/viewservice";
-import Portfolios from "./pages/portfolois/portfolois";
+
 
 function App() {
  
@@ -175,7 +170,7 @@ function App() {
           path="/services/:serviceid"
           element={
             <ProtectedRoute isLoggedIn={isLogged}>
-              <div className="mainapp" dir="rtl">
+              <div className="mainapp">
                 <Container className="">
                   <Row gap={3}>
                     <Col className="sidebar-container" lg={3}>
@@ -195,7 +190,7 @@ function App() {
           path="/projects"
           element={
             <ProtectedRoute isLoggedIn={isLogged}>
-              <div className="mainapp" dir="rtl">
+              <div className="mainapp" >
                 <Container className="">
                   <Row gap={3}>
                     <Col className="sidebar-container" lg={3}>
@@ -214,7 +209,7 @@ function App() {
           path="/portfolois"
           element={
             <ProtectedRoute isLoggedIn={isLogged}>
-              <div className="mainapp" dir="rtl">
+              <div className="mainapp">
                 <Container className="">
                   <Row gap={3}>
                     <Col className="sidebar-container" lg={3}>
