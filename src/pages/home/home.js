@@ -13,12 +13,21 @@ import { useState, useEffect } from "react";
 import { db } from "../../Firebase/Firebase";
 import { logDOM } from "@testing-library/react";
 import CanvasJSReact from './../../assets/canvasjs.react'
+
+import Language from "../../components/Language/Language";
+
+import { useTranslation } from "react-i18next";
+
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 
+
+
 const Home = () => {
+
+    const { t } = useTranslation();
 
     //Data of First Chart  
     const options = {
@@ -27,7 +36,7 @@ const Home = () => {
         exportEnabled: false,
        
         axisY: {
-            title: "(عدد الخدمات مضروباً في (10)"
+            title: t("Number_services_multiplied")
         },
         data: [
             {
@@ -55,7 +64,7 @@ const Home = () => {
         animationEnabled: true,
         
         subtitles: [{
-            text: "71% يشعر بالرضا ",
+            text:  t("feel_satisfied"),
             verticalAlign: "center",
             fontSize: 24,
             dockInsidePlotArea: true
@@ -66,11 +75,11 @@ const Home = () => {
             indexLabel: "{name}: {y}",
             yValueFormatString: "#,###'%'",
             dataPoints: [
-                { name: "غير راضي", y: 5 },
-                { name: " غير راضي بشدة", y: 31 },
-                { name: " راضي عن الخدمات", y: 40 },
-                { name: "راضي  بشدة", y: 17 },
-                { name: "غير مهتم", y: 7 }
+                { name: t("not_satisfied"), y: 5 },
+                { name: t("Strongly_dissatisfied"), y: 31 },
+                { name: t("Satisfied_with_services"), y: 40 },
+                { name: t("deeply_satisfied"), y: 17 },
+                { name: t("not_interested"), y: 7 }
             ]
         }]
     }
@@ -208,19 +217,14 @@ const Home = () => {
         }
     }
 
-
-
-
-
-
-
     const now = 0;
+
     return (<>
         <>
+        <Language />
             <div className='home container-fluid'>
 
-
-
+{/* 
                 <div className='fContainer row' >
                     <div className='d-flex justify-content-between borderBottom p-3 col-12'>
                         <div>
@@ -253,48 +257,43 @@ const Home = () => {
                         <div className='mx-3'><a href="#">معلق:$0</a></div>
                         <div><a href="#">متاح للشراء:$0</a></div>
                     </div>
-                </div>
+                </div> */}
                 <div className='d-flex flex-wrap row'>
-                    <Card header="الخدمات" progressValue1="100" one="عدد الخدمات المقدمة" oneNum={coutAllServices}
-                        two="يحتاج إلى تعديلات" twoNum={countIsFeaturedServices} progressValue2={countIsFeaturedServices / coutAllServices * 100}
-                        three="تمت الموافقة عليه" threeNum={countIsApprovedServices} progressValue3={countIsApprovedServices / coutAllServices * 100}
-                        four="مرفوض" fourNum={countIsRejectedServices} progressValue4={countIsRejectedServices / coutAllServices * 100}
+                    <Card header={t("services")} progressValue1="100" one={t("numServices")} oneNum={coutAllServices}
+                        two={t("needs_modifications")} twoNum={countIsFeaturedServices} progressValue2={countIsFeaturedServices / coutAllServices * 100}
+                        three={t("accepted")} threeNum={countIsApprovedServices} progressValue3={countIsApprovedServices / coutAllServices * 100}
+                        four={t("not_accepted")} fourNum={countIsRejectedServices} progressValue4={countIsRejectedServices / coutAllServices * 100}
                     />
-
-
-
-
-
 
                     <Accordion className=' col-12	col-sm-12	col-md-8	col-lg-8	col-xl-8	col-xxl-8 my-2' defaultActiveKey={['0']} alwaysOpen >
                         <Accordion.Item eventKey="0">
-                            <Accordion.Header ><Icon.Star color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>المشاريع</h6></Accordion.Header>
+                            <Accordion.Header ><Icon.Star color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>{t("projects")}</h6></Accordion.Header>
                             <Accordion.Body>
                                 <div className='d-flex'>
                                     <div className='w-50 mx-3'>  <div >
                                         <div className='d-flex justify-content-between text-center '>
-                                            <div><p>  عدد المشاريع :  ({numProjects})</p></div>
+                                            <div><p> {t("numProjects")}  :  ({numProjects})</p></div>
                                             <div>100%</div>
                                         </div>
                                         <ProgressBar variant="success" className='mb-1' now={now + 100} style={{ height: '10px' }} />
                                     </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center '>
-                                                <div><p>  المشاريع المكتملة : ({completedProjectes})</p></div>
+                                                <div><p> {t("completed")}: ({completedProjectes})</p></div>
                                                 <div>{Math.floor(completedProjectes / numProjects * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.floor(completedProjectes / numProjects * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
-                                                <div><p>  تحتاج الى تعديل : ({uncompletedProjectes})</p></div>
+                                                <div><p> {t("needs_modifications")}: ({uncompletedProjectes})</p></div>
                                                 <div>{Math.floor(uncompletedProjectes / numProjects * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.floor(uncompletedProjectes / numProjects * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
-                                                <div><p>  المشاريع التي تمت الموافقة عليها : ({isApprovedProjects})</p></div>
+                                                <div><p> {t("accepted")}: ({isApprovedProjects})</p></div>
                                                 <div>{Math.round(isApprovedProjects / numProjects * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(isApprovedProjects / numProjects * 100)} style={{ height: '10px' }} />
@@ -303,7 +302,7 @@ const Home = () => {
                                     <div className='w-50 mx-3'>
                                         <div >
                                             <div className='d-flex justify-content-between text-center '>
-                                                <div><p>  المشاريع المرفوضة :  ({isNotApprovedProjects})</p></div>
+                                                <div><p>  {t("not_accepted")}:  ({isNotApprovedProjects})</p></div>
                                                 <div>{Math.round(isNotApprovedProjects / numProjects * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(isNotApprovedProjects / numProjects * 100)} style={{ height: '10px' }} />
@@ -311,14 +310,14 @@ const Home = () => {
 
                                         <div >
                                             <div className='d-flex justify-content-between text-center '>
-                                                <div><p>  قيد المراجعة  :  ({isFeaturedProjects})</p></div>
+                                                <div><p> {t("under_review")} :  ({isFeaturedProjects})</p></div>
                                                 <div>{Math.round(isFeaturedProjects / numProjects * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(isFeaturedProjects / numProjects * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
-                                                <div><p>تم الإلغاء   ({rejectedProjects})</p></div>
+                                                <div><p>{t("canceled")}   ({rejectedProjects})</p></div>
                                                 <div>{Math.round(rejectedProjects / numProjects * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(rejectedProjects / numProjects * 100)} style={{ height: '10px' }} />
@@ -335,43 +334,43 @@ const Home = () => {
 
 
 
-                    <Card header=" المسابقات"
-                        one="عدد المسابقات المطروحة :" oneNum={constNum} progressValue1="100"
-                        two=" المسابقات التي تم الموافقة عليها  :" twoNum={approvedConsts} progressValue2={approvedConsts / constNum * 100}
-                        three="مستبعد :" threeNum={rejectedConstest} progressValue3={rejectedConstest / constNum * 100}
-                        four=" المسابقات التي تم تنفيذها   :" fourNum={completedComstest} progressValue4={completedComstest / constNum * 100} />
+                    <Card header={t("contest")}
+                        one={t("numContest")} oneNum={constNum} progressValue1="100"
+                        two={t("accepted")} twoNum={approvedConsts} progressValue2={approvedConsts / constNum * 100}
+                        three={t("not_accepted")} threeNum={rejectedConstest} progressValue3={rejectedConstest / constNum * 100}
+                        four={t("completed")} fourNum={completedComstest} progressValue4={completedComstest / constNum * 100} />
 
 
 
                     <Accordion className=' col-12	col-sm-12	col-md-8	col-lg-8	col-xl-8	col-xxl-8 my-2' defaultActiveKey={['0']} alwaysOpen >
                         <Accordion.Item eventKey="0">
-                            <Accordion.Header ><Icon.Star color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>الأعمال</h6></Accordion.Header>
+                            <Accordion.Header ><Icon.Star color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>{t("works")}</h6></Accordion.Header>
                             <Accordion.Body>
                                 <div className='d-flex'>
                                     <div className='w-50 mx-3'>  <div >
                                         <div className='d-flex justify-content-between text-center '>
-                                            <div><p>  عدد الأعمال  :  ({portfolisNum})</p></div>
+                                            <div><p> {t("numWorks")}:  ({portfolisNum})</p></div>
                                             <div>100%</div>
                                         </div>
                                         <ProgressBar variant="success" className='mb-1' now={100} style={{ height: '10px' }} />
                                     </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center '>
-                                                <div><p>  عدد الأعمال المكتملة : ({completedPort})</p></div>
+                                                <div><p> {t("completed")} : ({completedPort})</p></div>
                                                 <div>{Math.round(completedPort / portfolisNum * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(completedPort / portfolisNum * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
-                                                <div><p>  قيد المراجعة : ({unCompletedPort})</p></div>
+                                                <div><p>   {t("under_review")}: ({unCompletedPort})</p></div>
                                                 <div>{Math.round(unCompletedPort / portfolisNum * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(unCompletedPort / portfolisNum * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
-                                                <div><p>  تمت الموافقة عليه من قبل الادارة : ({isApprovedPort})</p></div>
+                                                <div><p> {t("accepted")}: ({isApprovedPort})</p></div>
                                                 <div>{Math.round(isApprovedPort / portfolisNum * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(isApprovedPort / portfolisNum * 100)} style={{ height: '10px' }} />
@@ -379,14 +378,14 @@ const Home = () => {
                                     <div className='w-50 mx-3'>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
-                                                <div><p> مرفوض  ({isNotApprovedPort})</p></div>
+                                                <div><p> {t("not_accepted")}  ({isNotApprovedPort})</p></div>
                                                 <div>{Math.round(isNotApprovedPort / portfolisNum * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(isNotApprovedPort / portfolisNum * 100)} style={{ height: '10px' }} />
                                         </div>
                                         <div>
                                             <div className='d-flex justify-content-between text-center'>
-                                                <div><p>تم الإلغاء   ({rejectedPort})</p></div>
+                                                <div><p>{t("canceled")}   ({rejectedPort})</p></div>
                                                 <div>{Math.round(rejectedPort / portfolisNum * 100)}%</div>
                                             </div>
                                             <ProgressBar variant="success" className='mb-1' now={Math.round(rejectedPort / portfolisNum * 100)} style={{ height: '10px' }} />
@@ -403,9 +402,9 @@ const Home = () => {
 
                     <Accordion className=' col-12	col-sm-12	col-md-12	col-lg-12	col-xl-12	col-xxl-12 my-2' defaultActiveKey={['0']} alwaysOpen >
                         <Accordion.Item eventKey="0">
-                            <Accordion.Header ><Icon.PieChart color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>مبيعات الخدمات على المنصة خلال السنوات المختلفة </h6></Accordion.Header>
+                            <Accordion.Header ><Icon.PieChart color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}> {t("Sales_of_services")} </h6></Accordion.Header>
                             <Accordion.Body className="text-center">
-                            <h3 className="my-3 ">           مبيعات الخدمات  المختلفة   
+                            <h3 className="my-3 "> {t("Sales_of_various")} 
                                 </h3>
                                 <CanvasJSChart options={options} />
 
@@ -418,10 +417,10 @@ const Home = () => {
                     <Accordion className=' col-12	col-sm-12	col-md-12	col-lg-12	col-xl-12	col-xxl-12 my-2' defaultActiveKey={['0']} alwaysOpen >
                         <Accordion.Item eventKey="0">
                             <Accordion.Header ><Icon.PieChart color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>
-                                قياس نسبة رضا زوار الموقع عن التجربة
+                            {t("Measuring_percentage")} 
                             </h6></Accordion.Header>
                             <Accordion.Body className="text-center ">
-                                <h3 className="my-2  ">           قياس نسبة رضا زوار الموقع
+                                <h3 className="my-2  ">{t("Measuring_site_visitor")} 
                                 </h3>
                                 <CanvasJSChart options={options2} />
 

@@ -51,6 +51,23 @@
     "views":"المشاهدات",
     "likes":"الاعجابات",
     "job":"الوظيفة",
-    "evaluation":"التقييم"
+    "evaluation":"التقييم",
+    "numServices":"عدد الخدمات المقدمة",
+    "numProjects":"عدد المشاريع",
+    "under_review":"قيد المراجعة",
+    "canceled":"تم الالغاء",
+    "numContest":"عدد المسابقات المطروحة",
+    "numWorks":"عدد الاعمال",
+    "Sales_of_services":"مبيعات الخدمات على المنصة خلال السنوات المختلفة ",
+    "Sales_of_various":" مبيعات الخدمات  المختلفة  ",
+    "Measuring_percentage":"قياس نسبة رضا زوار الموقع عن التجربة",
+    "Measuring_site_visitor":" قياس نسبة رضا زوار الموقع",
+    "Number_services_multiplied":"عدد الخدمات مضروباً في (10)",
+    "feel_satisfied":"71٪ يشعر بالرضا",
+    "not_satisfied":"غير راضي",
+    "Strongly_dissatisfied":"غير راضي بشدة",
+    "Satisfied_with_services":"راضي عن الخدمات",
+    "deeply_satisfied":"راضي  بشدة",
+    "not_interested":"غير مهتم"
     
 }
