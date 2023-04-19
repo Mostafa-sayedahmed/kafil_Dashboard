@@ -3,6 +3,7 @@ import Smpilcard from '../../components/smpilcard/smpilcard';
 import { db } from '../../Firebase/Firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
 
+
 import Language from "../../components/Language/Language";
 
 import { useTranslation } from "react-i18next";
@@ -10,6 +11,7 @@ import { useTranslation } from "react-i18next";
 function Portfolios() {
 
   const { t } = useTranslation();
+
 
   const [Portfolios, setportfolios] = useState([]);
 
@@ -78,6 +80,7 @@ function Portfolios() {
 
   return (
     <div className=" " style={{ color: "#32383e" }}>
+
       <Language />
       <div className="bg-white border border-secondary-subtle rounded ">
         <h1 className="m-2">{t("works")}</h1>
@@ -91,14 +94,17 @@ function Portfolios() {
       <div className="services-container bg-white border border-secondary-subtle mt-3 rounded"
       >
         <h1 className="m-2">{t("works")}</h1>
+
         <hr />
         <table className="table table-hover bg-white services-table ">
           <thead >
             <tr>
+
               <th>{t("work_owner")}</th>
               <th>{t("work")}</th>
               <th>{t("work_status")}</th>
               <th>{t("service_control")}</th>
+
             </tr>
           </thead>
           <tbody>
@@ -115,6 +121,7 @@ function Portfolios() {
                 </td>                <td>
                   <button className='btn btn-outline-danger p-2 rounded' onClick={() => deletePortfolio(portfolio.portfoloiId)}>
                   {t("delete")}
+
                   </button>
                 </td>
               </tr>

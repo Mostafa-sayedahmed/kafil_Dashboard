@@ -16,7 +16,9 @@ import Home from "./pages/home/home";
 import Contest from "./pages/Contests/Contest/Contest";
 
 import Projects from "./pages/projects/Project/projects";
+
 import Portfolios from "./pages/portfolois/portfolois";
+
 
 import Login from "./pages/Login/Login";
 
@@ -24,6 +26,7 @@ import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import ContestDetails from "./pages/Contests/ContestDetails/ContestDetails";
 import Viewservice from "./pages/viewservice/viewservice";
+import Portfolios from "./pages/portfolois/portfolois";
 
 function App() {
  
@@ -188,7 +191,46 @@ function App() {
           }
         />
 
+        <Route
+          path="/projects"
+          element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+              <div className="mainapp" dir="rtl">
+                <Container className="">
+                  <Row gap={3}>
+                    <Col className="sidebar-container" lg={3}>
+                      <Sidebar />
+                    </Col>
+                    <Col lg={9} className="routing-page">
+                      <Projects />
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
+            </ProtectedRoute>
+          }
+        />
+             <Route
+          path="/portfolois"
+          element={
+            <ProtectedRoute isLoggedIn={isLogged}>
+              <div className="mainapp" dir="rtl">
+                <Container className="">
+                  <Row gap={3}>
+                    <Col className="sidebar-container" lg={3}>
+                      <Sidebar />
+                    </Col>
+                    <Col lg={9} className="routing-page">
+                      <Portfolios/>
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
+            </ProtectedRoute>
+          }
+        />
       </Routes>
+      
     </>
 
   );
