@@ -26,12 +26,9 @@ function Card(props) {
                 
                 { x: 20, y: 55 },
                 { x: 30, y: 50 },
-                { x: 80, y: 92, indexLabel: "Highest" },
-                { x: 90, y: 54 , indexLabel: "ali" },
-                { x: 100, y: 60 },
-                { x: 110, y: 21 },
-                { x: 120, y: 49 },
-                { x: 130, y: 36 }
+                { x: 80, y: 92, },
+                { x: 90, y: 54 ,  },
+               
             ]
         }]
     }
@@ -78,8 +75,7 @@ function Card(props) {
                   </div>
                   <ProgressBar  variant="success" className='mb-1'  now={props.progressValue4} style={{height:'10px'}} />
               </div>
-              <CanvasJSChart  options={options} 
-                />
+             
             
           </Accordion.Body>
         </Accordion.Item>
