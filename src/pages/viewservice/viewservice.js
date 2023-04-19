@@ -112,7 +112,7 @@ const Viewservice = () => {
 
           <div className="title mb-3">
             <h5 className="fw-bold mb-3  ">
-              العنوان: <span className="fw-normal">{details.title}</span>
+              {t("titel")}: <span className="fw-normal">{details.title}</span>
             </h5>
           </div>
 
