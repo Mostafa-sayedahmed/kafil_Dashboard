@@ -73,6 +73,11 @@
     "work":"portfolio",
     "work_owner":"Portfolio owner",
     "work_status":"Portfolio status",
-    "service_control": "Control of Service"
+    "service_control": "Control of Service",
+    "total_services":"Total Services",
+    "service_name":"Service Name",
+    "user":"User",
+    "status":"Status",
+    "service_details":"Service Details"
 
 }

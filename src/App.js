@@ -156,7 +156,7 @@ function App() {
           path="/services"
           element={
             <ProtectedRoute isLoggedIn={isLogged}>
-              <div className="mainapp" dir="rtl">
+              <div className="mainapp">
                 <Container className="">
                   <Row gap={3}>
                     <Col className="sidebar-container" lg={3}>
