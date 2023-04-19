@@ -207,8 +207,6 @@ function App() {
         />
       </Routes>
       
-    </div>
-      </Routes>
     </>
 
   );
