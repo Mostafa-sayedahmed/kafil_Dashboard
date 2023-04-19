@@ -75,8 +75,7 @@ function Card(props) {
                   </div>
                   <ProgressBar  variant="success" className='mb-1'  now={props.progressValue4} style={{height:'10px'}} />
               </div>
-              <CanvasJSChart  options={options} 
-                />
+             
             
           </Accordion.Body>
         </Accordion.Item>
