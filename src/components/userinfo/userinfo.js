@@ -1,12 +1,16 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./userinfo.css";
-import { json } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase/Firebase";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 
 const Userinfo = () => {
+
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -21,17 +25,18 @@ const Userinfo = () => {
 
   const logOut = () => {
     signOut(auth);
-    localStorage.removeItem("user");
-    localStorage.setItem("isLogged", false);
-    navigate("/Login");
-  };
+    localStorage.removeItem('user');
+    localStorage.setItem('isLogged', false);
+    navigate('/');
+  }
+
 
   return (
     <div className="user-info rounded">
       <div className="userinfo-header d-flex justify-content-between ">
         <div className="title">
           <i className="fa-solid fa-user"></i>
-          <span>حسابي</span>
+          <span>{t("my_account")}</span>
         </div>
         <button className="btn btn-light">
           <i className="fa-solid fa-gear"></i>
@@ -45,7 +50,7 @@ const Userinfo = () => {
           {userName} <i className="is-online fa-solid fa-circle"></i>
         </span>
         <span className="user-role">
-          Admin <i className="fa-solid fa-user-tie p-2"></i>
+        {t("admin")}<i className="fa-solid fa-user-tie p-2"></i>
         </span>
 
         <button
@@ -54,7 +59,7 @@ const Userinfo = () => {
             logOut();
           }}
         >
-          تسجيل خروج
+          {t("log_out")}
         </button>
       </div>
     </div>
