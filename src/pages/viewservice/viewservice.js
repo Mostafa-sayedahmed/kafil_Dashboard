@@ -35,8 +35,8 @@ const Viewservice = () => {
   const [previewimg, setpreviewimg] = useState("");
   const [show, setShow] = useState(false);
   const [modalmsg, setmodalmsg] = useState(
-    "هل انت متأكد من حذف الخدمة تماماً.؟,  اذا كنت تريد عدم عرض هذه الخدمة للمستخدمين يمكن تغيير الحالة الي مرفوض "
-  );
+    t("delete_the_service")
+    );
   let navigate = useNavigate();
   async function getuser() {
     const docRef = doc(db, "users", details.userid);
@@ -112,7 +112,7 @@ const Viewservice = () => {
 
           <div className="title mb-3">
             <h5 className="fw-bold mb-3  ">
-              العنوان: <span className="fw-normal">{details.title}</span>
+              {t("title")}: <span className="fw-normal">{details.title}</span>
             </h5>
           </div>
 
@@ -190,7 +190,7 @@ const Viewservice = () => {
                 );
               })}
               <h6 className="fw-bold my-3 ">
-                تعليمات المشتري:{" "}
+               {t("Buyer_Instructions")} :{" "}
                 <span className="fw-normal p-2 lh-lg">
                   {" "}
                   {details.buyerinstructions}{" "}
@@ -201,13 +201,13 @@ const Viewservice = () => {
                   <>
                     <div className="d-flex justify-content-between" key={index}>
                       <span className="fs-5">
-                        الإضافة {index + 1}:
+                       {t("add")} {index + 1}:
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonTitle}
                         </span>
                       </span>
                       <span className="fs-5">
-                        مدة التسليم:
+                         {t("delivery_time")}:
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonDeliveryDuration} يوم
                         </span>
@@ -250,10 +250,10 @@ const Viewservice = () => {
                     >
                       <option selected disabled value="">
                          {t("status")}
-                      </option>
-                      <option value="approved">approved</option>
+                      </option>    
+                      <option value={t("approved")}>{t("approved")}</option>
                       <option value={t("delete")}>{t("delete")}</option>
-                      <option value="pending">pending</option>
+                      <option value={t("pending")}>{t("pending")}</option>
                     </select>
                   </div>
 
@@ -288,7 +288,7 @@ const Viewservice = () => {
                       newcategory !== "" || newstate !== "" ? false : true
                     }
                   >
-                    تعديل
+                     {t("updata")}
                   </button>
                   <button className="btn btn-danger" onClick={togglemodal}>
                   {t("delete")}
@@ -301,17 +301,17 @@ const Viewservice = () => {
       </div>
       <Modal show={show}>
         <Modal.Header>
-          <Modal.Title>هل انت متأكد من حذف الخدمة</Modal.Title>
+          <Modal.Title>{t("Are_you_sure")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <>{modalmsg}</>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={deleteservice}>
-            نعم,قم بالحذف!
+           {t("yes_delete")}
           </Button>
           <Button variant="secondary" onClick={togglemodal}>
-            رجوع
+          {t("back")}
           </Button>
         </Modal.Footer>
       </Modal>
