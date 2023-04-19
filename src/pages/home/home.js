@@ -22,34 +22,55 @@ const Home = () => {
 
     //Data of First Chart  
     const options = {
+        theme: "light2",
         animationEnabled: true,
         exportEnabled: false,
-        theme: "light1", //"light1", "dark1", "dark2"
-        title: {
-
-        },
+       
         axisY: {
-            includeZero: true
+            title: "(عدد الخدمات مضروباً في (10)"
         },
+        data: [
+            {
+                type: "area",
+                xValueFormatString: "YYYY",
+                yValueFormatString: "#,##0.## *10",
+                dataPoints: [
+                    { x: new Date(2017, 0), y: 7.6 },
+                    { x: new Date(2016, 0), y: 7.3 },
+                    { x: new Date(2015, 0), y: 6.4 },
+                    { x: new Date(2014, 0), y: 5.3 },
+                    { x: new Date(2013, 0), y: 4.5 },
+                    { x: new Date(2012, 0), y: 3.8 },
+                    { x: new Date(2011, 0), y: 3.2 }
+                ]
+            }
+        ]
+
+
+    }
+
+
+
+    const options2 = {
+        animationEnabled: true,
+        
+        subtitles: [{
+            text: "71% يشعر بالرضا ",
+            verticalAlign: "center",
+            fontSize: 24,
+            dockInsidePlotArea: true
+        }],
         data: [{
-            type: "pie", //change type to bar, line, area, pie, etc
-            //indexLabel: "{y}", //Shows y value on all Data Points
-            indexLabelFontColor: "#5A5757",
-            indexLabelPlacement: "outside",
+            type: "doughnut",
+            showInLegend: true,
+            indexLabel: "{name}: {y}",
+            yValueFormatString: "#,###'%'",
             dataPoints: [
-                { x: 10, y: 71 },
-                { x: 20, y: 55 },
-                { x: 30, y: 50 },
-                { x: 40, y: 65 },
-                { x: 50, y: 71 },
-                { x: 60, y: 68 },
-                { x: 70, y: 38 },
-                { x: 80, y: 92, indexLabel: "Highest" },
-                { x: 90, y: 54, indexLabel: "ali" },
-                { x: 100, y: 60 },
-                { x: 110, y: 21 },
-                { x: 120, y: 49 },
-                { x: 130, y: 36 }
+                { name: "غير راضي", y: 5 },
+                { name: " غير راضي بشدة", y: 31 },
+                { name: " راضي عن الخدمات", y: 40 },
+                { name: "راضي  بشدة", y: 17 },
+                { name: "غير مهتم", y: 7 }
             ]
         }]
     }
@@ -236,9 +257,9 @@ const Home = () => {
                 <div className='d-flex flex-wrap row'>
                     <Card header="الخدمات" progressValue1="100" one="عدد الخدمات المقدمة" oneNum={coutAllServices}
                         two="يحتاج إلى تعديلات" twoNum={countIsFeaturedServices} progressValue2={countIsFeaturedServices / coutAllServices * 100}
-                        three="تمت الموافقة عليه" threeNum={countIsApprovedServices} progressValue3={countIsApprovedServices / coutAllServices * 100} 
+                        three="تمت الموافقة عليه" threeNum={countIsApprovedServices} progressValue3={countIsApprovedServices / coutAllServices * 100}
                         four="مرفوض" fourNum={countIsRejectedServices} progressValue4={countIsRejectedServices / coutAllServices * 100}
-                         />
+                    />
 
 
 
@@ -305,8 +326,7 @@ const Home = () => {
                                     </div>
 
                                 </div>
-                                <CanvasJSChart options={options}
-                                />
+
 
                             </Accordion.Body>
                         </Accordion.Item>
@@ -373,7 +393,37 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <CanvasJSChart  options={options} />
+
+
+                            </Accordion.Body>
+                        </Accordion.Item>
+
+                    </Accordion>
+
+
+                    <Accordion className=' col-12	col-sm-12	col-md-12	col-lg-12	col-xl-12	col-xxl-12 my-2' defaultActiveKey={['0']} alwaysOpen >
+                        <Accordion.Item eventKey="0">
+                            <Accordion.Header ><Icon.PieChart color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>مبيعات الخدمات على المنصة خلال السنوات المختلفة </h6></Accordion.Header>
+                            <Accordion.Body className="text-center">
+                            <h3 className="my-3 ">           مبيعات الخدمات  المختلفة   
+                                </h3>
+                                <CanvasJSChart options={options} />
+
+
+                            </Accordion.Body>
+                        </Accordion.Item>
+
+                    </Accordion>
+
+                    <Accordion className=' col-12	col-sm-12	col-md-12	col-lg-12	col-xl-12	col-xxl-12 my-2' defaultActiveKey={['0']} alwaysOpen >
+                        <Accordion.Item eventKey="0">
+                            <Accordion.Header ><Icon.PieChart color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>
+                                قياس نسبة رضا زوار الموقع عن التجربة
+                            </h6></Accordion.Header>
+                            <Accordion.Body className="text-center ">
+                                <h3 className="my-2  ">           قياس نسبة رضا زوار الموقع
+                                </h3>
+                                <CanvasJSChart options={options2} />
 
                             </Accordion.Body>
                         </Accordion.Item>
