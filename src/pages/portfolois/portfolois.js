@@ -4,7 +4,14 @@ import { db } from '../../Firebase/Firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
 
 
+import Language from "../../components/Language/Language";
+
+import { useTranslation } from "react-i18next";
+
 function Portfolios() {
+
+  const { t } = useTranslation();
+
 
   const [Portfolios, setportfolios] = useState([]);
 
@@ -73,26 +80,31 @@ function Portfolios() {
 
   return (
     <div className=" " style={{ color: "#32383e" }}>
+
+      <Language />
       <div className="bg-white border border-secondary-subtle rounded ">
-        <h1 className="m-2">الأعمال</h1>
+        <h1 className="m-2">{t("works")}</h1>
       </div>
 
       <div className="B-serves p-3 ">
-        <Smpilcard cardName="الاجمالى الأعمال" cardValue={getTotalPortfolios(Portfolios)} />
-        <Smpilcard cardName=" الأعمال المكتملة" cardValue={getCompletedPortfolios(Portfolios)} />
-        <Smpilcard cardName=" الأعمال الغير مكتملة" cardValue={getUncompletedPortfolios(Portfolios)} />
+        <Smpilcard cardName={t("total_portfolios")} cardValue={getTotalPortfolios(Portfolios)} />
+        <Smpilcard cardName={t("completed")} cardValue={getCompletedPortfolios(Portfolios)} />
+        <Smpilcard cardName={t("not_completed")} cardValue={getUncompletedPortfolios(Portfolios)} />
       </div>
       <div className="services-container bg-white border border-secondary-subtle mt-3 rounded"
       >
-        <h1 className="m-2">الأعمال</h1>
+        <h1 className="m-2">{t("works")}</h1>
+
         <hr />
         <table className="table table-hover bg-white services-table ">
           <thead >
             <tr>
-              <th>صاحب العمل</th>
-              <th>اسم العمل </th>
-              <th> حاله الاعمال </th>
-              <th>تحكم في الخدمة</th>
+
+              <th>{t("work_owner")}</th>
+              <th>{t("work")}</th>
+              <th>{t("work_status")}</th>
+              <th>{t("service_control")}</th>
+
             </tr>
           </thead>
           <tbody>
@@ -108,7 +120,8 @@ function Portfolios() {
                   )}
                 </td>                <td>
                   <button className='btn btn-outline-danger p-2 rounded' onClick={() => deletePortfolio(portfolio.portfoloiId)}>
-                    Delete
+                  {t("delete")}
+
                   </button>
                 </td>
               </tr>

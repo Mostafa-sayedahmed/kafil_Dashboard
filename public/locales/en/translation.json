@@ -32,7 +32,7 @@
     "services":"Services",
     "contests":"Contests",
     "projects":"Projects",
-    "works":"Works",
+    "works":"portfolios",
     "users":"Users",
     "employees":"Employees",
     "home":"Home",
@@ -68,6 +68,11 @@
     "Strongly_dissatisfied":"Strongly Dissatisfied",
     "Satisfied_with_services":"Satisfied with the services",
     "deeply_satisfied":"Deeply Satisfied",
-    "not_interested":"Not interested"
+    "not_interested":"Not interested",
+    "total_portfolios":"Total Portfolios",
+    "work":"portfolio",
+    "work_owner":"Portfolio owner",
+    "work_status":"Portfolio status",
+    "service_control": "Control of Service"
 
 }

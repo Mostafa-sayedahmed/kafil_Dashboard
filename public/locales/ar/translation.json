@@ -68,6 +68,11 @@
     "Strongly_dissatisfied":"غير راضي بشدة",
     "Satisfied_with_services":"راضي عن الخدمات",
     "deeply_satisfied":"راضي  بشدة",
-    "not_interested":"غير مهتم"
+    "not_interested":"غير مهتم",
+    "total_portfolios":"اجمالي الاعمال",
+    "work":"العمل",
+    "work_owner":"صاحب العمل",
+    "work_status":"حالة العمل",
+    "service_control": "التحكم في الخدمة"
     
 }
