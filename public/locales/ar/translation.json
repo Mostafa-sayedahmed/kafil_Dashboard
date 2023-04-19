@@ -55,7 +55,7 @@
     "numServices":"عدد الخدمات المقدمة",
     "numProjects":"عدد المشاريع",
     "under_review":"قيد المراجعة",
-    "canceled":"تم الالغاء",
+    "canceled":"ملغاه",
     "numContest":"عدد المسابقات المطروحة",
     "numWorks":"عدد الاعمال",
     "Sales_of_services":"مبيعات الخدمات على المنصة خلال السنوات المختلفة ",
@@ -73,6 +73,11 @@
     "work":"العمل",
     "work_owner":"صاحب العمل",
     "work_status":"حالة العمل",
-    "service_control": "التحكم في الخدمة"
+    "service_control": "التحكم في الخدمة",
+    "total_services":"اجمالي الخدمات",
+    "service_name":"اسم الخدمة",
+    "user":"المستخدم",
+    "status":"الحالة",
+    "service_details":"تفاصيل الخدمة"
     
 }
