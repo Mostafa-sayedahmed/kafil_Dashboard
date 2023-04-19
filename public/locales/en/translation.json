@@ -42,6 +42,17 @@
     "budget":"Budget",
     "time":"Time",
     "project":"Project",
-    "project_owner":"Project Owner"
+    "project_owner":"Project Owner",
+    "first":"First",
+    "second":"Second",
+    "freelancer":"Freelancer",
+    "photo":"Photo",
+    "name":"Name",
+    "views":"Views",
+    "likes":"Likes",
+    "job":"Job",
+    "evaluation":"Evaluation"
+
+    
 
 }

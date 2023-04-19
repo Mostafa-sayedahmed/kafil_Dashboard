@@ -42,6 +42,15 @@
     "budget":"ميزانية",
     "time":"وقت",
     "project":"المشروع",
-    "project_owner":"صاحب المشروع"
+    "project_owner":"صاحب المشروع",
+    "first":"اولا",
+    "second":"ثانيا",
+    "freelancer":"المستقلون",
+    "photo":"الصورة",
+    "name":"الاسم",
+    "views":"المشاهدات",
+    "likes":"الاعجابات",
+    "job":"الوظيفة",
+    "evaluation":"التقييم"
     
 }
