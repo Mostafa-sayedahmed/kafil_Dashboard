@@ -15,7 +15,15 @@ import {
 import { useState } from "react";
 import Serviceuserinfo from "./../../components/serviceuserinfo/Serviceuserinfo";
 
+
+import Language from "../../components/Language/Language";
+
+import { useTranslation } from "react-i18next";
+
 const Viewservice = () => {
+
+  const { t } = useTranslation();
+
   let params = useParams();
   const [details, setdetails] = useState({});
   const [categories, setcategories] = useState([]);
@@ -27,8 +35,8 @@ const Viewservice = () => {
   const [previewimg, setpreviewimg] = useState("");
   const [show, setShow] = useState(false);
   const [modalmsg, setmodalmsg] = useState(
-    "هل انت متأكد من حذف الخدمة تماماً.؟,  اذا كنت تريد عدم عرض هذه الخدمة للمستخدمين يمكن تغيير الحالة الي مرفوض "
-  );
+    t("delete_the_service")
+    );
   let navigate = useNavigate();
   async function getuser() {
     const docRef = doc(db, "users", details.userid);
@@ -91,17 +99,20 @@ const Viewservice = () => {
       });
     });
   }
+
   return (
     <div>
+      <Language />
       <div className="bg-white border border-secondary-subtle  rounded p-3">
         <div className="header d-flex justify-content-between">
-          <h3 className="m-2">تفاصيل الخدمة</h3>
+          <h3 className="m-2">{t("service_details")}</h3>
         </div>
         <hr />
         <div className="body d-flex flex-column">
+
           <div className="title mb-3">
             <h5 className="fw-bold mb-3  ">
-              العنوان: <span className="fw-normal"> {details.title} </span>
+              {t("title")}: <span className="fw-normal">{details.title}</span>
             </h5>
           </div>
 
@@ -113,13 +124,13 @@ const Viewservice = () => {
                 style={{ backgroundColor: "#59cca8", color: "#fff" }}
               >
                 <span className="fw-bold ">
-                  الحالة: <span className="fw-normal ">{details.state}</span>
+                  {t("status")}: <span className="fw-normal ">{details.state}</span>
                 </span>
                 <span className="fw-bold ">
-                  القسم: <span className="fw-normal ">{details.category}</span>
+                {t("section")}: <span className="fw-normal ">{details.category}</span>
                 </span>
                 <span className="fw-bold ">
-                  التقييم:{" "}
+                {t("evaluation")}:{" "}
                   <span className="fw-normal ">
                     <i className="fa-solid fa-star text-warning ms-2"></i>(
                     {details.rating})
@@ -128,7 +139,7 @@ const Viewservice = () => {
               </div>
               <hr className="my-2" />
               <h6 className="fw-bold mb-3">
-                الوصف:
+              {t("description")}:
                 <span className="fw-normal p-2 lh-lg">
                   {details.description}{" "}
                 </span>
@@ -179,7 +190,7 @@ const Viewservice = () => {
                 );
               })}
               <h6 className="fw-bold my-3 ">
-                تعليمات المشتري:{" "}
+               {t("Buyer_Instructions")} :{" "}
                 <span className="fw-normal p-2 lh-lg">
                   {" "}
                   {details.buyerinstructions}{" "}
@@ -190,20 +201,20 @@ const Viewservice = () => {
                   <>
                     <div className="d-flex justify-content-between" key={index}>
                       <span className="fs-5">
-                        الإضافة {index + 1}:
+                       {t("add")} {index + 1}:
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonTitle}
                         </span>
                       </span>
                       <span className="fs-5">
-                        مدة التسليم:
+                         {t("delivery_time")}:
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonDeliveryDuration} يوم
                         </span>
                       </span>
                       <span className="fs-5">
                         {" "}
-                        السعر:{" "}
+                        {t("price")}:{" "}
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonPrice} $
                         </span>{" "}
@@ -223,12 +234,12 @@ const Viewservice = () => {
               <div className="control-service p-3">
                 <div className="control-header d-flex align-items-center">
                   <i className="fa-solid fa-sliders ms-2"></i>
-                  <h5>تحكم في الخدمة</h5>
+                  <h5>{t("service_control")}</h5>
                 </div>
                 <hr />
                 <div className="d-flex flex-column">
                   <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h6>الحالة: </h6>
+                    <h6> {t("status")}: </h6>
                     <select
                       name=""
                       style={{ width: "70%" }}
@@ -238,16 +249,16 @@ const Viewservice = () => {
                       id=""
                     >
                       <option selected disabled value="">
-                        الحالة
-                      </option>
-                      <option value="approved">approved</option>
-                      <option value="deleted">deleted</option>
-                      <option value="pending">pending</option>
+                         {t("status")}
+                      </option>    
+                      <option value={t("approved")}>{t("approved")}</option>
+                      <option value={t("delete")}>{t("delete")}</option>
+                      <option value={t("pending")}>{t("pending")}</option>
                     </select>
                   </div>
 
                   <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h6>الفسم: </h6>
+                    <h6> {t("section")}: </h6>
 
                     <select
                       name=""
@@ -258,7 +269,7 @@ const Viewservice = () => {
                       id=""
                     >
                       <option selected disabled value="">
-                        القسم
+                      {t("section")}
                       </option>
                       {categories.map((item, index) => {
                         return (
@@ -277,10 +288,10 @@ const Viewservice = () => {
                       newcategory !== "" || newstate !== "" ? false : true
                     }
                   >
-                    تعديل
+                     {t("updata")}
                   </button>
                   <button className="btn btn-danger" onClick={togglemodal}>
-                    حذف
+                  {t("delete")}
                   </button>
                 </div>
               </div>
@@ -290,17 +301,17 @@ const Viewservice = () => {
       </div>
       <Modal show={show}>
         <Modal.Header>
-          <Modal.Title>هل انت متأكد من حذف الخدمة</Modal.Title>
+          <Modal.Title>{t("Are_you_sure")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <>{modalmsg}</>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={deleteservice}>
-            نعم,قم بالحذف!
+           {t("yes_delete")}
           </Button>
           <Button variant="secondary" onClick={togglemodal}>
-            رجوع
+          {t("back")}
           </Button>
         </Modal.Footer>
       </Modal>

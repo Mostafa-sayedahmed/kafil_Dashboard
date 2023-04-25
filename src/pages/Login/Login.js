@@ -22,7 +22,7 @@ const Login = () => {
 
   function Alert() {
     Swal.fire({
-      title: "هذا الايميل ليس له صالحية الدخول",
+      title: t("This_email"),
       icon: "error",
       showConfirmButton: false,
       timer: 2000,
@@ -31,7 +31,7 @@ const Login = () => {
 
   function AlertError() {
     Swal.fire({
-      title: "البريد الاليكتروني او كلمة السر غير صحيحة",
+      title: t( "email_or_password"),
       icon: "error",
       showConfirmButton: false,
       timer: 2000,

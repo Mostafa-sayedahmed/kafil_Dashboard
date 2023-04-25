@@ -66,7 +66,7 @@ return(<>
                 {t("reset_password")}
                 </button>
                 <div className='d-flex justify-content-end'>
-                <Link to='/Login' type="button" className="text-decoration-none text-success">{t("is_login")}</Link>
+                <Link to='/' type="button" className="text-decoration-none text-success">{t("is_login")}</Link>
                 </div>
               
             </form>

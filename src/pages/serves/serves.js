@@ -13,7 +13,14 @@ import {
 } from "firebase/firestore";
 import preloader from "../../assets/preloader2.gif";
 
+import Language from "../../components/Language/Language";
+
+import { useTranslation } from "react-i18next";
+
 function Serves() {
+
+  const { t } = useTranslation();
+
   const [services, setservices] = useState([]);
   const [sApproved, setsApproved] = useState(0);
   const [sDeleted, setsDeleted] = useState(0);
@@ -71,30 +78,31 @@ function Serves() {
 
   return (
     <div className=" ">
+        <Language />
       <div className="bg-white border border-secondary-subtle  rounded ">
-        <h1 className="m-2">الخدمات</h1>
+        <h1 className="m-2">{t("services")}</h1>
       </div>
       <div className="B-serves p-3 ">
-        <Smpilcard cardName="إجمالى الخدمات" cardValue={services.length} />
-        <Smpilcard cardName="بانتظار موافقة الادارة" cardValue={sPending} />
+        <Smpilcard cardName={t( "total_services")} cardValue={services.length} />
+        <Smpilcard cardName={t("pending_approval")} cardValue={sPending} />
         {/* <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" /> */}
         <Smpilcard cardName="نشط" cardValue={sApproved} />
         {/* <Smpilcard cardName=" متوقف مؤقتا" cardValue="0" /> */}
-        <Smpilcard cardName="مرفوض" cardValue={sDeleted} />
+        <Smpilcard cardName={t("canceled")} cardValue={sDeleted} />
       </div>
       <div className="services-container bg-white border border-secondary-subtle mt-3 rounded">
-        <h1 className="m-2">الخدمات</h1>
+        <h1 className="m-2">{t("services")}</h1>
         {/* <Container > */}
         <table className="table table-hover bg-white services-table">
           <thead>
             <tr>
               <th>#</th>
-              <th style={{ Width: "100px", overflow: "hidden" }}>اسم الخدمة</th>
-              <th>المستخدم</th>
-              <th>الحالة</th>
-              <th>الإيميل</th>
-              <th>السعر</th>
-              <th>تحكم في الخدمة</th>
+              <th style={{ Width: "100px", overflow: "hidden" }}>{t("service_name")}</th>
+              <th>{t("user")}</th>
+              <th>{t("status")}</th>
+              <th>{t("email")}</th>
+              <th>{t("price")}</th>
+              <th>{t("service_control")}</th>
             </tr>
           </thead>
           {services.length == 0 ? (
@@ -107,7 +115,7 @@ function Serves() {
                 return (
                   <Servicerow
                     tooltip="view"
-                    title="مراجعه "
+                    title={t("review")}
                     key={index}
                     hash={index + 1}
                     NameProject={item.title}

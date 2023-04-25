@@ -5,14 +5,16 @@ import { json } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase/Firebase";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Serviceuserinfo = (props) => {
+  const { t } = useTranslation();
   return (
     <div className="user-info rounded">
       <div className="userinfo-header d-flex justify-content-between ">
         <div className="title">
           <i className="fa-solid fa-user"></i>
-          <span>تفاصيل عن المستخدم </span>
+          <span>{t("user_details")}</span>
         </div>
       </div>
       <div className="userinfo-details">
@@ -27,7 +29,7 @@ const Serviceuserinfo = (props) => {
           {props.userName} <i className="is-online fa-solid fa-circle"></i>
         </span>
         <span className="user-role">
-          E-mail :{props.email}
+        {t("Email")}:{props.email}
           <i className="fa-regular fa-envelope p-2"></i>
         </span>
       </div>
