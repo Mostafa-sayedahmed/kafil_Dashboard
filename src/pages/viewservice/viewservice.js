@@ -134,16 +134,16 @@ const Viewservice = () => {
                   <span className="fw-normal ">{details.category}</span>
                 </span>
                 <span className="fw-bold ">
-                  {t("status")} موصي به:{" "}
+                  {t("featured")}:{" "}
                   <span className="fw-normal ">
                     {details.isfeatured ? (
                       <span>
-                        {t("status")} نعم{" "}
+                        {t("yes")}{" "}
                         <i className="fa-regular fa-circle-check"></i>
                       </span>
                     ) : (
                       <span>
-                        لا <i className="fa-regular fa-circle-xmark"></i>
+                        {t("no")} <i className="fa-regular fa-circle-xmark"></i>
                       </span>
                     )}
                   </span>
@@ -220,7 +220,7 @@ const Viewservice = () => {
                   <>
                     <div className="d-flex justify-content-between" key={index}>
                       <span className="fs-5">
-                        الإضافة {index + 1}:
+                        {t("add")} {index + 1}:
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonTitle}
                         </span>
@@ -228,12 +228,12 @@ const Viewservice = () => {
                       <span className="fs-5">
                         {t("delivery_time")} :
                         <span className="fs-5 px-2 text-sucess">
-                          {item.addonDeliveryDuration} يوم
+                          {item.addonDeliveryDuration} {t("day")}
                         </span>
                       </span>
                       <span className="fs-5">
                         {" "}
-                        {t("delivery_time")} السعر:{" "}
+                        {t("delivery_time")} {t("price")}:{" "}
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonPrice} $
                         </span>{" "}
@@ -315,7 +315,7 @@ const Viewservice = () => {
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault"
                       >
-                        موصي به :
+                        {t("featured")} :
                       </label>
                     </div>
                   </div>
