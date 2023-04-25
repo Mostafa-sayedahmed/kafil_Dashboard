@@ -29,7 +29,7 @@ export default function Contest() {
 
       function afterDelete(){
         Swal.fire({
-            title: 'تم الحذف بنجاح',
+            title: t("Deleted_successfully"),
             icon: 'success',
             showConfirmButton: false,
             timer: 1500
@@ -39,13 +39,13 @@ export default function Contest() {
            
         function DeleteAlert(id){
             Swal.fire({
-                title: 'هل انت متأكد؟',
+                title: t("are_you_sure"),
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#1dbf73',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'حذف',
-                cancelButtonText:'الغاء'
+                confirmButtonText: t("delete"),
+                cancelButtonText:t("cancel"),
             }).then((result) => {
             if (result.isConfirmed) {
               deleteContest(id)

@@ -115,7 +115,7 @@ function Serves() {
                 return (
                   <Servicerow
                     tooltip="view"
-                    title="مراجعه "
+                    title={t("review")}
                     key={index}
                     hash={index + 1}
                     NameProject={item.title}

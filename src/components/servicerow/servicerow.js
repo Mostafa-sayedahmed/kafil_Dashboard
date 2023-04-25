@@ -3,11 +3,17 @@ import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { useNavigate } from "react-router-dom";
 
+import { useTranslation } from "react-i18next";
+
 export default function Servicerow(props) {
+
+  const { t } = useTranslation();
+
+
   const [show, setShow] = useState(false);
   const [modalmsg, setmodalmsg] = useState(
-    "هل انت متأكد من حذف الخدمة تماماً.؟,  اذا كنت تريد عدم عرض هذه الخدمة للمستخدمين يمكن تغيير الحالة الي مرفوض "
-  );
+    t("delete_the_service")
+    );
   const navigate = useNavigate();
 
   function togglemodal() {
@@ -26,7 +32,7 @@ export default function Servicerow(props) {
               className="fa-regular fa-circle-dot ms-2"
               style={{ color: "lightgreen" }}
             ></i>
-            نشط
+            {t("approved")}
           </>
         );
       case "pending":
@@ -36,7 +42,7 @@ export default function Servicerow(props) {
               className="fa-regular fa-circle-dot ms-2"
               style={{ color: "orange" }}
             ></i>
-            بانتظار المراجعه
+              {t("under_review")}
           </>
         );
       case "deleted":
@@ -46,7 +52,7 @@ export default function Servicerow(props) {
               className="fa-regular fa-circle-dot ms-2"
               style={{ color: "red" }}
             ></i>
-            محذوف
+            {t("delete")}
           </>
         );
 
@@ -57,7 +63,7 @@ export default function Servicerow(props) {
   return (
     <>
       <tr
-        title="اضغط للمعاينة"
+        title={t("Click_view")}
         style={{ cursor: "pointer" }}
         onClick={navtoservice}
       >
@@ -107,23 +113,23 @@ export default function Servicerow(props) {
             className="btn btn-outline-danger p-2 rounded"
             onClick={togglemodal}
           >
-            Delete
+             {t("delete")}
           </button>
         </td>
       </tr>
       <Modal show={show}>
         <Modal.Header>
-          <Modal.Title>هل انت متأكد من حذف الخدمة</Modal.Title>
+          <Modal.Title>{t("Are_you_sure")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <>{modalmsg}</>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={togglemodal}>
-            نعم,قم بالحذف!
+          <Button variant="danger" onClick={deleteservice}>
+           {t("yes_delete")}
           </Button>
           <Button variant="secondary" onClick={togglemodal}>
-            رجوع
+          {t("back")}
           </Button>
         </Modal.Footer>
       </Modal>

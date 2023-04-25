@@ -89,6 +89,15 @@
     "pending":"pending",
     "approved":"approved",
     "Buyer_Instructions":"Buyer's Instructions",
-    "delete_the_service":"Are you sure to delete the service completely.?, If you want not to offer this service to users, the status can be changed to Rejected"
+    "delete_the_service":"Are you sure to delete the service completely.?, If you want not to offer this service to users, the status can be changed to Rejected",
+    "This_email":"This email is not valid for access",
+    "email_or_password":"The email or password is incorrect.",
+    "are_you_sure":"Are you sure",
+    "cancel":"Cancel",
+   "Deleted_successfully":"Deleted successfully",
+   "Loading":"Loading...",
+   "user_details":"User Details",
+   "review":"Review",
+   "Click_view":"Click to view"
 
 }

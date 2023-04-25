@@ -80,14 +80,14 @@ export default function ContestDetails() {
                 </span>
                 <span className="fw-bold ">
                 {t("acceptance_status")}: <span className="fw-normal ">
-                  {contest.accepted?("مقبولة"):("غير مقبولة")}
+                  {contest.accepted?(t("accepted")):(t("not_accepted"))}
                     </span>
                 </span>
                 
                 <span className="fw-bold ">
                 {t("completion_status")}:
                   <span className="fw-normal ">
-                    {contest.completed?("مكتملة"):("غير مكتملة")}
+                    {contest.completed?(t("completed")):(t("not_completed"))}
                   </span>
                 </span>
               </div>
