@@ -56,7 +56,7 @@ const Login = () => {
             if (userDoc.isAdmin) {
               localStorage.setItem("isLogged", true);
               localStorage.setItem("user", JSON.stringify(userDoc));
-              console.log(window.location);
+              // console.log(window.location);
               window.location = "/home";
               // navigate("/home");
             } else {
