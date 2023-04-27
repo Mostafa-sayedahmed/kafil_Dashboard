@@ -31,7 +31,7 @@ const Login = () => {
 
   function AlertError() {
     Swal.fire({
-      title: t( "email_or_password"),
+      title: t("email_or_password"),
       icon: "error",
       showConfirmButton: false,
       timer: 2000,
@@ -56,7 +56,9 @@ const Login = () => {
             if (userDoc.isAdmin) {
               localStorage.setItem("isLogged", true);
               localStorage.setItem("user", JSON.stringify(userDoc));
-              navigate("/home");
+              console.log(window.location);
+              window.location = "/home";
+              // navigate("/home");
             } else {
               Alert();
             }
@@ -121,7 +123,7 @@ const Login = () => {
                   type="button"
                   className="text-decoration-none text-success"
                 >
-                   {t("ForgottenPassword")}
+                  {t("ForgottenPassword")}
                 </Link>
               </div>
 
