@@ -15,8 +15,6 @@ import {
 import { useState } from "react";
 import Serviceuserinfo from "./../../components/serviceuserinfo/Serviceuserinfo";
 
-import Language from "../../components/Language/Language";
-
 import { useTranslation } from "react-i18next";
 
 const Viewservice = () => {
@@ -105,7 +103,6 @@ const Viewservice = () => {
   }
   return (
     <div>
-      <Language />
       <div className="bg-white border border-secondary-subtle  rounded p-3">
         <div className="header d-flex justify-content-between">
           <h3 className="m-2">{t("service_details")}</h3>

@@ -9,6 +9,8 @@ import { Routes, Route, Router } from "react-router-dom";
 import { useState } from "react";
 
 import Users from "./pages/users/users";
+
+import Freelancers from "./pages/Freelancers/Freelancers";
 import Serves from "./pages/serves/serves";
 
 import Home from "./pages/home/home";
@@ -89,6 +91,22 @@ function App() {
              </ProtectedRoute>
           } />
 
+      <Route exact path="/freelancers" element={
+              <ProtectedRoute isLoggedIn={isLogged}>
+                <div className="mainapp">
+                  <Container className="">
+                      <Row gap={3}>
+                        <Col className="sidebar-container" lg={3}>
+                        <Sidebar />
+                        </Col>
+                        <Col lg={9} className="routing-page">          
+                        <Freelancers />
+                        </Col>
+                      </Row>
+                  </Container>
+                </div>
+             </ProtectedRoute>
+          } />
         <Route exact path="/home" element={
               <ProtectedRoute isLoggedIn={isLogged}>
                 <div className="mainapp">

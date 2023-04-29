@@ -4,8 +4,6 @@ import Cardpoject from '../../../components/CardProject/Cardpoject'
 import {auth, db }from '../../../Firebase/Firebase';
 import { collection ,deleteDoc,doc,getDocs} from 'firebase/firestore';
 
-import Language from "../../../components/Language/Language";
-
 import { useTranslation } from "react-i18next";
 
 export default function Projects() {
@@ -45,7 +43,6 @@ export default function Projects() {
   return (
    
     <>  
-  <Language />
    
   <div className="bg-white border rounded my-2 ">
       <h3 className="m-2 "> <i class="fa-solid fa-table-list ms-3" style={{color: "#9ca1ab"}}></i>{t("my_projects")}</h3>

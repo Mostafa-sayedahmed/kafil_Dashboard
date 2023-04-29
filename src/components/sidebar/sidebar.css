@@ -45,3 +45,28 @@ body[dir='ltr'] .bg-img {
     transform: rotate(0deg);
   }
 }
+
+
+.dashboard-btn:hover {
+  background-color: #1dbf73;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.dashboard-btn i {
+  font-size: 1.5rem;
+}
+
+.dashboard-btn {
+  transition: 0.4s;
+  background-color: #ffffff;
+  padding: 0.8rem;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: #2b2c2f;
+  width: 5rem;
+  text-align: center;
+  border-radius: 15px;
+}

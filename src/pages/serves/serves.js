@@ -16,8 +16,6 @@ import preloader from "../../assets/preloader2.gif";
 import { Doughnutchart } from "../../components/doughnutchart/doughnutchart";
 import { Areachart } from "../../components/areachart/areachart";
 
-import Language from "../../components/Language/Language";
-
 import { useTranslation } from "react-i18next";
 
 function Serves() {
@@ -81,7 +79,6 @@ function Serves() {
 
   return (
     <div className=" ">
-        <Language />
       <div className="bg-white border border-secondary-subtle  rounded ">
         <h1 className="m-2">{t("services")}</h1>
       </div>

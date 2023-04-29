@@ -3,9 +3,6 @@ import Smpilcard from '../../components/smpilcard/smpilcard';
 import { db } from '../../Firebase/Firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
 
-
-import Language from "../../components/Language/Language";
-
 import { useTranslation } from "react-i18next";
 
 function Portfolios() {
@@ -81,7 +78,6 @@ function Portfolios() {
   return (
     <div className=" " style={{ color: "#32383e" }}>
 
-      <Language />
       <div className="bg-white border border-secondary-subtle rounded ">
         <h1 className="m-2">{t("works")}</h1>
       </div>

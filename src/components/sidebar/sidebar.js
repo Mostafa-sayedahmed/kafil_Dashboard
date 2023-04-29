@@ -1,7 +1,7 @@
 import React from "react";
-import Dashboardtn from "../dashboardbtn/dashboardtn";
 import "./sidebar.css";
-import Container from "react-bootstrap/Container";
+import { Link } from 'react-router-dom';
+
 import logo from "../../assets/Logo.png";
 import bggraph1 from "../../assets/wave (1).svg";
 import bggraph2 from "../../assets/wave (2).svg";
@@ -32,69 +32,42 @@ export default function Sidebar() {
             <i className="fa-solid fa-bars"></i>
           </button>
         </div>
+
         <div className="sidebar-btns">
-          <Dashboardtn
-            route="/home"
-            btnName={t("home")}
-            btnIcon="fa-solid fa-house "
-          />
+          <Link className="dashboard-btn" to="/home">
+            <i className="fa-solid fa-house"></i>
+            <span>{t("home")}</span>
+          </Link>
 
-          {/* <Dashboardtn
-            route="/balance"
-            btnName="الرصيد"
-            btnIcon="fa-solid fa-money-bill-1"
-          /> */}
+          <Link className="dashboard-btn" to="/services">
+            <i className="fa-solid fa-shop"></i>
+            <span>{t("services")}</span>
+           
+          </Link>
+          <Link className="dashboard-btn" to="/Contest">
+            <i className="fa-solid fa-trophy"></i>
+            <span>{t("contests")}</span>
+          </Link>
 
-          {/* <Dashboardtn
-            route="#"
-            btnName="الإعدادات"
-            btnIcon="fa-solid fa-gear"
-          /> */}
+          <Link className="dashboard-btn" to="/projects">
+            <i className="fa-solid fa-suitcase"></i>
+            <span>{t("projects")}</span>
+          </Link>
 
-          <Dashboardtn
-            route="/services"
-            btnName={t("services")}
-            btnIcon="fa-solid fa-shop"
-          />
-          <Dashboardtn
-            route="/Contest"
-            btnName={t("contests")}
-            btnIcon="fa-solid fa-trophy"
-          />
-          <Dashboardtn
-            route="/projects"
-            btnName={t("projects")}
-            btnIcon="fa-solid fa-suitcase "
-          />
-          <Dashboardtn
+          <Link className="dashboard-btn" to="/portfolio">
+            <i className="fa-regular fa-images"></i>
+            <span>{t("works")}</span>
+          </Link>
 
-            route="/portfolio"
-            btnName={t("works")}
+          <Link className="dashboard-btn" to="/users">
+            <i className="fa-solid fa-users"></i>
+            <span>{t("users")}</span>
+          </Link>
 
-            btnIcon="fa-regular fa-images"
-          />
-          {/* <Dashboardtn
-            route="/chat"
-            btnName="محادثات"
-            btnIcon="fa-solid fa-comment-dots"
-          /> */}
-
-          {/* <Dashboardtn
-            route="/questions"
-            btnName="الملتقي"
-            btnIcon="fa-solid fa-comments"
-          /> */}
-
-          <Dashboardtn
-            route="/users"
-            btnName={t("users")}
-            btnIcon="fa-solid fa-users"
-          />
-          {/* <Dashboardtn
-            route="/staff"
-            btnName={t("employees")}
-            btnIcon="fa-solid fa-user-tie "
-          /> */}
+          <Link className="dashboard-btn" to="/freelancers">
+            <i className="fa-solid fa-user-tie"></i>
+            <span>{t("freelancers")}</span>
+          </Link>
         </div>
       </div>
     </div>

@@ -13,14 +13,15 @@ import { useState, useEffect } from "react";
 import { db } from "../../Firebase/Firebase";
 import { logDOM } from "@testing-library/react";
 import CanvasJSReact from './../../assets/canvasjs.react'
-
-import Language from "../../components/Language/Language";
-
 import { useTranslation } from "react-i18next";
 
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+// import { Column } from '@ant-design/plots';
 
+import { Barchart } from "../../components/Barchart/Barchart";
+// import { Await } from "react-router-dom";
+
+// var CanvasJS = CanvasJSReact.CanvasJS;
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 
@@ -29,63 +30,90 @@ const Home = () => {
 
     const { t } = useTranslation();
 
+    const [data, setData] = useState([]);
+
     //Data of First Chart  
-    const options = {
-        theme: "light2",
-        animationEnabled: true,
-        exportEnabled: false,
+
+    // const options = {
+    //     theme: "light2",
+    //     animationEnabled: true,
+    //     exportEnabled: false,
        
-        axisY: {
-            title: t("Number_services_multiplied")
-        },
-        data: [
-            {
-                type: "area",
-                xValueFormatString: "YYYY",
-                yValueFormatString: "#,##0.## *10",
-                dataPoints: [
-                    { x: new Date(2017, 0), y: 7.6 },
-                    { x: new Date(2016, 0), y: 7.3 },
-                    { x: new Date(2015, 0), y: 6.4 },
-                    { x: new Date(2014, 0), y: 5.3 },
-                    { x: new Date(2013, 0), y: 4.5 },
-                    { x: new Date(2012, 0), y: 3.8 },
-                    { x: new Date(2011, 0), y: 3.2 }
-                ]
-            }
-        ]
+    //     axisY: {
+    //         title: t("Number_services_multiplied")
+    //     },
+    //     data: [
+    //         {
+    //             type: "area",
+    //             xValueFormatString: "YYYY",
+    //             yValueFormatString: "#,##0.## *10",
+    //             dataPoints: [
+    //                 { x: new Date(2017, 0), y: 7.6 },
+    //                 { x: new Date(2016, 0), y: 7.3 },
+    //                 { x: new Date(2015, 0), y: 6.4 },
+    //                 { x: new Date(2014, 0), y: 5.3 },
+    //                 { x: new Date(2013, 0), y: 4.5 },
+    //                 { x: new Date(2012, 0), y: 3.8 },
+    //                 { x: new Date(2011, 0), y: 3.2 }
+    //             ]
+    //         }
+    //     ]
 
 
-    }
+    // }
 
 
 
-    const options2 = {
-        animationEnabled: true,
+    // const options2 = {
+    //     animationEnabled: true,
         
-        subtitles: [{
-            text:  t("feel_satisfied"),
-            verticalAlign: "center",
-            fontSize: 24,
-            dockInsidePlotArea: true
-        }],
-        data: [{
-            type: "doughnut",
-            showInLegend: true,
-            indexLabel: "{name}: {y}",
-            yValueFormatString: "#,###'%'",
-            dataPoints: [
-                { name: t("not_satisfied"), y: 5 },
-                { name: t("Strongly_dissatisfied"), y: 31 },
-                { name: t("Satisfied_with_services"), y: 40 },
-                { name: t("deeply_satisfied"), y: 17 },
-                { name: t("not_interested"), y: 7 }
-            ]
-        }]
-    }
+    //     subtitles: [{
+    //         text:  t("feel_satisfied"),
+    //         verticalAlign: "center",
+    //         fontSize: 24,
+    //         dockInsidePlotArea: true
+    //     }],
+    //     data: [{
+    //         type: "doughnut",
+    //         showInLegend: true,
+    //         indexLabel: "{name}: {y}",
+    //         yValueFormatString: "#,###'%'",
+    //         dataPoints: [
+    //             { name: t("not_satisfied"), y: 5 },
+    //             { name: t("Strongly_dissatisfied"), y: 31 },
+    //             { name: t("Satisfied_with_services"), y: 40 },
+    //             { name: t("deeply_satisfied"), y: 17 },
+    //             { name: t("not_interested"), y: 7 }
+    //         ]
+    //     }]
+    // }
 
 
 
+    // const data = props.data;
+
+    // const config = {
+      
+    //   data,
+    //   xField: 'Name',
+    //   yField: 'number',
+    //   xAxis: {
+    //     label: {
+    //       autoHide: true,
+    //       autoRotate: false,
+    //     },
+    //   },
+    //   meta: {
+    //     Name: {
+    //       alias: '类别',
+    //     },
+    //     number: {
+    //       alias: '销售额',
+    //     },
+    //   },
+    //   minColumnWidth: 20,
+    //   maxColumnWidth: 20,
+    // };
 
 
     const [services, setServices] = useState([]);
@@ -93,40 +121,94 @@ const Home = () => {
     const [contest, setContest] = useState([]);
     const [portfolios, setPortfolios] = useState([])
 
-    useEffect(() => {
-        const getDataServices = [];
-        const getDataProjects = [];
+    const [servicesNum, setServicesNum] = useState(0);
+    const [projectsNum, setProjectsNum] = useState(0);
+    const [contestNum, setContestNum] = useState(0);
+    const [portfoliosNum, setPortfoliosNum] = useState(0)
+
+
+    const fetchContests = async () => {
+
         const getDataContests = [];
-        const getDataPortfolios = [];
-        const subscriber = db.collection("services").onSnapshot((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                getDataServices.push({ ...doc.data() })
-            })
-            setServices(getDataServices)
-        })
-        const subscriberProject = db.collection("projects").onSnapshot((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                getDataProjects.push({ ...doc.data() })
-            })
-            setProjects(getDataProjects)
-        })
-        const subscriberContests = db.collection("contests").onSnapshot((querySnapshot) => {
+       await db.collection("contests").onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 getDataContests.push({ ...doc.data() })
             })
-            setContest(getDataContests)
+            setContest(getDataContests);
+            setContestNum(Number(getDataContests.length))
         })
-        const subscriberPortfolios = db.collection("protfolios").onSnapshot((querySnapshot) => {
+ 
+      }
+
+      const fetchServices = async () => {
+
+        const getDataServices = [];
+        await db.collection("services").onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                getDataServices.push({ ...doc.data() })
+            })
+            setServices(getDataServices);
+            setServicesNum(Number(getDataServices.length))
+        })
+
+      }
+
+      const fetchProjects = async () => {
+
+        const getDataProjects = [];
+        await db.collection("projects").onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                getDataProjects.push({ ...doc.data() })
+            })
+            setProjects(getDataProjects);
+            setProjectsNum(Number(getDataProjects.length))
+        })
+
+      }
+    
+
+      const fetchPortfolios = async () => {
+
+        const getDataPortfolios = [];
+        await db.collection("protfolios").onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 getDataPortfolios.push({ ...doc.data() })
             })
-            setPortfolios(getDataPortfolios)
+            setPortfolios(getDataPortfolios);
+            setPortfoliosNum(Number(getDataPortfolios.length))
         })
-        return () => subscriber()
-        subscriberProject()
-        subscriberContests()
-        subscriberPortfolios()
-    }, [])
+
+      }
+    
+    useEffect( () => {
+
+        fetchContests();
+        fetchServices();
+        fetchProjects();
+        fetchPortfolios();
+
+        setData (
+            [ {
+                  Name: t("services"),
+                  number: servicesNum
+                },
+                {
+                  Name: t("contests"),
+                  number: contestNum
+                },
+                {
+                  Name: t("projects"),
+                  number: projectsNum
+                },
+                {
+                  Name: t("works"),
+                  number: portfoliosNum
+                }
+              ]
+        );
+        
+    }, [servicesNum , contestNum , projectsNum , portfoliosNum , t] );
+
 
     //Handeling  services
     var countIsApprovedServices = 0;
@@ -159,7 +241,6 @@ const Home = () => {
         } else {
             rejectedConstest++
         }
-
     }
 
 
@@ -221,43 +302,13 @@ const Home = () => {
 
     return (<>
         <>
-        <Language />
-            <div className='home container-fluid'>
 
-{/* 
-                <div className='fContainer row' >
-                    <div className='d-flex justify-content-between borderBottom p-3 col-12'>
-                        <div>
-                            <h3>الرصيد</h3>
-                        </div>
-                        <div>
-                            <Button variant="success" >شحن الرصيد</Button>
-                        </div>
-                    </div>
-                    <div className=' col-12'>
-                        <div className="d-flex justify-content-center borderBottom row">
-                            <div className='p-3  text-center     	col-5	col-sm-5	col-md-5	col-lg-3	col-xl-3	col-xxl-3'>
-                                <h3>مجموع الارباح</h3>
-                                <h2>0.00$</h2>
-                            </div>
-                            <span class="divider" />
-                            <div className='p-3  text-center   col-4	col-sm-4	col-md-4	col-lg-4	col-xl-4	col-xxl-4'>
-                                <h3>اجمالي الرصيد </h3>
-                                <h2>0.00$</h2>
-                            </div>
-                            <span className="divider d-none	d-sm-none	d-md-none	d-lg-block	d-xl-block	d-xxl-block " />
-                            <div className='p-3  text-center col-12	col-sm-12	col-md-12	col-lg-3	col-xl-3	col-xxl-3'>
-                                <h3>الرصيد القابل للسحب </h3>
-                                <h2>0.00$</h2>
-                            </div>
+            <div className='home py-5 container-fluid'>
 
-                        </div>
-                    </div>
-                    <div className='d-flex justify-content-center m-3 col-12'>
-                        <div className='mx-3'><a href="#">معلق:$0</a></div>
-                        <div><a href="#">متاح للشراء:$0</a></div>
-                    </div>
-                </div> */}
+                <div className="mb-4">
+                    <Barchart data={data} />
+                </div>
+
                 <div className='d-flex flex-wrap row'>
                     <Card header={t("services")} progressValue1="100" one={t("numServices")} oneNum={coutAllServices}
                         two={t("needs_modifications")} twoNum={countIsFeaturedServices} progressValue2={countIsFeaturedServices / coutAllServices * 100}
@@ -400,7 +451,7 @@ const Home = () => {
                     </Accordion>
 
 
-                    <Accordion className=' col-12	col-sm-12	col-md-12	col-lg-12	col-xl-12	col-xxl-12 my-2' defaultActiveKey={['0']} alwaysOpen >
+                    {/* <Accordion className=' col-12	col-sm-12	col-md-12	col-lg-12	col-xl-12	col-xxl-12 my-2' defaultActiveKey={['0']} alwaysOpen >
                         <Accordion.Item eventKey="0">
                             <Accordion.Header ><Icon.PieChart color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}> {t("Sales_of_services")} </h6></Accordion.Header>
                             <Accordion.Body className="text-center">
@@ -412,9 +463,9 @@ const Home = () => {
                             </Accordion.Body>
                         </Accordion.Item>
 
-                    </Accordion>
+                    </Accordion> */}
 
-                    <Accordion className=' col-12	col-sm-12	col-md-12	col-lg-12	col-xl-12	col-xxl-12 my-2' defaultActiveKey={['0']} alwaysOpen >
+                    {/* <Accordion className=' col-12	col-sm-12	col-md-12	col-lg-12	col-xl-12	col-xxl-12 my-2' defaultActiveKey={['0']} alwaysOpen >
                         <Accordion.Item eventKey="0">
                             <Accordion.Header ><Icon.PieChart color="black" size={20} className="ms-2 mb-1" /><h6 style={{ color: "black" }}>
                             {t("Measuring_percentage")} 
@@ -427,7 +478,7 @@ const Home = () => {
                             </Accordion.Body>
                         </Accordion.Item>
 
-                    </Accordion>
+                    </Accordion> */}
 
 
                 </div>

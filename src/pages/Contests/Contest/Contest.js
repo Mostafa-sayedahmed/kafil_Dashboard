@@ -8,8 +8,6 @@ import Swal from "sweetalert2";
 import { db , auth } from '../../../Firebase/Firebase';
 import ReactLoading from "react-loading";
 
-import Language from "../../../components/Language/Language";
-
 import { useTranslation } from "react-i18next";
 
 import { Doughnutchart } from "../../../components/doughnutchart/doughnutchart";
@@ -142,7 +140,6 @@ export default function Contest() {
    
   return (
         <>
-        <Language />
         {/* start heading */}
         <div className="bg-white border rounded my-2 ">
           <h3 className="m-2 "> <i className="fa-solid fa-table-list ms-3" style={{color: "#28a745"}}></i>{t("my_contest")}</h3>

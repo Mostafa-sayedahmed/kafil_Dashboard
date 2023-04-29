@@ -5,8 +5,6 @@ import { db , auth } from '../../../Firebase/Firebase';
 import {useParams } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
-import Language from "../../../components/Language/Language";
-
 export default function ContestDetails() {
 
     const { t } = useTranslation();
@@ -44,7 +42,6 @@ export default function ContestDetails() {
     <>
     
      <div>
-       <Language />
        <div className="bg-white border border-secondary-subtle  rounded p-3">
          <div className="header ">
            <h3 className="m-2">{t("contest_details")}</h3>

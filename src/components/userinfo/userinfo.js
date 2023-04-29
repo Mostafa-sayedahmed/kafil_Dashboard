@@ -5,7 +5,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../Firebase/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import Language from "../Language/Language";
 
 const Userinfo = () => {
 
@@ -16,11 +16,16 @@ const Userinfo = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const [userName, setUserName] = useState(user.fullname);
-  const [userImg, setUserImg] = useState(user.imgUrl);
+  const [userImg, setUserImg] = useState('https://firebasestorage.googleapis.com/v0/b/kafiil-12b6c.appspot.com/o/images%2Fuserimage.png?alt=media&token=e88880bd-c2f9-4562-9a72-5628441ad27a');
 
   useEffect(() => {
     setUserName(user.fullname);
-    setUserImg(JSON.parse(localStorage.getItem("user")).imgUrl);
+    if(JSON.parse(localStorage.getItem("user")).imgUrl != ''){
+      setUserImg(JSON.parse(localStorage.getItem("user")).imgUrl);
+    }else{
+      setUserImg('https://firebasestorage.googleapis.com/v0/b/kafiil-12b6c.appspot.com/o/images%2Fuserimage.png?alt=media&token=e88880bd-c2f9-4562-9a72-5628441ad27a');
+    }
+
   }, [user]);
 
   const logOut = () => {
@@ -38,9 +43,7 @@ const Userinfo = () => {
           <i className="fa-solid fa-user"></i>
           <span>{t("my_account")}</span>
         </div>
-        <button className="btn btn-light">
-          <i className="fa-solid fa-gear"></i>
-        </button>
+        <Language />
       </div>
       <div className="userinfo-details">
         <div className="user-avatar">
