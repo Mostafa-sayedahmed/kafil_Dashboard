@@ -35,7 +35,7 @@ export default function Sidebar() {
         <div className="sidebar-btns">
           <Dashboardtn
             route="/home"
-            btnName="الرئيسية"
+            btnName={t("home")}
             btnIcon="fa-solid fa-house "
           />
 
@@ -67,8 +67,10 @@ export default function Sidebar() {
             btnIcon="fa-solid fa-suitcase "
           />
           <Dashboardtn
+
             route="/portfolio"
             btnName={t("works")}
+
             btnIcon="fa-regular fa-images"
           />
           {/* <Dashboardtn
@@ -88,11 +90,11 @@ export default function Sidebar() {
             btnName={t("users")}
             btnIcon="fa-solid fa-users"
           />
-          <Dashboardtn
+          {/* <Dashboardtn
             route="/staff"
             btnName={t("employees")}
             btnIcon="fa-solid fa-user-tie "
-          />
+          /> */}
         </div>
       </div>
     </div>

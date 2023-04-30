@@ -11,11 +11,22 @@ import { db } from "../../Firebase/Firebase";
 import './users.css'
 import "./users.css";
 
+import Language from "../../components/Language/Language";
+
+import { useTranslation } from "react-i18next";
+
 const Users = () => {
+
+  const { t } = useTranslation();
+
+  const [isLoading, setIsLoading] = useState(false);
   
   const [freelancer, setFreelancer] = useState([]);
+
   const[user,setUser]=useState([]);
+
   useEffect(() => {
+    setIsLoading(true);
     const getDataFreelancers=[];
     const usersData=[];
     const subscriber=db.collection("Freelancers").onSnapshot((querySnapshot)=>{
@@ -26,29 +37,42 @@ const Users = () => {
     })
     const subscriberUser=db.collection("users").onSnapshot((querySnapshot)=>{
       querySnapshot.forEach((doc)=>{
-usersData.push({...doc.data()})
+      usersData.push({...doc.data()})
       })
       setUser(usersData)
     })
+    setIsLoading(false);
     return()=>subscriber()
     subscriberUser()
-   
+    
   }, [])
+
+
+
+  const updateAdmin= (id , value) => {
+    let userId = id;
+    db.collection("users").doc(userId).update({
+      isAdmin : value
+    });
+  };
+
  
 
   return (  <>
+
+  <Language />
   
-   <h3 className="my-5">أولاً : المستقلون :</h3>
+   <h3 className="my-5"> {t("first")} : {t("freelancer")} :</h3>
    <Table striped>
       <thead>
         <tr>
-          <th>الصورة</th>
-          <th> الاسم</th>
-          <th> الوظيفة</th>
-          <th>المشاهدات</th>
-          <th>الاعجابات</th>
-          <th>الاعمال</th>
-          <th>التقييم</th>
+          <th>{t("photo")}</th>
+          <th>{t("name")} </th>
+          <th>{t("job")} </th>
+          <th>{t("views")} </th>
+          <th>{t("likes")} </th>
+          <th>{t("works")} </th>
+          <th>{t("evaluation")} </th>
         </tr>
       </thead>
       <tbody>
@@ -72,13 +96,14 @@ usersData.push({...doc.data()})
     </Table>
 
 
-    <h3 className="my-5">ثانياً : المستخدمون :</h3>
+    <h3 className="my-5"> {t("second")} : {t("users")} :</h3>
     <Table striped>
       <thead>
         <tr>
-          <th>الصورة</th>
-          <th> الاسم</th>
-          <th> البريد الالكتروني</th>
+          <th>{t("photo")}</th>
+          <th>{t("name")} </th>
+          <th>{t("email")} </th>
+          <th>{t("admin")} </th>
         </tr>
       </thead>
       <tbody>
@@ -86,11 +111,21 @@ usersData.push({...doc.data()})
         if(!user.imgUrl){
           user.imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"
         }
+        if(user.isAdmin){
+          user.isAdmin="Admin"
+        }
         return<>
            <tr>
            <td><img src={user.imgUrl} width={"100px"} height={"100px"} style={{borderRadius:"30%"}}></img></td>
            <td>{user.fullname}</td>
            <td>{user.email}</td>
+           {/* <td>{user.isAdmin}</td> */}
+
+           <td><input className="form-check-input" type="checkbox"
+              onChange={(e)=>{
+                updateAdmin(user.id , e.target.checked)
+            }}
+            checked={user.isAdmin}/></td>
          </tr>
          </>
         })}
