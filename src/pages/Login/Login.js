@@ -13,8 +13,10 @@ import Language from "../../components/Language/Language";
 import { useTranslation } from "react-i18next";
 
 const Login = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   const navigate = useNavigate();
 
@@ -40,6 +42,12 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (rememberMe) {
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+      localStorage.setItem('rememberMe', rememberMe);
+    }
 
     auth
       .signInWithEmailAndPassword(email, password)
@@ -71,6 +79,22 @@ const Login = () => {
       });
   };
 
+
+
+  useEffect( () => {
+    const storedEmail = localStorage.getItem('email');
+    const storedPassword = localStorage.getItem('password');
+    const storedRememberMe = localStorage.getItem('rememberMe');
+  
+    if (storedRememberMe && storedEmail && storedPassword) {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
+    }
+  }, [] );
+
+
+
   return (
     <>
       <div className="container">
@@ -89,6 +113,7 @@ const Login = () => {
                 <input
                   required
                   type="email"
+                  value={email}
                   className="form-control"
                   id="floatingEmail"
                   placeholder={t("Email")}
@@ -102,6 +127,7 @@ const Login = () => {
                 <input
                   required
                   type="password"
+                  value={password}
                   className="form-control"
                   id="floatingPassword"
                   placeholder={t("Password")}
@@ -114,6 +140,8 @@ const Login = () => {
                     className="form-check-input"
                     type="checkbox"
                     id="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
                   />
                   {t("RememberMe")}
                 </div>
