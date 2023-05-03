@@ -147,14 +147,6 @@ export default function Contest() {
         </div>
         {/* end heading */}
 
-        {/* start cards */}
-        {/* <div className="B-serves p-3 ">
-            <Smpilcard cardName={t("completed")} cardValue={completedNum} />
-            <Smpilcard cardName={t("not_completed")} cardValue={notCompletedNum} />
-            <Smpilcard cardName={t("accepted")} cardValue={acceptedNum} />
-            <Smpilcard cardName={t("not_accepted")} cardValue={notAcceptedNum} />
-         </div> */}
-
          <div className="B-serves p-3 ">
         <div
           className="d-flex justify-content-evenly flex-nowrap"
@@ -194,68 +186,72 @@ export default function Contest() {
         <h3 className="m-2" > <i className="fa-solid fa-table-list ms-3" style={{color: "#28a745"}}></i>{t("my_contest")}</h3>
         <p  style={{border:'2px solid #28a745',width:'7%' ,margin: "0% 7% ",borderRadius:"5px"  }}></p>  
       </div>
-      {/* end heading  two*/}
-       {/* starting Table */}
-    <table className="table table-hover bg-white">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>{t("contest")}</th>
-      <th>{t("section")}</th>
-      <th>{t("price")}</th>
-      <th>{t("completed")}</th>
-      <th>{t("accepted")}</th>
-      <th>{t("delete")}</th>
-    </tr>
-  </thead>
-    <tbody>
-          {isBusy ? (
-                contest.map((cont,index)=>{
-                  return(
-                    // <CardofContext key={index} index={index+1} name={cont.userName} contest={cont.title}  section={cont.sectionName} award={cont.firstWinner} checked={cont.completed} />
-                  
-                    <tr key={index}>
-                    <th scope="row " className='ms-2'>{index+1}</th>
-                    {/* <td className='text-nowrap p-2'><i className="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {cont.userName}</td> */}
-                    <td className='text-nowrap p-2'>
-                      <i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i>
-                      <Link className='text-success text-decoration-none' to={`/Contest/${cont.id}`}>{cont.title}</Link>
-                    </td>
-                    <td className='text-nowrap p-2'><i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {cont.sectionName} </td>
-                    <td className='text-nowrap p-2'><i className="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{cont.firstWinner} $</td>
-                    <td><input className="form-check-input" type="checkbox"
-                    onChange={(e)=>{
-                      updateCompleted(cont.id , e.target.checked);
-                    }}
-                    checked={cont.completed}/></td>
 
-                    <td><input className="form-check-input" type="checkbox"
-                    onChange={(e)=>{
-                      updateAccepted(cont.id , e.target.checked);
-                    }}
-                    checked={cont.accepted}/></td>
-
-                    <td className='text-nowrap p-2'> <Link type='button' onClick={() =>{
-                        DeleteAlert(cont.id);
-                    }}>
-                      <i className="fa-solid fa-trash text-danger fs-6"></i>
-                    </Link></td>
+      <div className='services-container'>
+        <table className="table table-hover bg-white">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>{t("contest")}</th>
+        <th>{t("section")}</th>
+        <th>{t("price")}</th>
+        <th>{t("completed")}</th>
+        <th>{t("accepted")}</th>
+        <th>{t("delete")}</th>
+      </tr>
+    </thead>
+      <tbody>
+            {isBusy ? (
+                  contest.map((cont,index)=>{
+                    return(
+                      // <CardofContext key={index} index={index+1} name={cont.userName} contest={cont.title}  section={cont.sectionName} award={cont.firstWinner} checked={cont.completed} />
                     
-                  </tr>
+                      <tr key={index}>
+                      <th scope="row " className='ms-2'>{index+1}</th>
+                      {/* <td className='text-nowrap p-2'><i className="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {cont.userName}</td> */}
+                      <td className='text-nowrap p-2'>
+                        <i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i>
+                        <Link className='text-success text-decoration-none' to={`/Contest/${cont.id}`}>{cont.title}</Link>
+                      </td>
+                      <td className='text-nowrap p-2'><i className="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {cont.sectionName} </td>
+                      <td className='text-nowrap p-2'><i className="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{cont.firstWinner} $</td>
+                      <td><input className="form-check-input" type="checkbox"
+                      onChange={(e)=>{
+                        updateCompleted(cont.id , e.target.checked);
+                      }}
+                      checked={cont.completed}/></td>
 
-                    )
-               })
-              ) : (<div className='d-flex justify-content-center align-items-center w-100' style={{ height: "100%" , width:"100%" }}>
-              <div>
-                <ReactLoading type="spin" color="#1dbf73"
-                  height={100} width={50} />
-              </div>
+                      <td><input className="form-check-input" type="checkbox"
+                      onChange={(e)=>{
+                        updateAccepted(cont.id , e.target.checked);
+                      }}
+                      checked={cont.accepted}/></td>
 
-            </div>)
+                      <td className='text-nowrap p-2'> <Link type='button' onClick={() =>{
+                          DeleteAlert(cont.id);
+                      }}>
+                        <i className="fa-solid fa-trash text-danger fs-6"></i>
+                      </Link></td>
+                      
+                    </tr>
 
-            }
-   </tbody>
-    </table>
+                      )
+                })
+                ) : (<div className='d-flex justify-content-center align-items-center w-100' style={{ height: "100%" , width:"100%" }}>
+                <div>
+                  <ReactLoading type="spin" color="#1dbf73"
+                    height={100} width={50} />
+                </div>
+
+              </div>)
+
+              }
+    </tbody>
+        </table>
+
+      </div>
+  
+    
   </>    
   )
 }
