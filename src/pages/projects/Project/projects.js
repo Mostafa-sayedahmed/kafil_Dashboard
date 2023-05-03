@@ -83,8 +83,6 @@ export default function Projects() {
    
     <>  
 
-  <Language />
-   
 
   <div className="bg-white border rounded my-2 ">
       <h3 className="m-2 "> <i class="fa-solid fa-table-list ms-3" style={{color: "#9ca1ab"}}></i>{t("my_projects")}</h3>
