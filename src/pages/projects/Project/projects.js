@@ -130,19 +130,19 @@ export default function Projects() {
           <td className='text-nowrap p-2'><i class="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {proj.personName}</td>
           <td className='text-nowrap p-2'><i class="fa-regular fa-clock ms-2" style={{color: "#9ca1ab"}}></i> منذو   {proj.Time} ساعات </td>
           <td className='text-nowrap p-2'><i class="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{proj.budget}</td>
-          <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{handleShow()}} >Delete</button></td>
+          <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{handleShow()}}> {t("delete")}</button></td>
           <td>    
       <Modal show={show} onHide={handleClose}>
         <Modal.Header >
-          <Modal.Title className="text-center fw-bold">Warning</Modal.Title>
+          <Modal.Title className="text-center fw-bold"> {t("warning")}</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="text-center fw-bold">Are you sure to Delete This Project</Modal.Body>
+        <Modal.Body className="text-center fw-bold"> {t("Are_Delete_Project")}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("cancel")}
           </Button>
           <Button variant="danger" onClick={DaleteProject(proj.id)}>
-           Delete
+            {t("delete")}
           </Button>
         </Modal.Footer>
       </Modal>
