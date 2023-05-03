@@ -13,6 +13,9 @@ import {
 } from "firebase/firestore";
 import preloader from "../../assets/preloader2.gif";
 
+import { Doughnutchart } from "../../components/doughnutchart/doughnutchart";
+import { Areachart } from "../../components/areachart/areachart";
+
 import Language from "../../components/Language/Language";
 
 import { useTranslation } from "react-i18next";
@@ -82,14 +85,47 @@ function Serves() {
       <div className="bg-white border border-secondary-subtle  rounded ">
         <h1 className="m-2">{t("services")}</h1>
       </div>
+
       <div className="B-serves p-3 ">
-        <Smpilcard cardName={t( "total_services")} cardValue={services.length} />
-        <Smpilcard cardName={t("pending_approval")} cardValue={sPending} />
-        {/* <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" /> */}
-        <Smpilcard cardName="نشط" cardValue={sApproved} />
-        {/* <Smpilcard cardName=" متوقف مؤقتا" cardValue="0" /> */}
-        <Smpilcard cardName={t("canceled")} cardValue={sDeleted} />
+        <div
+          className="d-flex justify-content-evenly flex-nowrap"
+          style={{ height: "270px", width: "100%" }}
+        >
+          <div className="d-none d-lg-block d-flex flex-grow-1">
+            <Areachart
+              title={t("service_details")}
+              labels={[t("canceled"), t("pending_approval"), t("approved")]}
+              Values={[sDeleted, sPending, sApproved]}
+            />
+          </div>
+          <div className=" d-flex flex-grow-1 align-items-center justify-content-center">
+            <Doughnutchart
+              colors={[
+                "rgba(255, 20, 20, 0.3)",
+
+                "rgba(255, 206, 86, 0.3)",
+
+                "rgba(100, 226, 86, 0.3)",
+              ]}
+              labels={[t("canceled"), t("pending_approval"), t("approved")]}
+              Values={[sDeleted, sPending, sApproved]}
+            />
+          </div>
+        </div>
+        <div
+          className="d-flex justify-content-evenly gap-3 flex-wrap"
+          style={{ width: "100%" }}
+        >
+          <Smpilcard cardName={t( "total_services")} cardValue={services.length} />
+          <Smpilcard cardName={t("pending_approval")} cardValue={sPending} />
+          {/* <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" /> */}
+          <Smpilcard cardName={t("approved")
+        } cardValue={sApproved} />
+          {/* <Smpilcard cardName=" متوقف مؤقتا" cardValue="0" /> */}
+          <Smpilcard cardName={t("canceled")} cardValue={sDeleted} />
+        </div>
       </div>
+
       <div className="services-container bg-white border border-secondary-subtle mt-3 rounded">
         <h1 className="m-2">{t("services")}</h1>
         {/* <Container > */}
@@ -100,9 +136,9 @@ function Serves() {
               <th style={{ Width: "100px", overflow: "hidden" }}>{t("service_name")}</th>
               <th>{t("user")}</th>
               <th>{t("status")}</th>
-              <th>{t("email")}</th>
+              {/* <th>{t("email")}</th> */}
               <th>{t("price")}</th>
-              <th>{t("service_control")}</th>
+              {/* <th>{t("service_control")}</th> */}
             </tr>
           </thead>
           {services.length == 0 ? (

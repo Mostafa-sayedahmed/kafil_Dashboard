@@ -12,6 +12,9 @@ import Language from "../../../components/Language/Language";
 
 import { useTranslation } from "react-i18next";
 
+import { Doughnutchart } from "../../../components/doughnutchart/doughnutchart";
+import { Areachart } from "../../../components/areachart/areachart";
+
 export default function Contest() {
 
   const { t } = useTranslation();
@@ -148,12 +151,46 @@ export default function Contest() {
         {/* end heading */}
 
         {/* start cards */}
-        <div className="B-serves p-3 ">
+        {/* <div className="B-serves p-3 ">
             <Smpilcard cardName={t("completed")} cardValue={completedNum} />
             <Smpilcard cardName={t("not_completed")} cardValue={notCompletedNum} />
             <Smpilcard cardName={t("accepted")} cardValue={acceptedNum} />
             <Smpilcard cardName={t("not_accepted")} cardValue={notAcceptedNum} />
-         </div>
+         </div> */}
+
+         <div className="B-serves p-3 ">
+        <div
+          className="d-flex justify-content-evenly flex-nowrap"
+          style={{ height: "270px", width: "100%" }}
+        >
+          <div className="d-none d-lg-block d-flex flex-grow-1">
+            <Areachart
+              title={t("service_details")}
+              labels={[t("completed"), t("not_completed")]}
+              Values={[completedNum, notCompletedNum]}
+            />
+          </div>
+          <div className=" d-flex flex-grow-1 align-items-center justify-content-center">
+            <Doughnutchart
+              colors={[        
+                "rgba(100, 226, 86, 0.3)",
+                "rgba(255, 206, 86, 0.3)",  
+              ]}
+              labels={[t("accepted"), t("not_accepted")]}
+              Values={[acceptedNum, notAcceptedNum]}
+            />
+          </div>
+        </div>
+        <div
+          className="d-flex justify-content-evenly gap-3 flex-wrap"
+          style={{ width: "100%" }}
+        >
+          <Smpilcard cardName={t("completed")} cardValue={completedNum} />
+          <Smpilcard cardName={t("not_completed")} cardValue={notCompletedNum} />
+          <Smpilcard cardName={t("accepted")} cardValue={acceptedNum} />
+          <Smpilcard cardName={t("not_accepted")} cardValue={notAcceptedNum} />
+        </div>
+      </div>
       {/* end cards */}
       {/* start heading  two*/}
       <div className="bg-white border border-secondary-subtle my-3 rounded">

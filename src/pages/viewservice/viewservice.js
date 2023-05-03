@@ -15,13 +15,11 @@ import {
 import { useState } from "react";
 import Serviceuserinfo from "./../../components/serviceuserinfo/Serviceuserinfo";
 
-
 import Language from "../../components/Language/Language";
 
 import { useTranslation } from "react-i18next";
 
 const Viewservice = () => {
-
   const { t } = useTranslation();
 
   let params = useParams();
@@ -29,14 +27,15 @@ const Viewservice = () => {
   const [categories, setcategories] = useState([]);
   const [newcategory, setnewcategory] = useState("");
   const [newstate, setnewstate] = useState("");
+  const [featured, setfeatured] = useState();
   const [addons, setaddons] = useState([]);
   const [user, setuser] = useState({});
   const [imgs, setimgs] = useState([]);
   const [previewimg, setpreviewimg] = useState("");
   const [show, setShow] = useState(false);
-  const [modalmsg, setmodalmsg] = useState(
-       t("delete_the_service")
-    );
+
+  const [modalmsg, setmodalmsg] = useState(t("delete_the_service"));
+
   let navigate = useNavigate();
   async function getuser() {
     const docRef = doc(db, "users", details.userid);
@@ -65,6 +64,13 @@ const Viewservice = () => {
       const washingtonRef = doc(db, "services", params.serviceid);
       await updateDoc(washingtonRef, {
         state: newstate,
+      });
+      console.log("new state updated");
+    }
+    if (featured != null) {
+      const washingtonRef = doc(db, "services", params.serviceid);
+      await updateDoc(washingtonRef, {
+        isfeatured: featured,
       });
       console.log("new state updated");
     }
@@ -100,7 +106,6 @@ const Viewservice = () => {
       });
     });
   }
-
   return (
     <div>
       <Language />
@@ -110,7 +115,6 @@ const Viewservice = () => {
         </div>
         <hr />
         <div className="body d-flex flex-column">
-
           <div className="title mb-3">
             <h5 className="fw-bold mb-3  ">
               {t("title")}: <span className="fw-normal">{details.title}</span>
@@ -125,13 +129,30 @@ const Viewservice = () => {
                 style={{ backgroundColor: "#59cca8", color: "#fff" }}
               >
                 <span className="fw-bold ">
-                  {t("status")}: <span className="fw-normal ">{details.state}</span>
+                  {t("status")}:{" "}
+                  <span className="fw-normal ">{details.state}</span>
                 </span>
                 <span className="fw-bold ">
-                {t("section")}: <span className="fw-normal ">{details.category}</span>
+                  {t("section")}:{" "}
+                  <span className="fw-normal ">{details.category}</span>
                 </span>
                 <span className="fw-bold ">
-                {t("evaluation")}:{" "}
+                  {t("featured")}:{" "}
+                  <span className="fw-normal ">
+                    {details.isfeatured ? (
+                      <span>
+                        {t("yes")}{" "}
+                        <i className="fa-regular fa-circle-check"></i>
+                      </span>
+                    ) : (
+                      <span>
+                        {t("no")} <i className="fa-regular fa-circle-xmark"></i>
+                      </span>
+                    )}
+                  </span>
+                </span>
+                <span className="fw-bold ">
+                  {t("evaluation")}:{" "}
                   <span className="fw-normal ">
                     <i className="fa-solid fa-star text-warning ms-2"></i>(
                     {details.rating})
@@ -140,7 +161,7 @@ const Viewservice = () => {
               </div>
               <hr className="my-2" />
               <h6 className="fw-bold mb-3">
-              {t("description")}:
+                {t("description")}:
                 <span className="fw-normal p-2 lh-lg">
                   {details.description}{" "}
                 </span>
@@ -191,7 +212,7 @@ const Viewservice = () => {
                 );
               })}
               <h6 className="fw-bold my-3 ">
-               {t("Buyer_Instructions")} :{" "}
+                {t("Buyer_Instructions")}{" "}
                 <span className="fw-normal p-2 lh-lg">
                   {" "}
                   {details.buyerinstructions}{" "}
@@ -202,20 +223,20 @@ const Viewservice = () => {
                   <>
                     <div className="d-flex justify-content-between" key={index}>
                       <span className="fs-5">
-                       {t("add")} {index + 1}:
+                        {t("add")} {index + 1}:
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonTitle}
                         </span>
                       </span>
                       <span className="fs-5">
-                         {t("delivery_time")}:
+                        {t("delivery_time")} :
                         <span className="fs-5 px-2 text-sucess">
-                          {item.addonDeliveryDuration} يوم
+                          {item.addonDeliveryDuration} {t("day")}
                         </span>
                       </span>
                       <span className="fs-5">
                         {" "}
-                        {t("price")}:{" "}
+                        {t("delivery_time")} {t("price")}:{" "}
                         <span className="fs-5 px-2 text-sucess">
                           {item.addonPrice} $
                         </span>{" "}
@@ -240,7 +261,7 @@ const Viewservice = () => {
                 <hr />
                 <div className="d-flex flex-column">
                   <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h6> {t("status")}: </h6>
+                    <h6>{t("status")}: </h6>
                     <select
                       name=""
                       style={{ width: "70%" }}
@@ -249,12 +270,12 @@ const Viewservice = () => {
                       }}
                       id=""
                     >
-                      <option selected disabled value="">
-                         {t("status")}
-                      </option>    
-                      <option value={t("approved")}>{t("approved")}</option>
-                      <option value={t("delete")}>{t("delete")}</option>
-                      <option value={t("pending")}>{t("pending")}</option>
+                      <option defaultValue disabled selected value="">
+                        {t("status")}
+                      </option>
+                      <option value="approved">approved</option>
+                      <option value="deleted">deleted</option>
+                      <option value="pending">pending</option>
                     </select>
                   </div>
 
@@ -270,7 +291,7 @@ const Viewservice = () => {
                       id=""
                     >
                       <option selected disabled value="">
-                      {t("section")}
+                        {t("section")}
                       </option>
                       {categories.map((item, index) => {
                         return (
@@ -281,18 +302,40 @@ const Viewservice = () => {
                       })}
                     </select>
                   </div>
+                  <div className="d-flex justify-content-between align-items-center mb-3">
+                    <div className="form-check form-switch">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                        onChange={(e) => {
+                          setfeatured(e.target.checked);
+                          console.log(featured);
+                        }}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexSwitchCheckDefault"
+                      >
+                        {t("featured")} :
+                      </label>
+                    </div>
+                  </div>
                   <hr />
                   <button
                     className="btn btn-success mb-3"
                     onClick={updateservice}
                     disabled={
-                      newcategory !== "" || newstate !== "" ? false : true
+                      newcategory !== "" || newstate !== "" || featured != null
+                        ? false
+                        : true
                     }
                   >
-                     {t("updata")}
+                    {t("updata")}
                   </button>
                   <button className="btn btn-danger" onClick={togglemodal}>
-                  {t("delete")}
+                    {t("delete")}
                   </button>
                 </div>
               </div>
@@ -309,10 +352,10 @@ const Viewservice = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={deleteservice}>
-           {t("yes_delete")}
+            {t("yes_delete")}
           </Button>
           <Button variant="secondary" onClick={togglemodal}>
-          {t("back")}
+            {t("back")}
           </Button>
         </Modal.Footer>
       </Modal>
