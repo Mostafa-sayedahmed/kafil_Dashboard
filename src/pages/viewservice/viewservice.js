@@ -33,7 +33,9 @@ const Viewservice = () => {
   const [imgs, setimgs] = useState([]);
   const [previewimg, setpreviewimg] = useState("");
   const [show, setShow] = useState(false);
+
   const [modalmsg, setmodalmsg] = useState(t("delete_the_service"));
+
   let navigate = useNavigate();
   async function getuser() {
     const docRef = doc(db, "users", details.userid);
@@ -44,6 +46,7 @@ const Viewservice = () => {
   function togglemodal() {
     setShow(!show);
   }
+
   useEffect(() => {
     getservice();
   }, []);

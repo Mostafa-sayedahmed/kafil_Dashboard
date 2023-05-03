@@ -2,22 +2,21 @@ import React,{useState,useEffect} from 'react'
 import Smpilcard from '../../../components/smpilcard/smpilcard'
 import {auth, db }from '../../../Firebase/Firebase';
 import { collection ,deleteDoc,doc,getDocs} from 'firebase/firestore';
-
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import Language from "../../../components/Language/Language";
-
 import { useTranslation } from "react-i18next";
-
 import preloader from "../../../assets/preloader2.gif";
 
 
 export default function Projects() {
 
-
   const { t } = useTranslation();
 
    const [project,setprojects] = useState([])
    const [loading, setLoading] = useState(false);
+   const [show, setShow] = useState(false);
+
 
    const fetchproject = async () => {      
       try {
@@ -32,26 +31,29 @@ export default function Projects() {
       }
 
 }
-      
+    
     useEffect(()=>{
       fetchproject();
     }, [])
 
+ 
+    
+    const handleClose = () => setShow(false);
+    const handleShow = () =>{
+      // console.log(id);
+      setShow(true);
+    } 
+      
 
         ///// Handling Delete Project
    async  function DaleteProject(id){
-      console.log(id);
+      // console.log(id);
         try {
-            // if(alert('Are You Sure to delette This Project ?')){
+          // await deleteDoc(doc(db, "projects", params.serviceid));
               await deleteDoc(doc(db,'projects',id))
               fetchproject()
-              console.log("Done");
-            // }
-        } catch (error) {
-            console.log(error);
-        }
-            
-
+              // console.log("Done");   
+        } catch (error) {console.log(error);}
       }
 
 
@@ -111,9 +113,6 @@ export default function Projects() {
     
 
 
-  
-
-
   <table className="table table-hover bg-white">
   <thead>
   <tr>
@@ -136,14 +135,32 @@ export default function Projects() {
           <td className='text-nowrap p-2'><i class="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {proj.personName}</td>
           <td className='text-nowrap p-2'><i class="fa-regular fa-clock ms-2" style={{color: "#9ca1ab"}}></i> منذو   {proj.Time} ساعات </td>
           <td className='text-nowrap p-2'><i class="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{proj.budget}</td>
-          <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{DaleteProject(proj.id)}}>Delete</button></td>
+          <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{handleShow()}} >Delete</button></td>
+          <td>    
+            <Modal show={show} onHide={handleClose}>
+        <Modal.Header >
+          <Modal.Title className="text-center fw-bold">Warning</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center fw-bold">Are you sure to Delete This Project</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={DaleteProject(proj.id)}>
+           Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </td>
         </tr>
 
+        
       )   
       }) : <img src={preloader} alt="Loading" /> }
 
    </tbody>
    </table> 
+
   
   </>
 
