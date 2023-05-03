@@ -16,7 +16,7 @@ import Serves from "./pages/serves/serves";
 import Home from "./pages/home/home";
 
 import Contest from "./pages/Contests/Contest/Contest";
-import Projects from "./pages/projects/Project/projects";
+import Projects from "./pages/projects/projects";
 import Portfolios from "./pages/portfolois/portfolois";
 import Login from "./pages/Login/Login";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";

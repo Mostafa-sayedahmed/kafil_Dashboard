@@ -1,13 +1,14 @@
 import React,{useState,useEffect} from 'react'
-import Smpilcard from '../../../components/smpilcard/smpilcard'
-import {auth, db }from '../../../Firebase/Firebase';
+import Smpilcard from '../../components/smpilcard/smpilcard'
+import {auth, db }from '../../Firebase/Firebase';
 import { collection ,deleteDoc,doc,getDocs} from 'firebase/firestore';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Language from "../../../components/Language/Language";
+import Language from "../../components/Language/Language";
 import { useTranslation } from "react-i18next";
-import preloader from "../../../assets/preloader2.gif";
+import preloader from "../../assets/preloader2.gif";
 
+import Swal from "sweetalert2";
 
 export default function Projects() {
 
@@ -45,13 +46,45 @@ export default function Projects() {
     } 
       
 
+    function DeleteAlert(id){
+      Swal.fire({
+          title: t("are_you_sure"),
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#1dbf73',
+          cancelButtonColor: '#d33',
+          confirmButtonText: t("delete"),
+          cancelButtonText:t("cancel"),
+      }).then((result) => {
+      if (result.isConfirmed) {
+        DaleteProject(id)
+      }
+  })
+} 
+
+
+function afterDelete(){
+  Swal.fire({
+      title: t("Deleted_successfully"),
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500
+  });
+} 
+
+
+
+
         ///// Handling Delete Project
-   async  function DaleteProject(id){
+        
+   const DaleteProject = async (id) => {    
+  //  async  function DaleteProject(id){
       // console.log(id);
         try {
           // await deleteDoc(doc(db, "projects", params.serviceid));
               await deleteDoc(doc(db,'projects',id))
-              fetchproject()
+              fetchproject();
+              afterDelete();
               // console.log("Done");   
         } catch (error) {console.log(error);}
       }
@@ -125,14 +158,17 @@ export default function Projects() {
       return(
 
         <tr key={index}>
-          <th scope="row " className='ms-2'>{proj.index}</th>
+          <th scope="row " className='ms-2'>{index+1}</th>
           <td className='text-nowrap p-2'><i class="fa-solid fa-list-check ms-2" style={{color: "#9ca1ab"}}></i> {proj.title} </td>
           <td className='text-nowrap p-2'><i class="fa-solid fa-user ms-2" style={{color: "#9ca1ab"}} ></i> {proj.personName}</td>
           <td className='text-nowrap p-2'><i class="fa-regular fa-clock ms-2" style={{color: "#9ca1ab"}}></i> منذو   {proj.Time} ساعات </td>
           <td className='text-nowrap p-2'><i class="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{proj.budget}</td>
-          <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{handleShow()}}> {t("delete")}</button></td>
+          {/* <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{handleShow()}}> {t("delete")}</button></td> */}
+          <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{
+              DeleteAlert(proj.id);
+          }}> {t("delete")}</button></td>
           <td>    
-      <Modal show={show} onHide={handleClose}>
+      {/* <Modal show={show} onHide={handleClose}>
         <Modal.Header >
           <Modal.Title className="text-center fw-bold"> {t("warning")}</Modal.Title>
         </Modal.Header>
@@ -141,11 +177,13 @@ export default function Projects() {
           <Button variant="secondary" onClick={handleClose}>
             {t("cancel")}
           </Button>
-          <Button variant="danger" onClick={DaleteProject(proj.id)}>
+          <Button variant="danger" onClick={()=>{
+            DeleteAlert(proj.id)
+          }}>
             {t("delete")}
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
 
       </td>
         </tr>
