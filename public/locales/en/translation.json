@@ -105,5 +105,8 @@
   "day": "day",
   "freelancers":"Freelancers",
   "number":"Number",
-  "award":"price"
+  "award":"price",
+  "warning":"Warning",
+  "Are_Delete_Project":"Are you sure to Delete This Project ?"
+
 }
