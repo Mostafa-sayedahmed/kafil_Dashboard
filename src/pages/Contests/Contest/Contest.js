@@ -194,7 +194,7 @@ export default function Contest() {
         <th>#</th>
         <th>{t("contest")}</th>
         <th>{t("section")}</th>
-        <th>{t("price")}</th>
+        <th>{t("award")}</th>
         <th>{t("completed")}</th>
         <th>{t("accepted")}</th>
         <th>{t("delete")}</th>
