@@ -104,5 +104,6 @@
   "no": "no",
   "day": "day",
   "freelancers":"Freelancers",
-  "number":"Number"
+  "number":"Number",
+  "award":"price"
 }

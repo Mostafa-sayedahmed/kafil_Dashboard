@@ -95,13 +95,10 @@ export default function Projects() {
     <div className="B-serves p-3 ">
 
 
-      <Smpilcard cardName=" اجمالي الخدمات " cardValue={project.length}/>
-      {/* <Smpilcard cardName="يحتاج الى تعديلات" cardValue="0" /> */}
-      {/* <Smpilcard cardName="منشور" cardValue={IsApproved} /> */}
-      <Smpilcard cardName="مرفوض" cardValue={NotAccepted} />
-      {/* <Smpilcard cardName="مرحله تلقي العروض " cardValue="0" /> */}
-      <Smpilcard cardName=" مكتمل " cardValue={IsComplete} />
-      <Smpilcard cardName=" غير مكتمل " cardValue={IsNotComplete} />
+      <Smpilcard cardName={t( "total_services")} cardValue={project.length}/>
+      <Smpilcard cardName={t("not_accepted")} cardValue={NotAccepted} />
+      <Smpilcard cardName={t("completed")} cardValue={IsComplete} />
+      <Smpilcard cardName={t("not_completed")} cardValue={IsNotComplete} />
 
      
     </div>
@@ -137,7 +134,7 @@ export default function Projects() {
           <td className='text-nowrap p-2'><i class="fa-solid fa-money-bill-1-wave ms-2" style={{color:" #9ca1ab"}}></i>{proj.budget}</td>
           <td><button className='btn btn-outline-danger p-2 rounded' onClick={()=>{handleShow()}} >Delete</button></td>
           <td>    
-            <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header >
           <Modal.Title className="text-center fw-bold">Warning</Modal.Title>
         </Modal.Header>
@@ -151,6 +148,7 @@ export default function Projects() {
           </Button>
         </Modal.Footer>
       </Modal>
+
       </td>
         </tr>
 

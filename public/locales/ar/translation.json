@@ -14,7 +14,7 @@
   "not_accepted": "غير مقبولة",
   "contest": "المسابقة",
   "section": "القسم",
-  "price": "الجائزة",
+  "price": "السعر",
   "delete": "حذف",
   "my_account": "حسابي",
   "admin": "مسؤول",
@@ -104,5 +104,6 @@
   "no": "لا",
   "day": "يوم",
   "freelancers":"المستقليين",
-  "number":"العدد"
+  "number":"العدد",
+  "award":"الجائزة"
 }
