@@ -4,6 +4,7 @@ import { db } from '../../Firebase/Firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
 
 import { useTranslation } from "react-i18next";
+import { Doughnutchart } from "../../components/doughnutchart/doughnutchart";
 
 function Portfolios() {
 
@@ -82,11 +83,35 @@ function Portfolios() {
         <h1 className="m-2">{t("works")}</h1>
       </div>
 
-      <div className="B-serves p-3 ">
-        <Smpilcard cardName={t("total_portfolios")} cardValue={getTotalPortfolios(Portfolios)} />
-        <Smpilcard cardName={t("completed")} cardValue={getCompletedPortfolios(Portfolios)} />
-        <Smpilcard cardName={t("not_completed")} cardValue={getUncompletedPortfolios(Portfolios)} />
+     
+
+   <div>
+    
+
+      {/* <div className="B-serves p-3 d-flex  flex-column"> */}
+      <div className="B-serves p-3">
+      {/* <div className=" d-flex align-items-center justify-content-center">
+   
+          <Doughnutchart
+                colors={[        
+                  "rgba(100, 226, 86, 0.3)",
+                  "rgba(255, 206, 86, 0.3)",  
+                ]}
+                labels={[t("completed"), t("not_completed")]}
+                Values={[getCompletedPortfolios(Portfolios), getUncompletedPortfolios(Portfolios)]}
+            />
+    
+         
       </div>
+      <div className='d-flex justify-content-around flex-wrap'> */}
+        <Smpilcard cardName={t("total_portfolios")} cardValue={getTotalPortfolios(Portfolios)} />
+          <Smpilcard cardName={t("completed")} cardValue={getCompletedPortfolios(Portfolios)} />
+          <Smpilcard cardName={t("not_completed")} cardValue={getUncompletedPortfolios(Portfolios)} />
+      {/* </div> */}
+    
+      </div>
+   </div>
+    
       <div className="services-container bg-white border border-secondary-subtle mt-3 rounded"
       >
         <h1 className="m-2">{t("works")}</h1>

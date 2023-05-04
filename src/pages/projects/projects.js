@@ -186,9 +186,7 @@ function afterDelete(){
       </Modal> */}
 
       </td>
-        </tr>
-
-        
+        </tr>       
       )   
       }) : <img src={preloader} alt="Loading" /> }
 
